@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://www.ruozedata.com/article/ruozedata/">
+    <link rel="canonical" href="http://www.ruozedata.com/article/剑指数据仓库早课20191127/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -92,10 +92,10 @@
                             
                         </div>
                         <h1>剑指数据仓库早课</h1>
-                        <h2 class="subheading">第六次早课.</h2>
+                        <h2 class="subheading">This is hexo theme Demo.</h2>
                         <span class="meta">
                             Posted by John on
-                            2015-07-11
+                            2019-11-27
                         </span>
                     </div>
                 
@@ -142,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -215,73 +215,59 @@
                 <hr>
 <h4 id="join-us-if-you-have-a-dream">Join us if you have a dream.</h4>
 <h3 id="剑指数据仓库早课">剑指数据仓库早课</h3>
-<p>1、查看当前目录<br>
-答：pwd</p>
-<p>2、ll的命令来源<br>
-答：ls -l</p>
-<p>3、隐藏文件、文件夹什么标识，怎么查看？<br>
+<p>1、查看进程的命令，杀死进程之前应该做些什么<br>
+答：杀死进程前要确认这个进程是否能被杀，不要是别人正在运行的服务。</p>
+<p>2、假如ps确认清楚，杀死名称含有关键词abc的所有进程，该怎么杀？<br>
+答：kill -9 $(ps -ef|grep -f abc)</p>
+<p>3、ps -ef|grep XXX命令，可以查看进程的那些信息<br>
+答：pid</p>
+<p>4、查看端口号的命令<br>
+答：netstat -nlp|grep</p>
+<p>5、rpm包怎么搜索、安装、卸载<br>
+答：yum search<br>
+yum install -y<br>
+yum remove</p>
+<p>6、tar压缩解压、参数<br>
+答：压缩：<br>
+解压：tar -xzvf</p>
+<p>7、下载一个http文件的命令<br>
+答：wget</p>
+<p>8、sudo和su的区别<br>
+答：su切换到家目录，sudo切换后还是在当前目录</p>
+<p>9、一个用户无法su/ssh登录，该检查那个文件？<br>
+答：cat /etc/passwd</p>
+<p>10、系统负载命令，一般看哪两块？<br>
+答：top</p>
+<p>11、查看内存、磁盘的命令分别是什么？<br>
+答：free -m、df -h</p>
+<p>12、当前目录使用什么命令进行标识？<br>
+答：./</p>
+<p>13、绝对路径和相对路径的定义和概念？<br>
+答：绝对路径/开头，相对路径：~</p>
+<p>14、全局环境变量文件在哪？该怎样生效？生效完成后，习惯做什么？<br>
+答：root用户下，/etc/profile；source /etc/profile，生效完成后使用which java、which hive</p>
+<p>15、个人环境变量文件默认在哪？使用哪个文件？<br>
+答：vi ~/.bash_profile，在用户的家目录下</p>
+<p>16、输入一个命令，抛错command not found，你们觉得应该从哪些方面检查？<br>
+答：环境变量</p>
+<p>17、不管是作为新人还是老手，要动公司服务器上的生产配置文件，修改前要养成什么习惯？<br>
+答：先cp备份一下</p>
+<p>18、vi编辑文件，差不多1000行，想要快速定位到某个参数port=110，去修改值port=120,；如何快速定位找到这个参数？<br>
+答：esc进入尾行模式，输入:/port=110查询然后编辑替换即可。</p>
+<p>19、Linux的模糊匹配和MySQL的模糊匹配分别是什么标识<br>
+答：linux系统中的模糊匹配是*和？，mysql中的模糊匹配是%和_</p>
+<p>20、隐藏文件标识是什么，该怎么查看？<br>
 答：ll -a</p>
-<p>4、cd 切换用户家目录的命令有哪三种？<br>
-答：cd ~、cd /home/用户名、</p>
-<p>5、切上一层目录和上一次目录的命令？<br>
-答：cd …/	、cd -</p>
-<p>6、级联创建目录？<br>
-答：mkdir -p</p>
-<p>7、mv cp命令谁更快，可以修改文件名称吗？<br>
-答：mv移动命令相比之下是更快的，可以修改文件名称，mv aaa.log  bbb.log</p>
-<p>8、创建文件的哪几种方法？<br>
-答：vi 文件名称<br>
-touch 文件名称<br>
-echo 1 &gt; a.log</p>
-<p>9、简述vi编辑文件流程？<br>
-答：vi XXX.log，输入i进行编辑，输入内容，esc进入到尾行模式，输入: + wq进行保存。</p>
-<p>10、简述vi清空一个文件的命令<br>
-答：gg回到第一行，dG从第一行开始清空整个文件内容。</p>
-<p>11、从其他地方拷贝内容到vi文件夹中，应该按什么按键呢？<br>
-答：输入i键，否则复制过去的文字会消失几个字符。</p>
-<p>12、vi编辑文件的时候进行搜索？<br>
-答：在尾行模式下，输入:/ 进行搜索。</p>
-<p>13、rwx分别表示多少？<br>
-答：读写执行、421</p>
-<p>14、rwx-w-r-- 数字表示多少？<br>
-答：721</p>
-<p>15、14题中，代表哪三组权限？<br>
-答：用户权限，用户组权限，其它权限</p>
-<p>16、带大R参数的命令有哪些?<br>
-答：chown -R 修改用户和用户组<br>
-chmod -R 主要用来修改权限</p>
-<p>17、带小r参数的命令？<br>
-答：rm -rf<br>
-cp -r</p>
-<p>18、命令帮助如何查看？<br>
-答：–help查看命令帮助</p>
-<p>19、生产上某个服务出问题，解决步骤应该是什么？<br>
-答：去定位问题（找到它报错的日志文件），再去解决问题</p>
-<p>20、找到error，我们应该怎么做？<br>
-答：tail -200f，找到关键字分析，不行百度</p>
-<p>21、目前我们已经遇到的常见错误有哪些？<br>
-答：连接拒绝、权限受限、class not found</p>
-<p>22、链接拒绝，我们应该怎么办？<br>
-答：ping<br>
-telent<br>
-防火墙</p>
-<p>23、netstat显示127.0.0.1:80，这样是不是外面也访问不了？<br>
-答：是的</p>
-<p>24、hosts文件配置需要注意哪两点？<br>
-答：前两行不能删，配置的是内网地址和用户名的映射</p>
-<p>25、windows中的hosts文件在哪儿找？<br>
-答：C:\Windows\System32\drivers\etc\hosts</p>
-<p>26、谈谈你认为的高危linux命令有哪些？<br>
-答：rm 、kill</p>
-<p>27、vi编辑一个生产配置文件，编辑前是不是要提前进行备份？<br>
-答：需要的，不然你改了什么东西，没有备份很尴尬</p>
-<p>28、软连接的两种场景？<br>
-答：软件迭代和文件转移</p>
-<p>29、找XXX服务的端口号<br>
-答：ps -ef|grep XXX<br>
-netstat -nlp|grep pid</p>
-<p>30、linux系统中，我们只知道有个文件名称中含有abc，但是不知道文件在哪，我们应该怎么操作？<br>
-答：find / -name <em>abc</em></p>
+<p>21、一个文件10M，想要快速找到error关键词的上下文10行，命令是什么？<br>
+答：grep ERROR -C  10 XXX</p>
+<p>22、&gt; 和 &gt;&gt;的区别是什么？<br>
+答：&gt;表示把原来的内容全部覆盖掉；&gt;&gt;表示在我们原来的文件内容下进行追加</p>
+<p>23、管道符是什么？你的理解？<br>
+答：| 表示管道符，前者的输出作为后者的输入</p>
+<p>24、echo &quot; &gt; xxx.log清空文件，有什么问题？<br>
+答：实际上还占一个字节</p>
+<p>25、简述一个流程：vi 将一个文件的内容从windows的记事本去替换掉，流程是什么？<br>
+答：vi编辑待替换文件，gg然后dG清空此文件，复制黏贴然后使用secureCRT直接右键黏贴，注意是要在编辑模式下，否则直接黏贴会丢失几个字符。</p>
 
                 
 
@@ -289,9 +275,13 @@ netstat -nlp|grep pid</p>
                 <!-- Pager -->
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/article/剑指数据仓库早课/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">&larr; Previous Post</a>
+                        </li>
+                    
                     
                         <li class="next">
-                            <a href="/article/剑指数据仓库早课/" data-toggle="tooltip" data-placement="top" title="煤老板">Next Post &rarr;</a>
+                            <a href="/article/hexo-theme-jepson/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme Jepson">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
