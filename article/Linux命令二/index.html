@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Linux命令一 - 梅老板 | Blog
+          Linux命令二 - 梅老板 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.ruozedata.com/article/Linux命令一/">
+    <link rel="canonical" href="http://www.ruozedata.com/article/Linux命令二/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,7 +91,7 @@
                               <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
                             
                         </div>
-                        <h1>Linux命令一</h1>
+                        <h1>Linux命令二</h1>
                         <h2 class="subheading">This is hexo theme Demo.</h2>
                         <span class="meta">
                             Posted by John on
@@ -213,159 +213,88 @@
                 post-container">
 
                 <hr>
-<h4 id="join-us-if-you-have-a-dream">Join us if you have a dream.</h4>
-<h6 id="登录的用户-机器名称-家目录">登录的用户、机器名称、家目录</h6>
-<p>[root@hadoop001 ~]</p>
-<h6 id="查看当前光标所在的目录">查看当前光标所在的目录</h6>
-<p>Last login: Wed Nov 27 13:23:31 2019 from 112.80.63.242<br>
-[root@hadoop001 ~]# pwd<br>
-/root</p>
-<h6 id="切换目录">切换目录</h6>
+<h6 id="echo">echo</h6>
 <ul>
-<li>cd /home<br>
-root用户的家目录就是/root，当我们创建了其它用户，就是/home/用户这个目录。</li>
+<li>打印的是系统自带的环境变量名称：</li>
 </ul>
-<p>回答家目录的三种方式：<br>
-1、cd 然后回车<br>
-2、cd ~<br>
-3、cd /root或者/home/XXX</p>
-<p>cd - ： 表示回到上一次操作的目录。<br>
-cd …/ 回退到上一层目录，<br>
-cd …/…/	回退到上两层目录。</p>
-<p>对于目录的理解：<br>
-相当于是windows上文件夹的意思。</p>
-<h6 id="绝对路径和相对路径">绝对路径和相对路径：</h6>
-<p>绝对路径：代表的是从/根目录开始；以根目录开始：/home/hadoop/data/ruozeinput.txt<br>
-相对路径：不从根目录为开始，以当前光标所在的目录开始，eg：我们进入到/home/hadoop目录下</p>
-<p>相对路径的表达：<br>
-只要不是以根目录开始就是相对路径的表达：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 bin]$ cd ../</span><br><span class="line">[hadoop@hadoop001 local]$ cd bin</span><br><span class="line">[hadoop@hadoop001 bin]$ cd -</span><br><span class="line">/usr/local</span><br><span class="line">[hadoop@hadoop001 local]$ cd /usr/local/bin</span><br><span class="line">[hadoop@hadoop001 bin]$ cd -</span><br><span class="line">/usr/local</span><br><span class="line">[hadoop@hadoop001 local]$ cd ./bin</span><br></pre></td></tr></table></figure>
-<h6 id="清屏">清屏</h6>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 ~]# echo &quot;www.ruozedata.com&quot;</span><br><span class="line">www.ruozedata.com</span><br><span class="line">[root@hadoop001 ~]# echo $PATH</span><br><span class="line">/usr/java/jdk1.8.0_45/bin:/usr/java/jdk1.8.0_45/jre/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin</span><br><span class="line"></span><br><span class="line">返回PATH所在目录的第一个返回值</span><br><span class="line">[root@hadoop001 ~]# which ls</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">        /bin/ls</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">如下操作并没有全局生效==&gt; 仅对当前session（当前会话窗口生效）</span><br><span class="line">[root@hadoop001 ~]# PATH=&apos;&apos;</span><br><span class="line">[root@hadoop001 ~]# echo $PATH</span><br><span class="line"></span><br><span class="line">[root@hadoop001 ~]# ll</span><br><span class="line">-bash: ls: No such file or directory</span><br><span class="line">[root@hadoop001 ~]# which ls</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">[root@hadoop001 ~]# ls</span><br><span class="line">-bash: ls: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>注意：Command not found 就意味着环境变量没配置正确或者压根没有部署。<br>
+echo打印一般分为两种场景：<br>
+1、打印字符串<br>
+2、打印系统环境变量名称，一般的话是大写。</p>
+<p>which一般找的是path的路径。</p>
+<h6 id="环境变量">环境变量</h6>
+<p>1、全局环境变量：/etc/profile<br>
+所有人都使用这个环境变量就配置全局</p>
+<p>2、个人环境便令：~/.bash_profile<br>
+只针对个人使用<br>
+~/.bashrc</p>
+<p>生效文件：source XXX<br>
+. ~/.bash_profile<br>
+. ~/.bashrc</p>
+<h6 id="安装jdk">安装jdk</h6>
+<p>1、新建目录</p>
 <ul>
-<li>clear</li>
+<li>mkdir -p /usr/java</li>
 </ul>
-<h6 id="ls查看当前光标所在的目录文件有哪些">ls查看当前光标所在的目录文件有哪些</h6>
-<p>ls：查看当前目录下的文件<br>
-ls -l：查看所有文件（不包括隐藏文件）<br>
-ls -l -a：查看所有文件（包括隐藏文件）</p>
-<p>注意：</p>
+<p>2、yum install -y unzip</p>
 <ul>
-<li>在我们的生产上，也可以将一些配置文件放在隐藏文件下。</li>
+<li>yum下载unzip</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 local]$ ls</span><br><span class="line">bin  games    lib    libexec  qcloud  share  yd.socket.server</span><br><span class="line">etc  include  lib64  mysql    sbin    src</span><br><span class="line">[hadoop@hadoop001 local]$ ls -l</span><br><span class="line">total 48</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 bin</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 etc</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 games</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 include</span><br><span class="line">[hadoop@hadoop001 local]$ ls -l -a</span><br><span class="line">total 56</span><br><span class="line">drwxr-xr-x. 14 root       root 4096 Nov 25 20:16 .</span><br><span class="line">drwxr-xr-x. 14 root       root 4096 Oct 29 22:03 ..</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 bin</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 etc</span><br></pre></td></tr></table></figure>
-<h6 id="查看文件的大小">查看文件的大小</h6>
-<p>1、ll -h			-h, --human-readable       with -l, print sizes in human readable format<br>
-(e.g., 1K 234M 2G)</p>
-<p>根据时间修改先后顺序来对文件排序：</p>
+<p>3、unzip解压缩</p>
+<p>Java目录是所有人共用的话如何操作：<br>
+vi /etc/profile，<br>
+a. 按住上下键移动光标<br>
+b. 按i键进行编辑，进入编辑模式，<br>
+c. 按esc键退出编辑模式，<br>
+d. 按shift + : 键，进入尾行模式，<br>
+e. 输入wq进行保存退出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#env</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_12</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>保存完后要习惯性的source下生效，养成java目录保存在/usr/java目录下，不然会影响到CDH的部署。</p>
+<p>环境变量中K=V前后不能有空格，简单的讲了vi命令编辑，<br>
+使用时就是$K</p>
+<p>总结：<br>
+1、command not found：表示命令找不到，有可能没有部署安装包，which unzip，部署了没有配置环境变量</p>
+<p>2、当我们以后部署一个软件，bin目录下的可执行文件，比如java，当我们生效环境变量文件，习惯性的which java一下；</p>
+<p>个人环境变量</p>
+<h6 id="别名alias">别名alias</h6>
+<p>ll和ls -l显示的是一样的：系统自己就已经做了别名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">如下是系统自己做的别名修改：</span><br><span class="line">[hadoop@hadoop001 ~]$ alias</span><br><span class="line">alias l.=&apos;ls -d .* --color=auto&apos;</span><br><span class="line">alias ll=&apos;ls -l --color=auto&apos;</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">alias vi=&apos;vim&apos;</span><br><span class="line">alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;</span><br><span class="line"></span><br><span class="line">应用场景：</span><br><span class="line">生产上有复杂的场景，alias可以简化我们的操作</span><br><span class="line">alias j = &apos;cd /home/hadoop/data&apos;</span><br><span class="line"></span><br><span class="line">只对当前会话窗口生效，新开session后，是不起作用的，原因是没有配置在PATH中。</span><br></pre></td></tr></table></figure>
+<p>如何配置在全局环境变量中：<br>
+j的这个命令只让root使用，一共有2个文件，.bash_profile和.bashrc；<br>
+这两个文件有两个大坑，配置个人环境变量以前优先配置的是.bash_profile；现在优先配置个人环境变量使用的是.bashrc；</p>
+<p>区别：当我们使用ssh远程执行命令的时候，.bashrc会自动加载生效，而.bash_profile是不生效的，这是设计的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 ~]$ vi .bashrc</span><br><span class="line">#env</span><br><span class="line">alias j=&apos;cd /home/hadoop/app/hive-1.1.0-cdh5.7.0&apos;</span><br><span class="line"></span><br><span class="line">[hadoop@hadoop001 ~]$ j</span><br><span class="line">[hadoop@hadoop001 hive-1.1.0-cdh5.7.0]$</span><br></pre></td></tr></table></figure>
+<p>eg：军工系统，一些命令都找不到，原因是精简版系统；</p>
+<h6 id="history">history</h6>
+<p>背景：大数据运维：甲方乙方，HDFS上PB级别的数据没了，准备跑路。<br>
+查看历史命令记录，有多少用户，使用root命令切换用户，使用history命令进行切换，查看用户操作记录。</p>
+<p>正常擦尾巴的流程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、清空.bash_history文件</span><br><span class="line">cat /dev/null &gt; .bash_history</span><br><span class="line"></span><br><span class="line">2、history -c</span><br><span class="line">彻底删除历史记录</span><br></pre></td></tr></table></figure>
+<p>假如公司机器是通过跳板机或者堡垒机登录机器，跳板机没有关系，可以清除；要是使用堡垒机的话，log文件还是会有记录的。</p>
+<p>我们使用history查看历史敲击命令，加入某个命令我们不想敲，输入!2，意思就是执行历史指定的命令。</p>
+<p>当我们刚进入一家公司的时候，假如进入的是生产服务器，第一步就需要使用history命令看看这个账号之前做过哪些操作，可能能发现password；存在一个情况密码敲击在命令行中：说不定能看见mysql的密码呢。</p>
+<h6 id="删除">删除</h6>
+<p>文件：touch 空文件<br>
+cat /dev/null &gt; xxx.log<br>
+vi命令也会生成新文件</p>
+<p>文件夹的创建：前面也讲过了。</p>
 <ul>
-<li>ll -rt<br>
--r                        reverse(反向) order while sorting<br>
--t                         sort by modification time</li>
+<li>mkdir</li>
 </ul>
-<p>应用场景：</p>
-<ul>
-<li>在生产配置中，不知道哪个文件最新被使用的</li>
-</ul>
-<p>命令帮助一定要会看ls --help，授人以鱼，不如授人以渔。</p>
-<h6 id="目录就是由文件夹组成的如何创建文件夹">目录就是由文件夹组成的，如何创建文件夹？</h6>
-<p>SecureCRT长时间不操作，当前session就会失效？<br>
--解决，右键选择properties，点击terminal，选中每隔60秒要激活一次，这样的话就不会存在对话框未响应。<br>
-<img src="./images/1574919117520.png" alt="enter description here"></p>
-<p>1、创建文件夹a</p>
-<ul>
-<li>mkdir a</li>
-</ul>
-<p>2、级联创建文件夹b/c/d</p>
-<ul>
-<li>mkdir -p b/c/d</li>
-</ul>
-<p>并行创建文件夹，mkdir 1 2 3<br>
-不清楚的话需要查看命令帮助，mkdir --help</p>
-<h6 id="mv和cp">mv和cp</h6>
-<p>mv移动ruoze.log文件到/home/hadoop/a文件夹下<br>
-[hadoop@hadoop001 ~]$ mv ruoze.log /home/hadoop/a</p>
-<p>mv在移动文件的时候重命名？</p>
-<ul>
-<li>[hadoop@hadoop001 a]$ mv ruoze.log /home/hadoop/emp.txt</li>
-</ul>
-<p>仅在当前目录修改名称？</p>
-<ul>
-<li>mv emp.txt test.txt</li>
-</ul>
-<p>拷贝文件：cp<br>
-问题：mv快还是cp块？</p>
-<ul>
-<li>mv始终只有一份，相当于只是修改了链接指向。</li>
-<li>而cp比较慢</li>
-</ul>
-<h3 id="拷贝文件">拷贝文件</h3>
-<p>在当前路径下拷贝文件：<br>
-[hadoop@hadoop001 ~]$ cp test.txt test1.txt</p>
-<p>当前路径下拷贝文件到其它目录顺便改名字：<br>
-[hadoop@hadoop001 ~]$ cp test.txt /home/hadoop/a/ruoze.log</p>
-<h6 id="如何创建一个空文件">如何创建一个空文件？</h6>
-<p>touch rz.log<br>
-echo “” &gt;&gt; rz1.log<br>
-在生产上创建空文件或者把文件内容置为空，echo慎用；因为这个echo还是占一个字节的。cat去查看内容其实都是没有东西，其实占着一个空位符。</p>
-<p>生产场景：shell脚本定时调度去清空，判断内容是不是0字节，其实echo是有1个字节，那这样就是有问题的。</p>
-<p>比如一个文件中是有内容的，如何去进行置空？<br>
-cat /dev/null &gt; rz1.log，此时置空也是0字节。</p>
-<blockquote>
-<p>是覆盖，&gt;&gt;是追加。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 a]$ touch ez.log</span><br><span class="line">[hadoop@hadoop001 a]$ echo &quot;&quot; &gt;&gt; rz1.log</span><br><span class="line">[hadoop@hadoop001 a]$ ll -h</span><br><span class="line">total 12K</span><br><span class="line">drwxrwxr-x 3 hadoop hadoop 4.0K Nov 28 13:33 b</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop   14 Nov 28 13:49 ruoze.log</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    1 Nov 28 13:53 rz1.log</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    0 Nov 28 13:52 rz.log</span><br></pre></td></tr></table></figure>
-<h6 id="查看文件内容">查看文件内容？</h6>
-<p>cat 文件内容一下子全部显示在控制台<br>
-more 文件内容一页一页的往下翻，按空格键往下翻，无法回退，按q键退出。<br>
-less 文件内容往上 往下都能查看，按上下箭头的按键，按q键退出。</p>
-<p>比如一个文件日志100M的日志内容，如何去查看？<br>
-配置文件：内容较少，cat more less都可以使用；</p>
-<p>log日志，当内容较多的时候，进行实时查看：tail -f xxx.log</p>
-<p>tail -f和tail -F的区别？</p>
-<p>生产举例：<br>
-XXX.log是log4j代码项目配置输出日志，正常规则：输出XXX.log，对这个XXX.log保留10份，比如aaa服务写每份日志每份规格是100M。</p>
-<p>aaa --&gt; XXX.log 	一下子写到99M<br>
-			XXX.log		当他写到100M的时候，把XXX.log使用mv重命名为XXX.log1，然后touch了一个空的文件还是叫XXX.log。</p>
-<p>我们进行的操作：</p>
-<ul>
-<li>mv ruoze.log ruoze.log1</li>
-<li>touch ruoze.log</li>
-<li>echo “ruozedata” &gt;&gt; ruoze.log</li>
-</ul>
-<p>进行如上操作后，tail -f已经失去了追踪文件的能力，tail -F还有一个retry的功能，当我们删除又重新创建相同文件的时候，F能嗅探到。</p>
-<p>大数据环境中的很多组件定位日志，比如部署CDH，服务没启动，需要自己去进行排查。</p>
-<p>当我们出现error的时候需要自己去定位，error文件很小的时候，把日志上传到windows，用editplus进行打开编辑。</p>
-<p>cd /var/log，正常上传下载需要安装命令：yum install lrzsz<br>
-使用sz boot.log下载到本地，具体下载到本地的那个位置看我们的配置：</p>
-<p><img src="./images/1574999572182.png" alt="enter description here"></p>
-<ul>
-<li>如上只适用于文件比较小的，几十兆。</li>
-</ul>
-<p>但是对于文件太大的，学会一个命令：</p>
-<ul>
-<li>
-<p>cat boot.log | grep ERROR     只打印当前error行数</p>
-</li>
-<li>
-<p>管道符：前面的输出结果作为后面的输入结果。</p>
-</li>
-<li>
-<p>cat boot.log | grep -A 10 ERROR     error的后十行</p>
-</li>
-<li>
-<p>cat boot.log | grep -B 10 ERROR     error的前十行</p>
-</li>
-<li>
-<p>cat boot.log | grep -C 10 ERROR     error的前后十行，经常用的命令，来定位ERROR的上下文。</p>
-</li>
-</ul>
-<p>windows上文件上传到linux上，使用命令rz；<br>
-linux上文件下载到windows上，使用命令sz.</p>
-<p>flume针对一般日志采集的方式在生产上一般使用Exec source，使用tail -F；否则mv移动之后使用touch新建的文件是不能显示的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-f, --follow[=&#123;name|descriptor&#125;]</span><br><span class="line">                           output appended data as the file grows;</span><br><span class="line">                           -f, --follow, and --follow=descriptor are</span><br><span class="line">                           equivalent</span><br><span class="line">  -F                       same as --follow=name --retry</span><br></pre></td></tr></table></figure>
-<p>J总的习惯：<br>
-tail -200f XXX.log，实时查看倒数300行文件</p>
-<p>tail -30F XXX.log提示语法错误</p>
+<p>删除文件：<br>
+rm rz.log 系统会提示删除常规的文件，敲击enter回车就是没有删除，输入y的时候就意味着是删除了、。</p>
+<p>暴力删除：rm -r rz.log 不经提示直接给你删除了。</p>
+<p>删除文件夹：<br>
+rm -f 1，不能使用删除文件的命令来删除文件夹<br>
+rm -rf 1，删除文件夹<br>
+查看命令帮助：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-f, --force           ignore nonexistent files, never prompt</span><br><span class="line">-r, -R, --recursive   remove directories and their contents recursively</span><br></pre></td></tr></table></figure>
+<p>Linux中只有文件和文件夹，和windows也是一样的，这两种规则的存储风险来自于根目录；rm -rf /，从根目录开始删除所有。</p>
+<p>存在一种场景：shell脚本中，定义一个k=空值，此时$k所在的目录就是/根目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k=&apos;/home/jepson&apos;</span><br><span class="line">k=&apos;&apos;</span><br><span class="line">rm -rf $k/*</span><br></pre></td></tr></table></figure>
+<p>linux中没有回收站的说法，该跑路只能跑路。</p>
 
                 
 
@@ -373,9 +302,13 @@ tail -200f XXX.log，实时查看倒数300行文件</p>
                 <!-- Pager -->
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/article/Linux命令一/" data-toggle="tooltip" data-placement="top" title="Linux命令一">&larr; Previous Post</a>
+                        </li>
+                    
                     
                         <li class="next">
-                            <a href="/article/Linux命令二/" data-toggle="tooltip" data-placement="top" title="Linux命令二">Next Post &rarr;</a>
+                            <a href="/article/剑指数据仓库早课/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -425,7 +358,7 @@ tail -200f XXX.log，实时查看倒数300行文件</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#join-us-if-you-have-a-dream"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Join us if you have a dream.</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#登录的用户-机器名称-家目录"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">&#x767B;&#x5F55;&#x7684;&#x7528;&#x6237;&#x3001;&#x673A;&#x5668;&#x540D;&#x79F0;&#x3001;&#x5BB6;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看当前光标所在的目录"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5149;&#x6807;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#切换目录"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">&#x5207;&#x6362;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#绝对路径和相对路径"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x548C;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#清屏"><span class="toc-nav-number">1.0.5.</span> <span class="toc-nav-text">&#x6E05;&#x5C4F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#ls查看当前光标所在的目录文件有哪些"><span class="toc-nav-number">1.0.6.</span> <span class="toc-nav-text">ls&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5149;&#x6807;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;&#x6587;&#x4EF6;&#x6709;&#x54EA;&#x4E9B;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看文件的大小"><span class="toc-nav-number">1.0.7.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#目录就是由文件夹组成的如何创建文件夹"><span class="toc-nav-number">1.0.8.</span> <span class="toc-nav-text">&#x76EE;&#x5F55;&#x5C31;&#x662F;&#x7531;&#x6587;&#x4EF6;&#x5939;&#x7EC4;&#x6210;&#x7684;&#xFF0C;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;&#xFF1F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#mv和cp"><span class="toc-nav-number">1.0.9.</span> <span class="toc-nav-text">mv&#x548C;cp</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#拷贝文件"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x62F7;&#x8D1D;&#x6587;&#x4EF6;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#如何创建一个空文件"><span class="toc-nav-number">0.0.1.</span> <span class="toc-nav-text">&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x6587;&#x4EF6;&#xFF1F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看文件内容"><span class="toc-nav-number">0.0.2.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#xFF1F;</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#echo"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">echo</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#环境变量"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#安装jdk"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;jdk</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#别名alias"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x522B;&#x540D;alias</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#history"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">history</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#删除"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x5220;&#x9664;</span></a></li></ol>
         
         </div>
       </aside>
