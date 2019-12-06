@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          MySQL部署 - 梅老板 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.ruozedata.com/article/MySQL部署/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                            
+                        </div>
+                        <h1>MySQL部署</h1>
+                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <span class="meta">
+                            Posted by John on
+                            2019-11-27
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">亚历山大-梅西</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<h4 id="join-us-if-you-have-a-dream">Join us if you have a dream.</h4>
+<h6 id="第一章mysql部署"><a href="#id_1" target="_self">第一章：MySQL部署</a></h6>
+<h6 id="第二章mysql部署遇到的问题ampmysql重新部署"><a href="#id_2" target="_self">第二章：MySQL部署遇到的问题&amp;MySQL重新部署</a></h6>
+<h6 id="第三章dbeaver连接mysql"><a href="#id_3" target="_self">第三章：Dbeaver连接MySQL</a></h6>
+<h1 id="第一章dbeaver连接mysql">第一章：Dbeaver连接MySQL</h1>
+1、MySQL的命令执行，是哪个用户，在哪个目录执行？这点不注意的会出现问题。
+<p>在生产上，专门的服务要增加专门的用户去维护：<br>
+eg:<br>
+mysql服务 --&gt; mysqladmin用户<br>
+hadoop服务 --&gt; hadoop用户</p>
+<p>cdh的hdfs服务 --&gt; hdfs用户<br>
+hbase服务 --&gt; hbase用户</p>
+<p>好处：不必担心其它文件夹的权限受到影响</p>
+<h4 id="mysql的部署">MySQL的部署</h4>
+<p>本次安装MySQL5.6参考文档链接如下：</p>
+<ul>
+<li><a href="https://github.com/Hackeruncle/MySQL/blob/master/MySQL%205.6.23%20Install.txt" target="_blank" rel="noopener">https://github.com/Hackeruncle/MySQL/blob/master/MySQL 5.6.23 Install.txt</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br></pre></td><td class="code"><pre><span class="line">第一步：进入到/usr/local目录下，上传并解压MySQL5.6版本到/usr/lcoal目录下：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# tar -xzvf mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz -C /usr/local</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第二步：check is not install（检查之前是否已经有过MySQL服务安装过了）</span><br><span class="line">背景：J总部署mysql服务到一半，发现已经有过安装了，所以安装前需要检查。</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# ps -ef|grep mysqld</span><br><span class="line">root      7354 23835  0 14:22 pts/0    00:00:00 grep --color=auto mysqld</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# rpm -qa|grep -i mysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第三步：</span><br><span class="line">在如上的部署参考文档中使用的还是重命名，我们建议关于数据库带有版本好的最好是做软连接，目的：为了以后好维护和软件升级。</span><br><span class="line"></span><br><span class="line">如下命令使用相对路径做的软连接：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# ln -s mysql-5.6.23-linux-glibc2.5-x86_64/ mysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第四步：</span><br><span class="line">创建组和用户：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# groupadd -g 101 dba</span><br><span class="line"></span><br><span class="line">查看组</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# cat /etc/group</span><br><span class="line">dba:x:101:</span><br><span class="line"></span><br><span class="line">使用命令帮助查看groupadd -g的含义：</span><br><span class="line">-g, --gid GID                 use GID for the new group</span><br><span class="line"></span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# useradd -u 514 -g dba -G root -d /usr/local/mysql mysqladmin</span><br><span class="line">useradd: warning: the home directory already exists.</span><br><span class="line"></span><br><span class="line">Not copying any file from skel directory into it.</span><br><span class="line">解析：不会拷贝文件，切换的时候发现用户样式丢失，如下所示：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# su - mysqladmin</span><br><span class="line">-bash-4.2$ </span><br><span class="line">并不是正常切换用户的这种样式：[mysqladmin@hadoop001 local]$ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第五步：copy root用户的环境变量到mysqladmin中的home用户目录下，配置个人环境变量：</span><br><span class="line">cp /etc/skel/.* /usr/local/mysql</span><br><span class="line">执行完第五步后,切换用户时的样式就更改过来了：</span><br><span class="line">root@iZuf6idov4pacdnaao7dsfZ local]# su - mysqladmin</span><br><span class="line">Last login: Thu Dec  5 14:37:20 CST 2019 on pts/0</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第六步：创建/etc/my.cnf(赋予640权限)</span><br><span class="line">文档如下：</span><br><span class="line">https://github.com/Hackeruncle/MySQL/blob/master/MySQL%205.6.23%20Install.txt</span><br><span class="line"></span><br><span class="line">从client处开始复制，此处涉及生产上的调优参数：</span><br><span class="line">innodb_buffer_pool_size = 2048M</span><br><span class="line">正常放个6G、8G就已经非常好了，我们在学习的时候由于机器限制改为2G.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第六步：在我们安装mysql之前修改权限</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ etc]# chown -R mysqladmin:dba my.cnf</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ etc]# chmod -R 640 my.cnf</span><br><span class="line"></span><br><span class="line">解析：赋予640权限的含义是只给当前用户用户组读写权限，dba所属的组有读的权限，其它用户用户组一个权限都没有，参考前面linux命令的博客。</span><br><span class="line"></span><br><span class="line">进行检查校验权限是否配置正确：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ etc]# ll my.cnf</span><br><span class="line">-rw-r----- 1 mysqladmin dba 2219 Dec  5 14:49 my.cnf</span><br><span class="line"></span><br><span class="line">因为做了软连接，所以此处有个坑是需要对所属的文件和文件夹都进行操作（使用/*）：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# chown -R mysqladmin:dba /usr/local/mysql/*</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ local]# chown -R mysqladmin:dba /usr/local/mysql</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql-5.6.23-linux-glibc2.5-x86_64]# chown -R mysqladmin:dba mysql-5.6.23-linux-glibc2.5-x86_64/</span><br><span class="line"></span><br><span class="line">针对于软连接的操作方式：</span><br><span class="line">文件要做一次修正，文件夹里面也要做一次权限修正；为什么在参考文档中使用修正，因为参考文档没有使用软连接，使用mv重命名之后相当于是一个实实在在的文件夹。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第七步：创建目录</span><br><span class="line">mkdir arch(归档目录)</span><br><span class="line">注意：文档中缺失libaio包会报错</span><br><span class="line"></span><br><span class="line">执行如下命令来进行安装：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# scripts/mysql_install_db \</span><br><span class="line">&gt; --user=mysqladmin \</span><br><span class="line">&gt; --basedir=/usr/local/mysql \</span><br><span class="line">&gt; --datadir=/usr/local/mysql/data</span><br><span class="line">FATAL ERROR: please install the following Perl modules before executing scripts/mysql_install_db:</span><br><span class="line">Data::Dumper</span><br><span class="line">提示这个错误：</span><br><span class="line">说明我们需要安装autoconf perl，其实此处也部署错了，应该是使用的Mysqladmin这个用户来进行安装。</span><br><span class="line"></span><br><span class="line">使用yum安装完这几个服务后重新安装下mysql：</span><br><span class="line">yum install autoconf </span><br><span class="line">yum install perl</span><br><span class="line">yum install libaio</span><br><span class="line"></span><br><span class="line">注意是切换到的需要是mysqladmin用户，</span><br><span class="line">如下是一系列安装报的信息：</span><br><span class="line">mysql5.6和5.7安装时的区别就是：MySQL5.6空密码，MySQL5.7生成的是随机密码。</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ scripts/mysql_install_db \</span><br><span class="line">&gt; --user=mysqladmin \</span><br><span class="line">&gt; --basedir=/usr/local/mysql \</span><br><span class="line">&gt; --datadir=/usr/local/mysql/data</span><br><span class="line">Installing MySQL system tables...2019-12-05 16:24:12 0 [Warning] &apos;THREAD_CONCURRENCY&apos; is deprecated and will be removed in a future release.</span><br><span class="line">2019-12-05 16:24:12 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">Filling help tables...2019-12-05 16:24:23 0 [Warning] &apos;THREAD_CONCURRENCY&apos; is deprecated and will be removed in a future release.</span><br><span class="line">2019-12-05 16:24:23 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">To start mysqld at boot time you have to copy</span><br><span class="line">support-files/mysql.server to the right place for your system</span><br><span class="line"></span><br><span class="line">PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !</span><br><span class="line">To do so, start the server, then issue the following commands:</span><br><span class="line"></span><br><span class="line">  /usr/local/mysql/bin/mysqladmin -u root password &apos;new-password&apos;</span><br><span class="line">  /usr/local/mysql/bin/mysqladmin -u root -h iZuf6idov4pacdnaao7dsfZ password &apos;new-password&apos;</span><br><span class="line"></span><br><span class="line">Alternatively you can run:</span><br><span class="line"></span><br><span class="line">  /usr/local/mysql/bin/mysql_secure_installation</span><br><span class="line"></span><br><span class="line">which will also give you the option of removing the test</span><br><span class="line">databases and anonymous user created by default.  This is</span><br><span class="line">strongly recommended for production servers.</span><br><span class="line"></span><br><span class="line">See the manual for more instructions.</span><br><span class="line"></span><br><span class="line">You can start the MySQL daemon with:</span><br><span class="line"></span><br><span class="line">  cd . ; /usr/local/mysql/bin/mysqld_safe &amp;</span><br><span class="line"></span><br><span class="line">You can test the MySQL daemon with mysql-test-run.pl</span><br><span class="line"></span><br><span class="line">  cd mysql-test ; perl mysql-test-run.pl</span><br><span class="line"></span><br><span class="line">Please report any problems at http://bugs.mysql.com/</span><br><span class="line"></span><br><span class="line">The latest information about MySQL is available on the web at</span><br><span class="line"></span><br><span class="line">  http://www.mysql.com</span><br><span class="line"></span><br><span class="line">Support MySQL by buying support/licenses at http://shop.mysql.com</span><br><span class="line"></span><br><span class="line">WARNING: Found existing config file /usr/local/mysql/my.cnf on the system.</span><br><span class="line">Because this file might be in use, it was not replaced,</span><br><span class="line">but was used in bootstrap (unless you used --defaults-file)</span><br><span class="line">and when you later start the server.</span><br><span class="line">The new default config file was created as /usr/local/mysql/my-new.cnf,</span><br><span class="line">please compare it with your file and take the changes you need.</span><br><span class="line"></span><br><span class="line">WARNING: Default config file /etc/my.cnf exists on the system</span><br><span class="line">This file will be read by default by the MySQL server</span><br><span class="line">If you do not want to use this, either remove it, or use the</span><br><span class="line">--defaults-file argument to mysqld_safe when starting the server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第八步：配置mysql service</span><br><span class="line">使用root用户切换到/usr/local/mysql的目录下，</span><br><span class="line">#将服务文件拷贝到init.d下，并重命名为mysql</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# cp support-files/mysql.server /etc/rc.d/init.d/mysql</span><br><span class="line">#赋予可执行权限</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# chmod +x /etc/rc.d/init.d/mysql</span><br><span class="line">#删除服务</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# chkconfig --del mysql</span><br><span class="line">#添加服务</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# chkconfig --add mysql</span><br><span class="line">#自启动服务</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# chkconfig --level 345 mysql on</span><br><span class="line"></span><br><span class="line">#vi /etc/rc.local编辑这个文件：</span><br><span class="line">su - mysqladmin -c &quot;/etc/init.d/mysql start --federated&quot;</span><br><span class="line">解析：切换这个用户的时候让mysqladmin用户执行这个命令。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第九步：</span><br><span class="line">切换到mysqladmin用户，删除这两个令人误导的文件：</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ rm -rf my.cnf my-new.cnf </span><br><span class="line"></span><br><span class="line">此时启动mysql服务：</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ service mysql status</span><br><span class="line">MySQL is not running[FAILED]</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ service mysql start</span><br><span class="line">Starting MySQL..[  OK  ]</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ service mysql status</span><br><span class="line">MySQL running (15115)[  OK  ]</span><br><span class="line"></span><br><span class="line">启动完后可以直接进入mysql，此时是空密码状态：</span><br><span class="line">使用ps-ef|grep mysqld查看进程状态</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ ps -ef|grep mysqld</span><br><span class="line">mysqlad+ 14437     1  0 16:48 pts/1    00:00:00 /bin/sh /usr/local/mysql/bin/mysqld_safe --datadir=/usr/local/mysql/data --pid-file=/usr/local/mysql/data/hostname.pid</span><br><span class="line">mysqlad+ 15115 14437  0 16:48 pts/1    00:00:00 /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/hostname.err --pid-file=/usr/local/mysql/data/hostname.pid --socket=/usr/local/mysql/data/mysql.sock --port=3306</span><br><span class="line">mysqlad+ 15732 15692  0 16:50 pts/2    00:00:00 grep --color=auto mysqld</span><br><span class="line"></span><br><span class="line">发现真正干活的是mysql小弟进程,查看端口号需要使用root权限来查看：</span><br><span class="line">[root@iZuf6idov4pacdnaao7dsfZ mysql]# netstat -nlp|grep 15115</span><br><span class="line">tcp6       0      0 :::3306                 :::*                    LISTEN      15115/mysqld        </span><br><span class="line">unix  2      [ ACC ]     STREAM     LISTENING     124172970 15115/mysqld         /usr/local/mysql/data/mysql.sock</span><br></pre></td></tr></table></figure>
+<p>到此为止MySQL5.6正式部署完成。</p>
+<h1 id="第二章mysql修改密码如何重新部署mysql">第二章：MySQL修改密码&如何重新部署MySQL</h1>
+<h3 id="mysql下修改密码">MySQL下修改密码：</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">1、进入mysql</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ mysql -uroot -p</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MySQL5.6在创建时就是空账号，空密码，这样是很危险的：</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+----------+-------------------------+</span><br><span class="line">| user | password | host                    |</span><br><span class="line">+------+----------+-------------------------+</span><br><span class="line">| root |          | localhost               |</span><br><span class="line">| root |          | izuf6idov4pacdnaao7dsfz |</span><br><span class="line">| root |          | 127.0.0.1               |</span><br><span class="line">| root |          | ::1                     |</span><br><span class="line">|      |          | localhost               |</span><br><span class="line">|      |          | izuf6idov4pacdnaao7dsfz |</span><br><span class="line">+------+----------+-------------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">2、开始修改密码：</span><br><span class="line">mysql&gt; update user set password=password(&apos;960210&apos;) where user=&apos;root&apos;;</span><br><span class="line"></span><br><span class="line">执行完后select查看：</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+-------------------------+</span><br><span class="line">| user | password                                  | host                    |</span><br><span class="line">+------+-------------------------------------------+-------------------------+</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | localhost               |</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | izuf6idov4pacdnaao7dsfz |</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | 127.0.0.1               |</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | ::1                     |</span><br><span class="line">|      |                                           | localhost               |</span><br><span class="line">|      |                                           | izuf6idov4pacdnaao7dsfz |</span><br><span class="line">+------+-------------------------------------------+-------------------------+</span><br><span class="line">6 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">3、删除空用户的SQL：</span><br><span class="line">delete from user where user=&apos;&apos;;</span><br><span class="line"></span><br><span class="line">此时查看用户密码：</span><br><span class="line">mysql&gt; delete from user where user=&apos;&apos;;</span><br><span class="line">Query OK, 2 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+-------------------------+</span><br><span class="line">| user | password                                  | host                    |</span><br><span class="line">+------+-------------------------------------------+-------------------------+</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | localhost               |</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | izuf6idov4pacdnaao7dsfz |</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | 127.0.0.1               |</span><br><span class="line">| root | *9750FE1AB84430D9F83FBB448F1FF04E965785CA | ::1                     |</span><br><span class="line">+------+-------------------------------------------+-------------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">4、刷新权限：</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<h3 id="bash_profile和bashrc的区别">.bash_profile和.bashrc的区别：</h3>
+<p>此处需要修正的一样东西是：vi .bash_profile  --&gt; vi .bashrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">在mysqladmin用户下：vi .bashrc</span><br><span class="line">export MYSQL_HOME=/usr/local/mysql</span><br><span class="line">export PATH=$MYSQL_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line">修改完后进行生效：</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ source .bashrc</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ echo $MYSQL_HOME</span><br><span class="line">/usr/local/mysql</span><br><span class="line">[mysqladmin@iZuf6idov4pacdnaao7dsfZ ~]$ which mysql</span><br><span class="line">~/bin/mysql</span><br><span class="line"></span><br><span class="line">回到mysqladmin用户，vi .bashrc，在尾部加上如下这句话：</span><br><span class="line">PS1=`uname -n`&quot;:&quot;&apos;$USER&apos;&quot;:&quot;&apos;$PWD&apos;&quot;:&gt;&quot;; export PS1</span><br><span class="line">使其保存生效后，从root用户下切换至mysqladmin,就会直接出现当前用户所在的目录在哪？</span><br><span class="line">iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql:&gt;</span><br><span class="line">每切换一个目录都会显示当前目录。</span><br></pre></td></tr></table></figure>
+<p>部署MySQL出现问题了怎么办？<br>
+检查执行的目录和用户</p>
+<h3 id="如何重新部署mysql">如何重新部署MySQL？</h3>
+<p>1、rm -rf arch/*  binlog文件（存放的是二进制数据）<br>
+rm -rf data/*  存放数据文件</p>
+<p>2、继续在mysqladmin用户下：<br>
+scripts/mysql_install_db <br>
+–user=mysqladmin <br>
+–basedir=/usr/local/mysql <br>
+–datadir=/usr/local/mysql/data</p>
+<p>3、重新部署完后还是修改用户密码：<br>
+重新启动mysql服务报错：<br>
+iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql:&gt;service mysql start<br>
+Starting MySQL…The server quit without updating PID file (/usr/local/mysql/data/hostname.pid).[FAILED]<br>
+排查原因：</p>
+<ul>
+<li>
+<p>因为执行1 2两步操作时就有mysql的进程在运行，没有停下来导致重新启动冲突了：<br>
+验证这一问题：<br>
+iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql:&gt;ps -ef|grep mysqld<br>
+mysqlad+ 14437     1  0 Dec05 ?        00:00:00 /bin/sh /usr/local/mysql/bin/mysqld_safe --datadir=/usr/local/mysql/data --pid-file=/usr/local/mysql/data/hostname.pid<br>
+mysqlad+ 15115 14437  0 Dec05 ?        00:00:22 /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/hostname.err --pid-file=/usr/local/mysql/data/hostname.pid --socket=/usr/local/mysql/data/mysql.sock --port=3306<br>
+mysqlad+ 28713 25833  0 13:32 pts/0    00:00:00 grep --color=auto mysqld</p>
+</li>
+<li>
+<p>如上操作证实了这一问题，只要把之前mysql服务的子进程杀了就行，kill -9 15115，然后重新启动mysql服务即可。<br>
+iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql:&gt;kill -9 15115<br>
+iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql:&gt;ps -ef|grep 15115<br>
+mysqlad+ 28793 25833  0 13:33 pts/0    00:00:00 grep --color=auto 15115<br>
+iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql:&gt;service mysql start<br>
+Starting MySQL.[  OK  ]</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">iZuf6idov4pacdnaao7dsfZ:mysqladmin:/usr/local/mysql/arch:&gt;ll</span><br><span class="line">total 410916</span><br><span class="line">-rw-rw---- 1 mysqladmin dba 209715200 Dec  5 16:48 ib_logfile0</span><br><span class="line">-rw-rw---- 1 mysqladmin dba 209715200 Dec  5 16:24 ib_logfile1</span><br><span class="line">-rw-rw---- 1 mysqladmin dba     67314 Dec  5 16:24 mysql-bin.000001</span><br><span class="line">-rw-rw---- 1 mysqladmin dba   1265917 Dec  5 16:24 mysql-bin.000002</span><br><span class="line">-rw-rw---- 1 mysqladmin dba       689 Dec  5 17:03 mysql-bin.000003</span><br><span class="line">-rw-rw---- 1 mysqladmin dba       117 Dec  5 16:48 mysql-bin.index</span><br></pre></td></tr></table></figure>
+<p>binlog文件在/etc/my.cnf中的位置：<br>
+log-bin=/usr/local/mysql/arch/mysql-bin<br>
+面试题：假如binlog文件满了怎么办？</p>
+<ul>
+<li>mysql有个机制，默认保留X天，过了之后会自动删除。</li>
+</ul>
+<p>innodb_log_file_size = 200M</p>
+<ul>
+<li>这个保证了ib_logfile0文件满200M以后会写另一份。</li>
+</ul>
+<p>MySQL中常见的ERROR?</p>
+<ul>
+<li>Access denied for user ‘root’@'localhost ’ using password: NO</li>
+<li>密码不对；</li>
+</ul>
+<h1 id="第三章用dbeaver来连接mysql56">第三章：用Dbeaver来连接MySQL5.6：</h1>
+<p>Dbeaver下载网址：<a href="https://dbeaver.io/download/" target="_blank" rel="noopener">https://dbeaver.io/download/</a></p>
+<p>为什么使用dbeaver，它能够连接多种的数据库，Impala/Hive/MySQL</p>
+<p><img src="http://hadoop001/GithubBlogPicture/1.png" alt="image"><br>
+提示报错信息：</p>
+<ul>
+<li>null,  message from server: “Host ‘112.80.63.242’ is not allowed to connect to this MySQL server”</li>
+</ul>
+<p>为什么Dbeaver不能连接MySQL5.6：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">host表示的是允许哪边的机器来访问mysql数据库：</span><br><span class="line">+------+-------------------------+-------------------------------------------+</span><br><span class="line">| user | host                    | password                                  |</span><br><span class="line">+------+-------------------------+-------------------------------------------+</span><br><span class="line">| root | localhost               | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line">| root | izuf6idov4pacdnaao7dsfz | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line">| root | 127.0.0.1               | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line">| root | ::1                     | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line"></span><br><span class="line">vi /etc/hosts</span><br><span class="line">表示的是：内网ip+hostname的映射</span><br><span class="line">未来在工作中，所有的shell脚本只要涉及到ip相关的，统一的使用hostname，服务器迁移，ip变更怎么办呢？所以做映射关系是最好的选择，迁移只需修改映射关系。</span><br><span class="line"></span><br><span class="line">a.云主机的话hosts</span><br><span class="line">内网ip hostname</span><br><span class="line"></span><br><span class="line">案例：</span><br><span class="line">yum install httpd</span><br><span class="line">windows访问，IDEA开发，都是外网ip（是虚拟的，按量付费云主机重启会发生变化）</span><br><span class="line">只要在‪C:\Windows\System32\drivers\etc\hosts，此处配置外网IP和hostname即可。</span><br><span class="line">所有的操作都是使用hostname来操作的，windows访问就在C盘hosts文件下配置。</span><br><span class="line"></span><br><span class="line">b.内网服务器：</span><br><span class="line">没有外网ip这个说法，其实配置的还是ip+hostname的说法</span><br><span class="line"></span><br><span class="line">c.跳板机、堡垒机</span><br><span class="line">做不了直接访问，专门一台机器暴露ip，进行转发的</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">那如何让外面的机器能访问到内部的MySQL数据库：</span><br><span class="line">grant all privileges on *.* to root@&apos;%&apos; identified by &apos;ruozedata&apos;;</span><br><span class="line">flush privileges;</span><br><span class="line">解析：赋予所有的权限给所以的数据库下的所有表给root这个用户的所有ip来进行访问，密码是ruozedata</span><br></pre></td></tr></table></figure>
+<p><img src="http://hadoop001/GithubBlogPicture/2.png" alt="image"></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/剑指数据仓库早课/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#join-us-if-you-have-a-dream"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Join us if you have a dream.</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第一章mysql部署"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text"><a href="#id_1" target="_self">&#x7B2C;&#x4E00;&#x7AE0;&#xFF1A;MySQL&#x90E8;&#x7F72;</a></span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第二章mysql部署遇到的问题ampmysql重新部署"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text"><a href="#id_2" target="_self">&#x7B2C;&#x4E8C;&#x7AE0;&#xFF1A;MySQL&#x90E8;&#x7F72;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&amp;MySQL&#x91CD;&#x65B0;&#x90E8;&#x7F72;</a></span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第三章dbeaver连接mysql"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text"><a href="#id_3" target="_self">&#x7B2C;&#x4E09;&#x7AE0;&#xFF1A;Dbeaver&#x8FDE;&#x63A5;MySQL</a></span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#第一章dbeaver连接mysql"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x7B2C;&#x4E00;&#x7AE0;&#xFF1A;Dbeaver&#x8FDE;&#x63A5;MySQL</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#mysql的部署"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">MySQL&#x7684;&#x90E8;&#x7F72;</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#第二章mysql修改密码如何重新部署mysql"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x7B2C;&#x4E8C;&#x7AE0;&#xFF1A;MySQL&#x4FEE;&#x6539;&#x5BC6;&#x7801;&amp;&#x5982;&#x4F55;&#x91CD;&#x65B0;&#x90E8;&#x7F72;MySQL</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#mysql下修改密码"><span class="toc-nav-number"></span> <span class="toc-nav-text">MySQL&#x4E0B;&#x4FEE;&#x6539;&#x5BC6;&#x7801;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#bash_profile和bashrc的区别"><span class="toc-nav-number"></span> <span class="toc-nav-text">.bash_profile&#x548C;.bashrc&#x7684;&#x533A;&#x522B;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何重新部署mysql"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x5982;&#x4F55;&#x91CD;&#x65B0;&#x90E8;&#x7F72;MySQL&#xFF1F;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#第三章用dbeaver来连接mysql56"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x7B2C;&#x4E09;&#x7AE0;&#xFF1A;&#x7528;Dbeaver&#x6765;&#x8FDE;&#x63A5;MySQL5.6&#xFF1A;</span></a>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruozedata.com" target="_blank">若泽数据官网</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/hackeruncle">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; John 2019 
+                    By <a href="http://www.ruozedata.com">若泽数据，企业在职</a> | BigData
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ruozedata&repo=Bigdata&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.ruozedata.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.ruozedata.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
