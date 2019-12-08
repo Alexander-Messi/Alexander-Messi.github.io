@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          SQL02 - 梅老板 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.ruozedata.com/article/SQL02/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                            
+                        </div>
+                        <h1>SQL02</h1>
+                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <span class="meta">
+                            Posted by John on
+                            2019-11-27
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">亚历山大-梅西</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<h6 id="第一章上次课程回顾r"><a href="#id_1" target="_self">第一章：上次课程回顾r</a></h6>
+<h6 id="第二章增删改查温习"><a href="#id_2" target="_self">第二章：增删改查温习</a></h6>
+<h6 id="第三章sql实战"><a href="#id_3" target="_self">第三章：SQL实战</a></h6>
+<h6 id="第四章本次课程作业"><a href="#id_4" target="_self">第四章：本次课程作业</a></h6>
+ <h1 id="第一章上次课程回顾">第一章：上次课程回顾</h1>
+ - 上次课程主要是创建表，show processlist；查看运行的进程服务，datetime和timestamp的区别，数据库表的增删改查（生产查询居多），生产上的建表规范（自增长和UUID的区别、主键、唯一键、表字段的命名规范、表字段的注释、[创建人、创建时间、修改人、修改时间要注意]、字段名称和值要一一对应）
+<ul>
+<li>select查询的时候where条件要加上去，生产上尽量少些*号；</li>
+<li>生产上MySQL的主从复制库，读写分离；</li>
+<li>J总恢复生产库有博客。</li>
+</ul>
+ <h1 id="第二章数据的增删改查">第二章：数据的增删改查</h1>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line"> 1、创建ruozedata数据库，创建rzdata数据表</span><br><span class="line"> create database ruozedata;</span><br><span class="line"> </span><br><span class="line"> 解析：创建rzdata数据表，分为以下几个字段：id、name、age、createuser、createtime、updateuser、updatetime；id作为自增长主键；name作为唯一不可重复值；comment后跟着的是注释</span><br><span class="line">create table rzdata</span><br><span class="line">(</span><br><span class="line">id int(11) not null auto_increment,</span><br><span class="line">name varchar(40) default null comment &apos;用户姓名&apos;,</span><br><span class="line">age int(3) default null comment &apos;用户年龄&apos;,</span><br><span class="line">createuser varchar(40) default null comment &apos;创建人&apos;,</span><br><span class="line">createtime timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">updateuser varchar(200) default null comment &apos;更新人&apos;,</span><br><span class="line">updatetime timestamp not null default current_timestamp on update current_timestamp comment &apos;更新时间&apos;,</span><br><span class="line">primary key (id),</span><br><span class="line">unique key (name)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">2、在dbeaver客户端赋予所有权限给john用户（没有就创建john用户）允许他从任意ip来访问ruozedata数据库下的所有表格通过密码‘960210’，dbeaver客户端不能执行此命令，回到mysql客户端去执行。</span><br><span class="line">grant all privileges on ruozedata.* to john@&apos;%&apos; identified by &apos;960210&apos;;</span><br><span class="line">刷新权限：flush privileges;</span><br><span class="line"></span><br><span class="line">3、数据准备：insert插入数据，id自增长，updatetime和createtime会在我们插入数据的一刹那自动填补空白。</span><br><span class="line">insert into rzdata(name,age,createuser,updateuser)</span><br><span class="line">values(&apos;ron&apos;,18,&apos;root&apos;,&apos;root&apos;);</span><br><span class="line">insert into rzdata(name,age,createuser,updateuser)</span><br><span class="line">values(&apos;john&apos;,23,&apos;root&apos;,&apos;root&apos;);</span><br><span class="line">insert into rzdata(name,age,createuser,updateuser)</span><br><span class="line">values(&apos;sail&apos;,26,&apos;hadoop001&apos;,&apos;hadoop001&apos;);</span><br><span class="line">insert into rzdata(name,age,createuser,updateuser)</span><br><span class="line">values(&apos;fox&apos;,29,&apos;hadoop001&apos;,&apos;hadoop001&apos;);</span><br><span class="line"></span><br><span class="line">4、按条件查询：</span><br><span class="line">select * from rzdata limit 3;</span><br><span class="line"></span><br><span class="line">5、查询年龄大于20的员工：</span><br><span class="line">select * from rzdata where age &gt; 20;</span><br><span class="line"></span><br><span class="line">6、查询年龄不等于20的员工：</span><br><span class="line">select * from rzdata where age != 20;</span><br><span class="line"></span><br><span class="line">7、查询名称是sail的员工信息：</span><br><span class="line">select * from rzdata where name=&apos;sail&apos;;</span><br><span class="line"></span><br><span class="line">8、查询出年龄小于20的且名字是ron的信息：</span><br><span class="line">select * from rzdata </span><br><span class="line">where age &lt; 20 and name = &apos;sail&apos;;</span><br><span class="line"></span><br><span class="line">9、模糊查询，查询出名称中含有o字母的数据：</span><br><span class="line">select * from rzdata where name like &apos;%o%&apos;;</span><br><span class="line"></span><br><span class="line">10、查询名称以s开头的数据，确定name的开头是s，不确定是数据放在%后面：</span><br><span class="line">select * from rzdata where name like &apos;s%&apos;;</span><br><span class="line"></span><br><span class="line">11、查询name字段以l为结尾的数据：</span><br><span class="line">select * from ruozedata.rzdata where name like &apos;%l&apos;;</span><br><span class="line"></span><br><span class="line">12、查询name字段的第三个字母为i的数据，如何写：</span><br><span class="line">select * from rozedata.rzdata where name like &apos;__a%&apos;;</span><br><span class="line"></span><br><span class="line">13、查询rzdata表中name字段的第三位不为i的所有数据，not like</span><br><span class="line">select * from rzdata where name not like &apos;__i%&apos;;</span><br><span class="line"></span><br><span class="line">Union合并数据：</span><br><span class="line">1、创建测试表a和表b，增加测试数据：</span><br><span class="line">create table a(id int,name varcahr(40),age int(3));</span><br><span class="line">create table b(id int,name varchar(40),address varchar(40));</span><br><span class="line"></span><br><span class="line">增加a表数据：</span><br><span class="line">insert into a values(1,&apos;ruoze&apos;,35);</span><br><span class="line">insert into a values(2,&apos;jepson&apos;,29);</span><br><span class="line">insert into a values(3,&apos;xingxing&apos;,27);</span><br><span class="line"></span><br><span class="line">增加b表数据：</span><br><span class="line">insert into b values(1,&apos;ruoze&apos;,&apos;beijing&apos;);</span><br><span class="line">insert into b values(3,&apos;xingxing&apos;,&apos;shanghai&apos;);</span><br><span class="line">insert into b values(5,&apos;ye&apos;,&apos;chengdu&apos;);</span><br><span class="line"></span><br><span class="line">指标计算，查询a/b两表，思考过滤条件是什么？有哪些用户？是否要重复？</span><br><span class="line"></span><br><span class="line">2、使用union和union all去查询数据?</span><br><span class="line">select id,name from a</span><br><span class="line">union</span><br><span class="line">select id,name from b</span><br><span class="line"></span><br><span class="line">//所有数据都会展示出来，不去重</span><br><span class="line">select id,name from a</span><br><span class="line">union all </span><br><span class="line">select id,name from b</span><br><span class="line"></span><br><span class="line">3、leftjoin/左连接</span><br><span class="line">select * from a left join b</span><br><span class="line">on a.id=b.id;</span><br><span class="line"></span><br><span class="line">查询结果如下：</span><br><span class="line">1	ruoze	35	1	ruoze	beijing</span><br><span class="line">3	xingxing	27	3	xingxing	shanghai</span><br><span class="line">2	jepson	29	NULL	NULL	NULL</span><br><span class="line">#左连接以左边的表为主，为全；右边的表来和左边的表作匹配，匹配到就显示，匹配不到就显示NULL.</span><br><span class="line"></span><br><span class="line">4、right join右连接</span><br><span class="line">select * from a right join b</span><br><span class="line">on a.id=b.id;</span><br><span class="line"></span><br><span class="line">查询结果如下：</span><br><span class="line">1	ruoze	35	1	ruoze	beijing</span><br><span class="line">3	xingxing	27	3	xingxing	shanghai</span><br><span class="line">NULL	NULL	NULL	5	ye	chengdu</span><br><span class="line">#右连接主要是以右边的表为主，为全；右边的表与左边的表来进行匹配，匹配到就显示，匹配不到就显示null.</span><br><span class="line"></span><br><span class="line">5、inner join（内连接）</span><br><span class="line">select * from a inner join b</span><br><span class="line">on a.id=b.id;</span><br><span class="line"></span><br><span class="line">1	ruoze	35	1	ruoze	beijing</span><br><span class="line">3	xingxing	27	3	xingxing	shanghai</span><br><span class="line">#内连接，根据id进行关联，只有两表的数据是都存在的才会显示，不存在的不显示。</span><br><span class="line"></span><br><span class="line">==&gt;等价于如下写法：</span><br><span class="line">select * from a left join b</span><br><span class="line">on a.id = b.id</span><br><span class="line">where b.name is not null;</span><br><span class="line"></span><br><span class="line">==&gt;等价于如下写法：</span><br><span class="line">select * from a right join b</span><br><span class="line">on a.id = b.id</span><br><span class="line">where a.name is not null;</span><br><span class="line"></span><br><span class="line">6、sum和count的使用：</span><br><span class="line">count(*)少用，count(id)、count(age)是统计次数</span><br><span class="line">sum表示计算年龄是多少</span><br><span class="line"></span><br><span class="line">select count(age) from rzdata;</span><br><span class="line">select sum(age) from rzdata;</span><br><span class="line"></span><br><span class="line">7、需求：统计rzdata表中大于20岁的数据有多少条？</span><br><span class="line">使用sum的话就会变成求出这两条记录的值的和：</span><br><span class="line"></span><br><span class="line">select count(age) from rzdata where age &gt; 20;</span><br><span class="line">值：3</span><br><span class="line">select sum(age) from rzdata where age &gt; 20;</span><br><span class="line"> 值：78</span><br><span class="line"> </span><br><span class="line"> 8、在b表中准备一条id重复的数据：</span><br><span class="line"> insert into b values(5,&apos;xiaoshiqi&apos;,&apos;hangzhou&apos;);</span><br><span class="line"> 此时我们进行统计，有4条数据，但是id一般是唯一值，所以使用distinct进行去重：</span><br><span class="line"> select count(distinct id) from b;</span><br><span class="line"> </span><br><span class="line"> 9、聚合函数</span><br><span class="line"> 求出各个名称的年龄和sum(age)并且根据名字进行分组：</span><br><span class="line"> select name,sum(age) from rzdata</span><br><span class="line"> group by name;</span><br><span class="line"> </span><br><span class="line"> 10、子查询</span><br><span class="line"> 解析：就是把select * from rzdata where age &gt; 20看作一个整体：</span><br><span class="line"> select name,sum(age) from </span><br><span class="line">( </span><br><span class="line"> select * from rzdata where age &gt; 20</span><br><span class="line">) as t</span><br><span class="line">group by name;</span><br><span class="line"></span><br><span class="line">==&gt;等价于这种写法：</span><br><span class="line">select name,sum(age) from rzdata</span><br><span class="line">where age &gt; 20</span><br><span class="line">group by name;</span><br><span class="line"></span><br><span class="line">11、求各个名称的年龄和大于25的有哪些？</span><br><span class="line">select name,sum(age) from ruozedata.rzdata</span><br><span class="line">group by name having sum(age) &gt; 25;</span><br><span class="line"></span><br><span class="line">12、升序asc、降序desc</span><br><span class="line">默认不带排序就是升序：</span><br><span class="line">select * from rzdata order by age;</span><br><span class="line">select * from rzdata order by age asc;</span><br><span class="line"></span><br><span class="line">select * from rzdata order by age desc;</span><br><span class="line"></span><br><span class="line">13、取前几条样本数limit</span><br><span class="line">select * from rzdata order by age limit 2;</span><br><span class="line"></span><br><span class="line">本处总结，注意：如下是语法的先后顺序，很重要：</span><br><span class="line">select name,sum(age) from ruozedata.rzdata</span><br><span class="line">where XXX</span><br><span class="line">group by XXX having XXX</span><br><span class="line">order by XXX</span><br><span class="line">limit 3;</span><br><span class="line"> ``` </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">  &lt;h1 id=&quot;id_3&quot;&gt;第三章：SQL实战&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<p>1、数据dept部门表，插入准备数据：<br>
+create table dept(<br>
+	deptno numeric(2),<br>
+	dname varchar(14),<br>
+	loc varchar(13)<br>
+);</p>
+<p>insert into dept values (10, ‘ACCOUNTING’, ‘NEW YORK’);<br>
+insert into dept values (20, ‘RESEARCH’, ‘DALLAS’);<br>
+insert into dept values (30, ‘SALES’, ‘CHICAGO’);<br>
+insert into dept values (40, ‘OPERATIONS’, ‘BOSTON’);</p>
+<p>创建工资等级表(grade:等级/losal:此等级的最低/hisal:此等级的最高)：<br>
+create table salgrade(<br>
+	grade numeric,<br>
+	losal numeric,<br>
+	hisal numeric<br>
+);</p>
+<p>insert into salgrade values (1, 700, 1200);<br>
+insert into salgrade values (2, 1201, 1400);<br>
+insert into salgrade values (3, 1401, 2000);<br>
+insert into salgrade values (4, 2001, 3000);<br>
+insert into salgrade values (5, 3001, 9999);</p>
+<p>创建员工表(empno:员工编号/ename:员工姓名/job:工作/mgr:上级编号/hiredate:受雇日期/sal:薪金/comm:佣金/deptno:部门编号)<br>
+create table emp(<br>
+	empno numeric(4) not null,<br>
+	ename varchar(20),<br>
+	job varchar(20),<br>
+	mgr numeric(4),<br>
+	hiredate datetime,<br>
+	sal numeric(7,2),<br>
+	comm numeric(7,2),<br>
+	deptno numeric(2)<br>
+);</p>
+<p>insert into emp values (7369, ‘SMITH’, ‘CLERK’, 7902, ‘1980-12-17’, 800, null, 20);<br>
+insert into emp values (7499, ‘ALLEN’, ‘SALESMAN’, 7698, ‘1981-02-20’, 1600, 300, 30);<br>
+insert into emp values (7521, ‘WARD’, ‘SALESMAN’, 7698, ‘1981-02-22’, 1250, 500, 30);<br>
+insert into emp values (7566, ‘JONES’, ‘MANAGER’, 7839, ‘1981-04-02’, 2975, null, 20);<br>
+insert into emp values (7654, ‘MARTIN’, ‘SALESMAN’, 7698, ‘1981-09-28’, 1250, 1400, 30);<br>
+insert into emp values (7698, ‘BLAKE’, ‘MANAGER’, 7839, ‘1981-05-01’, 2850, null, 30);<br>
+insert into emp values (7782, ‘CLARK’, ‘MANAGER’, 7839, ‘1981-06-09’, 2450, null, 10);<br>
+insert into emp values (7788, ‘SCOTT’, ‘ANALYST’, 7566, ‘1982-12-09’, 3000, null, 20);<br>
+insert into emp values (7839, ‘KING’, ‘PRESIDENT’, null, ‘1981-11-17’, 5000, null, 10);<br>
+insert into emp values (7844, ‘TURNER’, ‘SALESMAN’, 7698, ‘1981-09-08’, 1500, 0, 30);<br>
+insert into emp values (7876, ‘ADAMS’, ‘CLERK’, 7788, ‘1983-01-12’, 1100, null, 20);<br>
+insert into emp values (7900, ‘JAMES’, ‘CLERK’, 7698, ‘1981-12-03’, 950, null, 30);<br>
+insert into emp values (7902, ‘FORD’, ‘ANALYST’, 7566, ‘1981-12-03’, 3000, null, 20);<br>
+insert into emp values (7934, ‘MILLER’, ‘CLERK’, 7782, ‘1982-01-23’, 1300, null, 10);</p>
+<p>选中所要执行的insert语句，ALT+X表示批量执行。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">数据准备好后需求如下：</span><br></pre></td></tr></table></figure>
+<p>#1、查询出部门编号为30的所有员工编号和姓名：<br>
+select empno,ename from emp<br>
+where deptno=30;</p>
+<p>#2、找出部门编号为10的所有经理和部门编号为30的所有销售员的详细资料：<br>
+select * from ruozedata.emp<br>
+where (deptno=10 and job=‘MANAGER’)<br>
+or<br>
+(deptno=30 and job=‘SALESMAN’);</p>
+<p>#3、查出所有员工详细信息，用工资降序排序，如果工资相同使用入职日期升序排序：<br>
+select * from ruozedata.emp<br>
+group by sal desc,<br>
+hiredate desc;</p>
+<p>#列出最低薪金大于1500的各种工作及从事此工作的员工人数：<br>
+use ruozedata;<br>
+select * from emp;</p>
+<p>#我们看到各这种表示是要做group by语句的:<br>
+#注意：null值加上任意值都是null<br>
+#直观展示，作出修改：是null值字段，把它变作0；<br>
+select job,sal+comm,sal+ifnull(comm,0) from emp;</p>
+<p>select job,count(job) from ruozedata.emp where (sal+ifnull(comm,0)) &gt; 1500<br>
+group by job;</p>
+<p>#最低薪金？<br>
+select job,count(job) from ruozedata.emp<br>
+group by job<br>
+having min(sal+ifnull(comm,0)) &gt; 1500;</p>
+<p>#5、列出在销售部工作的员工姓名，假设不知道销售部的部门编号：<br>
+#思路：先查出销售部门编号，再去员工表查找出来即可。<br>
+select ename from ruozedata.emp<br>
+where deptno=<br>
+(select deptno from dept where dname=‘SALES’);</p>
+<p>#6、查询姓名以S开头、以S结尾、包含S字符、第二个字母为L<br>
+select ename from emp where ename like ‘S%’;<br>
+select ename from emp where ename like ‘%S’;<br>
+select ename from emp where ename like ‘%S%’;<br>
+select ename from emp where ename like ‘_L%’;</p>
+<p>#7、查询每种工作的最高工资、最低工资、及人数<br>
+select emp.job,max(sal),min(sal),count(1) as 人数<br>
+from emp group by emp.job;</p>
+<p>#8、列出薪金 高于公司平均薪金的所有员工号，员工姓名，所在部门名称，上级领导，工资，工资等级：<br>
+#在emp表中只能获取这些信息，emp表全量数据去匹配dept表，条件是deptno相等</p>
+<p>select<br>
+ename,<br>
+deptno,<br>
+mgr,<br>
+sal+ifnull(comm,0)  as sal<br>
+from ruozedata.emp as e<br>
+left join ruozedata.dept as d on e.deptno=d.deptno<br>
+where (sal+ifnull(comm,0)) &gt; (select avg(sal+ifnull(comm,0)) from emp);</p>
+<p>select e.empno as 工号,e.ename as 姓名,<br>
+d.dname as 部门,<br>
+m.ename as 上级领导,<br>
+(e.sal+ifnull(e.comm,0)) as 工资,<br>
+s.grade as 薪水等级<br>
+from emp e<br>
+left join dept d on e.deptno=d.deptno<br>
+left join emp m on  e.mgr=m.empno<br>
+left join salgrade s on e.sal between s.losal and s.hisal<br>
+where (e.sal+ifnull(e.comm,0)) &gt; (select avg(sal+ifnull(comm,0)) from emp);</p>
+<p>9.列出薪金  高于  在部门30工作的  所有/任何一个员工的薪金的员工姓名和薪金、部门名称。<br>
+select e.ename, e.sal, d.dname<br>
+from emp e, dept d<br>
+where e.deptno=d.deptno and sal &gt; all(select sal from emp where deptno=30)</p>
+<p>any:<br>
+select e.ename, e.sal, d.dname<br>
+from emp e, dept d<br>
+where e.deptno=d.deptno and sal &gt; any(select sal from emp where deptno=30)</p>
+<pre><code></code></pre>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/SQL01/" data-toggle="tooltip" data-placement="top" title="SQL01">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/MySQL部署/" data-toggle="tooltip" data-placement="top" title="MySQL部署">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第一章上次课程回顾r"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a href="#id_1" target="_self">&#x7B2C;&#x4E00;&#x7AE0;&#xFF1A;&#x4E0A;&#x6B21;&#x8BFE;&#x7A0B;&#x56DE;&#x987E;r</a></span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第二章增删改查温习"><span class="toc-nav-number">2.</span> <span class="toc-nav-text"><a href="#id_2" target="_self">&#x7B2C;&#x4E8C;&#x7AE0;&#xFF1A;&#x589E;&#x5220;&#x6539;&#x67E5;&#x6E29;&#x4E60;</a></span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第三章sql实战"><span class="toc-nav-number">3.</span> <span class="toc-nav-text"><a href="#id_3" target="_self">&#x7B2C;&#x4E09;&#x7AE0;&#xFF1A;SQL&#x5B9E;&#x6218;</a></span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#第四章本次课程作业"><span class="toc-nav-number">4.</span> <span class="toc-nav-text"><a href="#id_4" target="_self">&#x7B2C;&#x56DB;&#x7AE0;&#xFF1A;&#x672C;&#x6B21;&#x8BFE;&#x7A0B;&#x4F5C;&#x4E1A;</a></span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#第一章上次课程回顾"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x7B2C;&#x4E00;&#x7AE0;&#xFF1A;&#x4E0A;&#x6B21;&#x8BFE;&#x7A0B;&#x56DE;&#x987E;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#第二章数据的增删改查"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x7B2C;&#x4E8C;&#x7AE0;&#xFF1A;&#x6570;&#x636E;&#x7684;&#x589E;&#x5220;&#x6539;&#x67E5;</span></a>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruozedata.com" target="_blank">若泽数据官网</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/hackeruncle">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; John 2019 
+                    By <a href="http://www.ruozedata.com">若泽数据，企业在职</a> | BigData
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ruozedata&repo=Bigdata&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.ruozedata.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.ruozedata.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
