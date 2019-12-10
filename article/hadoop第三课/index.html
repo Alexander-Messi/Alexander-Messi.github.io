@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          hadoop第三课 - 梅老板 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.ruozedata.com/article/hadoop第三课/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                            
+                        </div>
+                        <h1>hadoop第三课</h1>
+                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <span class="meta">
+                            Posted by John on
+                            2019-12-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">亚历山大-梅西</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<p><strong><a href="#id_1" target="_self">一、上次课程回顾</a></strong></p>
+<p><strong><a href="#id_2" target="_self">二、Hadoop块的参数查看</a></strong></p>
+<ul>
+<li><a href="#id_2.1" target="_self">2.1 初识hdfs上的小文件</a></li>
+</ul>
+<p><strong><a href="#id_3" target="_self">三、HDFS上的架构设计</a></strong></p>
+<ul>
+<li><a href="#id_3.1" target="_self">3.1、NameNode介绍</a></li>
+<li><a href="#id_3.2" target="_self">3.2、DataNode介绍</a></li>
+<li><a href="#id_3.3" target="_self">3.3、SecondaryNameNode介绍</a></li>
+<li><a href="#id_3.4" target="_self">3.4、CDH5中的校验</a></li>
+</ul>
+<p><strong><a href="#id_4" target="_self">四、扩充&amp;作业</a></strong></p>
+<h1 id="一-上次课课程回顾">一、上次课课程回顾</h1>
+- https://alexander-messi.github.io/article/hadoop%E7%AC%AC%E4%BA%8C%E8%AF%BE/
+<ul>
+<li>
+<p>centos7下修改主机名，vi /etc/hosts，然后配置内网ip+主机名的映射，最后要在windows上要能使用主机名访问的话，需要在windows上配置映射关系。</p>
+</li>
+<li>
+<p>jps命令的真假判断，ps -ef|grep 才是真相，文件不影响进程的启动和停止</p>
+</li>
+<li>
+<p>linux的oom机制和/tmp定期清除机制。</p>
+</li>
+</ul>
+<h1 id="二-hadoop块的参数查看">二、Hadoop块的参数查看</h1>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dfs.blocksize</td>
+<td>134217728（128M）</td>
+</tr>
+<tr>
+<td>dfs.replication</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">生活应用举例：</span><br><span class="line">一缸水 260ml</span><br><span class="line">装水的瓶子：128ml的规格</span><br><span class="line">260/128 = 2 ... 4ml</span><br><span class="line"></span><br><span class="line">bottle1 128ml 装满</span><br><span class="line">bottle2 128ml 装满</span><br><span class="line">bottle3 4ml 未装满，但是也占用一个瓶子</span><br><span class="line">最终装3个瓶子</span><br><span class="line"></span><br><span class="line">大数据生产举例：</span><br><span class="line">blocksize表示的是规格，dfs.replication=1，表示副本数是1，原因是因为只有一个DataNode节点；这个参数控制block块复制多少分</span><br><span class="line"></span><br><span class="line">官网对dfs.replicaiton的描述：</span><br><span class="line">Default block replication（默认块的副本数）. The actual number of replications can be specified when the file is created. The default is used if replication is not specified in create time.</span><br><span class="line"></span><br><span class="line">假设有3个DataNode存储节点，副本数设置的是3，我们设置的副本数&lt;=3.</span><br><span class="line"></span><br><span class="line">假设一个文件260M，上传到HDFS上，会被分割为3个块，128m、128m、4m，然后副本数设置的是3.</span><br><span class="line">128m 128m 128m</span><br><span class="line">128m 128m 128m</span><br><span class="line">4m 4m 4m</span><br></pre></td></tr></table></figure>
+<p><img src="http://hadoop001/GithubBlogPicture/hadoop003/dfs.replication.png" alt="images"></p>
+<p>HDFS利用了分布式的存储机制，保证了数据的可靠性。</p>
+<p>a.数据上传HDFS，不可能凭空增加新的数据内容<br>
+b.dfs.blocksize表示的是规格，如果存储的内容未满1个规格，它也是会占据一个block文件的.</p>
+<h1 id="21-初识hdfs上的小文件">2.1、初识hdfs上的小文件</h1>
+在生产上：
+a.HDFS适合小文件存储么?
+b.假如不适合，为什么呢？
+c.假如上传的文件都是小文件，比如3m、4m、5m、6m的这四个小文件，副本数是3，该怎么办呢？
+<p>那这几个小文件不合并的话，会占据4个块X3个副本=12个块；<br>
+[假设我们在上传前先把他们进行合并]，3m+4m+5m+6m=18m，这样的话只占据1个块，副本数是3的话，这样就只占据3个块。</p>
+<p>块的元数据信息是记录在NameNode（namenode管控小弟上有几个快），假设namenode的内存只有4G，数以万计的小文件，这样的话压力就会很大，把小文件合并成一个大文件。老大知道文件分布在哪些机器，机器维护哪些block块，这些记录的信息是保存在内存中的，内存用完就不行了。</p>
+<p>假设我们已经上传到HDFS上的时候，已经有小文件了，该怎么办？</p>
+<ul>
+<li>目标：小文件合并为大文件（约定俗称，合并后的大文件&lt;128m，约为110m，千万不要踩高压线接近128m）。</li>
+<li>假设文件合并后是129m，那还是占据2个block块，小文件太多对于namenode老大来说是一个负载。</li>
+</ul>
+<p>注意：相同类型来源的数据文件合并在一起</p>
+<h1 id="三-hdfs上的架构设计">三、HDFS上的架构设计</h1>
+<p>扩充概念：Rack机架</p>
+<ul>
+<li>正常一台机架可以放10台刀片机，J总公司一台机架存放5台刀片机（因为2个GPU就相当于一台刀片机，但是因为功率消耗很大），每台刀片机的配置如下：256g 内存（8根32G的内存条，后续加到16根内存条）、56颗物理core、4块500G ssd、10块各1T的机械硬盘（1W转）、2颗GPU（不是CPU，用于数据挖掘），这样的机器配置在8.5W~10W左右。</li>
+</ul>
+<p>面试题1：</p>
+<ul>
+<li>一个文件160m，块大小是128m，副本数为2，一共有多少个块，实际占据多少存储空间？</li>
+<li>答：160/128=1…32m；实际存储4个块，实际占据存储空间320m，128m只是块的存储规格.</li>
+</ul>
+<p>生产解决：<br>
+生产上对于是如何把小文件合并在一起的？</p>
+<ul>
+<li>J总公司写shell脚本，小于10m的文件全部筛选出来。</li>
+</ul>
+<h1 id="31-namenode介绍">3.1、NameNode介绍</h1>
+<p>图解HDFS架构图：</p>
+<ul>
+<li>有两台机架，5个服务器，NameNode：是主<br>
+存储：<br>
+a.文件的名称<br>
+b.文件的目录结构<br>
+c.文件的属性，权限、创建时间、副本数<br>
+d.文件对应被切割为哪些数据块–&gt;数据块分布在哪些DataNode节点上 ==&gt; blockmap当然nn节点不会持久化存储这种映射关系，是通过集群启动和运行时，DataNode会定期发送BlockReport给nn，依次nn在内存中动态维护这种映射关系。</li>
+</ul>
+<p>我们假设p1、p1、p1，p2、p2、p2，p3、p3、p3，意识是一台机器不可能存储一个块的多个副本，假设p1在DataNode1上，它的另外两个副本不可能还是存储在DataNode1上。</p>
+<p>那这些元数据信息保存在什么地方呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">1、如下就是我们数据被切割成的文件，.meta是对其源数据的校验</span><br><span class="line">- cd /tmp/hadoop-hadoop/dfs/data/current/BP-1378200134-172.16.56.88-1575875498008/current/finalized/subdir0/subdir0</span><br><span class="line">[root@hadoop001 subdir0]# ll</span><br><span class="line">total 400</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     57 Dec  9 16:31 blk_1073741825</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     11 Dec  9 16:31 blk_1073741825_1001.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    349 Dec  9 16:36 blk_1073741834</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     11 Dec  9 16:36 blk_1073741834_1010.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  33561 Dec  9 16:36 blk_1073741835</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    271 Dec  9 16:36 blk_1073741835_1011.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 141393 Dec  9 16:36 blk_1073741836</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop   1115 Dec  9 16:36 blk_1073741836_1012.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     23 Dec  9 16:56 blk_1073741844</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     11 Dec  9 16:56 blk_1073741844_1020.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    349 Dec  9 16:56 blk_1073741845</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     11 Dec  9 16:56 blk_1073741845_1021.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  33561 Dec  9 16:56 blk_1073741846</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    271 Dec  9 16:56 blk_1073741846_1022.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 141368 Dec  9 16:56 blk_1073741847</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop   1115 Dec  9 16:56 blk_1073741847_1023.meta</span><br><span class="line"></span><br><span class="line">2、我们测试举例：</span><br><span class="line">在hadoop用户下的software目录把hadoop-2.6.0-cdh5.16.2软件包上传到hdfs上的/根目录下：</span><br><span class="line">[hadoop@hadoop001 software]$ ll -h</span><br><span class="line">total 733M</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 415M Dec  9 14:53 hadoop-2.6.0-cdh5.16.2.tar.gz</span><br><span class="line"></span><br><span class="line">软件大小415M，会被切割为3个块，余31M，也会占据一个块，如何验证，还是进入到如下目录？</span><br><span class="line">[root@hadoop001 subdir0]# pwd</span><br><span class="line">/tmp/hadoop-hadoop/dfs/data/current/BP-1378200134-172.16.56.88-1575875498008/current/finalized/subdir0/subdir0</span><br><span class="line">[root@hadoop001 subdir0]# ll -h</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M Dec 10 16:55 blk_1073741848</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M Dec 10 16:55 blk_1073741848_1024.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M Dec 10 16:55 blk_1073741849</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M Dec 10 16:55 blk_1073741849_1025.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M Dec 10 16:55 blk_1073741850</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M Dec 10 16:55 blk_1073741850_1026.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  31M Dec 10 16:55 blk_1073741851</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 242K Dec 10 16:55 blk_1073741851_1027.meta</span><br><span class="line">文件依然是成对出现的。</span><br></pre></td></tr></table></figure>
+<p>小结：NameNode的作用：</p>
+<ul>
+<li>管理文件系统的命名空间，维护文件系统树的所有文件和文件夹。</li>
+<li>这些信息以两个文件的形式永久存储在本地磁盘上：镜像文件fsimage+日志编辑文件editlog</li>
+</ul>
+<p>在如下目录存放着：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 12:20 edits_0000000000000000247-0000000000000000248</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 13:20 edits_0000000000000000249-0000000000000000250</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 14:20 edits_0000000000000000251-0000000000000000252</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 15:20 edits_0000000000000000253-0000000000000000254</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 16:20 edits_0000000000000000255-0000000000000000256</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1048576 Dec 10 16:55 edits_inprogress_0000000000000000257</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    1986 Dec 10 15:20 fsimage_0000000000000000254</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      62 Dec 10 15:20 fsimage_0000000000000000254.md5</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    1986 Dec 10 16:20 fsimage_0000000000000000256</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      62 Dec 10 16:20 fsimage_0000000000000000256.md5</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop       4 Dec 10 16:20 seen_txid</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop     204 Dec  9 16:30 VERSION</span><br><span class="line">[root@hadoop001 current]# pwd</span><br><span class="line">/tmp/hadoop-hadoop/dfs/name/current</span><br></pre></td></tr></table></figure>
+<p>NameNode在官方图片上描述了：存储name，repications，/home/hadoop/data（维护了一个目录结构，文件的存储关系）</p>
+<h1 id="32-datanode介绍">3.2、DataNode介绍</h1>
+<p>DataNode是从节点，简写是dn<br>
+存储：数据块和数据块的校验和(meta文件)，<br>
+与NameNode通信：<br>
+a.每隔3秒发送心跳包，向老大证明我还活着、<br>
+b.每隔一定的时间发送一次块报告 blockreport</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dfs.heartbeat.interva</td>
+<td>3</td>
+<td>Determines datanode heartbeat interval in seconds. Can use the following suffix (case insensitive): ms(millis), s(sec), m(min), h(hour), d(day) to specify the time (such as 2s, 2m, 1h, etc.). Or provide complete number in seconds (such as 30 for 30 seconds).</td>
+</tr>
+<tr>
+<td>dfs.blockreport.intervalMsec</td>
+<td>21600000</td>
+<td>Determines block reporting interval in milliseconds.</td>
+</tr>
+<tr>
+<td>dfs.datanode.directoryscan.interval</td>
+<td>21600s</td>
+<td>Interval in seconds for Datanode to scan data directories and reconcile the difference between blocks in memory and on the disk. Support multiple time unit suffix(case insensitive), as described in dfs.heartbeat.interval.</td>
+</tr>
+</tbody>
+</table>
+<p>小结：每隔3秒发送心跳包这个参数不用修改；</p>
+<p>如果生产上数据量不大的话，几十T，可以把每隔6h改成每隔3h；PB级别的数据可以不用改的太小</p>
+<h1 id="33-secondarynamenode介绍">3.3、SecondaryNameNode介绍</h1>
+简称SNN，存储fsimage+editlog，
+作用：定期合并fsimage+editlog文件作为新的fsimage，推送给NN，简称为checkpoint检查点。
+<p>eg：凌晨0点，1点，2点，3点，每个时间都做了checkpoint，在凌晨3：30的时候，NameNode挂了，此时我们想要去恢复元数据信息，我们只能拿SecondaryNameNode的信息去进行备份；我们此时去恢复只能恢复到凌晨3点时候的记录。</p>
+<ul>
+<li>为了解决单点故障，只有NN，后来加了一个SNN角色，一小时的备份机制，虽然能够减轻单点故障，但是还会有风险，那40分钟的数据丢失后是恢复不了的。</li>
+</ul>
+<p>所以在后期课程中，我们会讲解HDFS HA高可用的部署<br>
+NN NN实时同步，SNN不要了。</p>
+<p>在hdfs-site.xml中的参数描述：</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>name</td>
+<td>value</td>
+</tr>
+<tr>
+<td>dfs.namenode.checkpoint.dir</td>
+<td>3600s</td>
+<td>The number of seconds between two periodic checkpoints. Support multiple time unit suffix(case insensitive), as described in dfs.heartbeat.interval.</td>
+</tr>
+<tr>
+<td>dfs.namenode.checkpoint.txns</td>
+<td>1000000</td>
+<td>The Secondary NameNode or CheckpointNode will create a checkpoint of the namespace every ‘dfs.namenode.checkpoint.txns’ transactions, regardless of whether ‘dfs.namenode.checkpoint.period’ has expired.</td>
+</tr>
+</tbody>
+</table>
+<p>达到这两个条件中的任意一条即可：满1个小时or条数达到100万</p>
+<p>SecondaryNameNode：<br>
+1 2 3 4这四份数据我们做了全备 --&gt; fsimage1<br>
+5 6 这两份文件是正在写入的，是editlog文件<br>
+每隔一小时做的checkpoint操作：fsimage1 + editlog1 ==&gt; fsimage2</p>
+<p>fsimage2会推送给NameNode：<br>
+fsimage2，此时又在写入7 8 两份文件（editlog2）<br>
+checkpoint2：fsimage2+editlog2 ==&gt; fsimage3</p>
+<p>图解：<br>
+1、SNN节点做checkpoint的那一刹那，首先在NN节点会新生成一个edit.new；<br>
+2、SNN节点同步NameNode的edits+fsimage<br>
+3、SNN把edits+fsimage合并为fsimage.checkpoint<br>
+4、SNN把fsimage.checkpoint文件推送到NameNode节点，<br>
+5、NameNode会将fsimage.checkpoint文件的标识去掉，变为fsimage；edits.new也变为edits</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1、是namenode：</span><br><span class="line">[hadoop@hadoop001 current]$ pwd</span><br><span class="line">/tmp/hadoop-hadoop/dfs/name/current</span><br><span class="line"></span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 22:20 edits_0000000000000000282-0000000000000000283</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 23:20 edits_0000000000000000284-0000000000000000285</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1048576 Dec 10 23:20 edits_inprogress_0000000000000000286</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    2126 Dec 10 22:20 fsimage_0000000000000000283</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      62 Dec 10 22:20 fsimage_0000000000000000283.md5</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    2126 Dec 10 23:20 fsimage_0000000000000000285</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      62 Dec 10 23:20 fsimage_0000000000000000285.md5</span><br><span class="line"></span><br><span class="line">2、是SecondaryNameNode：</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 21:20 edits_0000000000000000280-0000000000000000281</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 22:20 edits_0000000000000000282-0000000000000000283</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      42 Dec 10 23:20 edits_0000000000000000284-0000000000000000285</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    2126 Dec 10 22:20 fsimage_0000000000000000283</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      62 Dec 10 22:20 fsimage_0000000000000000283.md5</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    2126 Dec 10 23:20 fsimage_0000000000000000285</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop      62 Dec 10 23:20 fsimage_0000000000000000285.md5</span><br><span class="line"></span><br><span class="line">解析：NN节点的 edits_0000000000000000284-0000000000000000285这份文件+fsimage_0000000000000000283，SNN节点拷贝这两份文件到自己的节点，把这两份文件合并为 fsimage_0000000000000000285文件，把它传送给NameNode;此时NameNode进程下edits_inprogress_0000000000000000286这个文件正在被写入。</span><br><span class="line"></span><br><span class="line">小结：还是能解决一部分故障问题的。</span><br></pre></td></tr></table></figure>
+<p>观察如上目录下文件夹的时间，也能发现确实是每个1h来生成的。</p>
+<h1 id="34-cdh5中的校验和">3.4、CDH5中的校验和</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、如下两个校验和不相等就表名文件损坏了</span><br><span class="line">[root@hadoop001 current]# which sha1sum</span><br><span class="line">/usr/bin/sha1sum</span><br><span class="line">[root@hadoop001 current]# /usr/bin/sha1sum fsimage_0000000000000000283.md5</span><br><span class="line">650f392df7cc906ec1ec3fb8c2d69f9c3276e180  fsimage_0000000000000000283.md5</span><br><span class="line">[root@hadoop001 current]# cat fsimage_0000000000000000283.md5</span><br><span class="line">b9f6021915cbfcfdf16dcb45aff8a748 *fsimage_0000000000000000283</span><br></pre></td></tr></table></figure>
+<h1 id="四-扩充作业">四、扩充&作业</h1>
+1、手动修复：多副本
+<p>2、自动修复：</p>
+<p>存在的情况：手动修复+自动修复都是失败；<br>
+扩充：数据仓库、数据质量、数据冲刷机制</p>
+<p>作业？<br>
+1、hdfs的存储目录修改为/home/ruoze/tmp</p>
+<ul>
+<li>赋予这个文件夹777权限，移动/tmp/hadoop-hadoop/dfs下的目录到新目录，修改core-site.xml；hadoop.tmp.dir对应目录进行修改；重启hdfs.</li>
+</ul>
+<p>2、块、副本数理解</p>
+<p>3、HDFS小文件理解</p>
+<p>4、HDFS架构及SNN流程</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/article/hadoop第二课/" data-toggle="tooltip" data-placement="top" title="hadoop第二课">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-上次课课程回顾"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x4E0A;&#x6B21;&#x8BFE;&#x8BFE;&#x7A0B;&#x56DE;&#x987E;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二-hadoop块的参数查看"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;Hadoop&#x5757;&#x7684;&#x53C2;&#x6570;&#x67E5;&#x770B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#21-初识hdfs上的小文件"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2.1&#x3001;&#x521D;&#x8BC6;hdfs&#x4E0A;&#x7684;&#x5C0F;&#x6587;&#x4EF6;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#三-hdfs上的架构设计"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x4E09;&#x3001;HDFS&#x4E0A;&#x7684;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#31-namenode介绍"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">3.1&#x3001;NameNode&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#32-datanode介绍"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">3.2&#x3001;DataNode&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#33-secondarynamenode介绍"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">3.3&#x3001;SecondaryNameNode&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#34-cdh5中的校验和"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">3.4&#x3001;CDH5&#x4E2D;&#x7684;&#x6821;&#x9A8C;&#x548C;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#四-扩充作业"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">&#x56DB;&#x3001;&#x6269;&#x5145;&amp;&#x4F5C;&#x4E1A;</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruozedata.com" target="_blank">若泽数据官网</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/hackeruncle">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; John 2019 
+                    By <a href="http://www.ruozedata.com">若泽数据，企业在职</a> | BigData
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ruozedata&repo=Bigdata&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.ruozedata.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.ruozedata.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
