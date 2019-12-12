@@ -142,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -409,7 +409,11 @@ checkpoint2：fsimage2+editlog2 ==&gt; fsimage3</p>
 <p>作业？<br>
 1、hdfs的存储目录修改为/home/ruoze/tmp</p>
 <ul>
-<li>赋予这个文件夹777权限，移动/tmp/hadoop-hadoop/dfs下的目录到新目录，修改core-site.xml；hadoop.tmp.dir对应目录进行修改；重启hdfs.</li>
+<li>第一步：chmod -R 777 /home/hadoop/tmp，在此目录下新建一个tmp目录<br>
+第二步：mv /home/tmp/hadoop-hadoop/dfs /home/hadoop/tmp/，移动根目录下的dfs文件夹到我们创建的hadoop用户下的tmp目录<br>
+第三步：vi core-site.xml，修改参数：hadoop.tmp.dir --&gt; /home/hadoop/tmp<br>
+第四步：restart hdfs<br>
+第五步：进行测试.</li>
 </ul>
 <p>2、块、副本数理解</p>
 <p>3、HDFS小文件理解</p>
@@ -423,7 +427,7 @@ checkpoint2：fsimage2+editlog2 ==&gt; fsimage3</p>
                     
                     
                         <li class="next">
-                            <a href="/article/hadoop第二课/" data-toggle="tooltip" data-placement="top" title="hadoop第二课">Next Post &rarr;</a>
+                            <a href="/article/hadoop第四课/" data-toggle="tooltip" data-placement="top" title="hadoop第四课">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

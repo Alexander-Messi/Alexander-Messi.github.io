@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>http://www.ruozedata.com/article/hadoop%E7%AC%AC%E5%9B%9B%E8%AF%BE/</loc>
+        <lastmod>2019-12-12T15:36:33.728Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.ruozedata.com/article/MySQL%E9%83%A8%E7%BD%B2/</loc>
+        <lastmod>2019-12-11T02:42:06.312Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.ruozedata.com/article/hadoop%E7%AC%AC%E4%B8%89%E8%AF%BE/</loc>
-        <lastmod>2019-12-10T16:16:12.978Z</lastmod>
+        <lastmod>2019-12-11T02:32:07.121Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -73,14 +89,6 @@
     <url>
         <loc>http://www.ruozedata.com/article/Linux%E5%91%BD%E4%BB%A4%E4%BA%8C/</loc>
         <lastmod>2019-12-06T07:07:28.374Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.ruozedata.com/article/MySQL%E9%83%A8%E7%BD%B2/</loc>
-        <lastmod>2019-12-06T07:07:13.870Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -142,14 +142,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -291,14 +291,14 @@ log-bin=/usr/local/mysql/arch/mysql-bin<br>
 <h1 id="第三章用dbeaver来连接mysql56">第三章：用Dbeaver来连接MySQL5.6：</h1>
 <p>Dbeaver下载网址：<a href="https://dbeaver.io/download/" target="_blank" rel="noopener">https://dbeaver.io/download/</a></p>
 <p>为什么使用dbeaver，它能够连接多种的数据库，Impala/Hive/MySQL</p>
-<p><img src="http://hadoop001/GithubBlogPicture/1.png" alt="image"><br>
+<p><img src="http://hadoop001/GithubBlogPicture/mysqldeploy/NotAllowedConnect.png" alt="image"><br>
 提示报错信息：</p>
 <ul>
 <li>null,  message from server: “Host ‘112.80.63.242’ is not allowed to connect to this MySQL server”</li>
 </ul>
 <p>为什么Dbeaver不能连接MySQL5.6：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">host表示的是允许哪边的机器来访问mysql数据库：</span><br><span class="line">+------+-------------------------+-------------------------------------------+</span><br><span class="line">| user | host                    | password                                  |</span><br><span class="line">+------+-------------------------+-------------------------------------------+</span><br><span class="line">| root | localhost               | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line">| root | izuf6idov4pacdnaao7dsfz | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line">| root | 127.0.0.1               | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line">| root | ::1                     | *9750FE1AB84430D9F83FBB448F1FF04E965785CA |</span><br><span class="line"></span><br><span class="line">vi /etc/hosts</span><br><span class="line">表示的是：内网ip+hostname的映射</span><br><span class="line">未来在工作中，所有的shell脚本只要涉及到ip相关的，统一的使用hostname，服务器迁移，ip变更怎么办呢？所以做映射关系是最好的选择，迁移只需修改映射关系。</span><br><span class="line"></span><br><span class="line">a.云主机的话hosts</span><br><span class="line">内网ip hostname</span><br><span class="line"></span><br><span class="line">案例：</span><br><span class="line">yum install httpd</span><br><span class="line">windows访问，IDEA开发，都是外网ip（是虚拟的，按量付费云主机重启会发生变化）</span><br><span class="line">只要在‪C:\Windows\System32\drivers\etc\hosts，此处配置外网IP和hostname即可。</span><br><span class="line">所有的操作都是使用hostname来操作的，windows访问就在C盘hosts文件下配置。</span><br><span class="line"></span><br><span class="line">b.内网服务器：</span><br><span class="line">没有外网ip这个说法，其实配置的还是ip+hostname的说法</span><br><span class="line"></span><br><span class="line">c.跳板机、堡垒机</span><br><span class="line">做不了直接访问，专门一台机器暴露ip，进行转发的</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">那如何让外面的机器能访问到内部的MySQL数据库：</span><br><span class="line">grant all privileges on *.* to root@&apos;%&apos; identified by &apos;ruozedata&apos;;</span><br><span class="line">flush privileges;</span><br><span class="line">解析：赋予所有的权限给所以的数据库下的所有表给root这个用户的所有ip来进行访问，密码是ruozedata</span><br></pre></td></tr></table></figure>
-<p><img src="http://hadoop001/GithubBlogPicture/2.png" alt="image"></p>
+<p><img src="http://hadoop001/GithubBlogPicture/mysqldeploy/ConnectOkay.png" alt="image"></p>
 
                 
 
@@ -307,7 +307,7 @@ log-bin=/usr/local/mysql/arch/mysql-bin<br>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/SQL02/" data-toggle="tooltip" data-placement="top" title="SQL02">&larr; Previous Post</a>
+                            <a href="/article/剑指数据仓库早课/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">&larr; Previous Post</a>
                         </li>
                     
                     
