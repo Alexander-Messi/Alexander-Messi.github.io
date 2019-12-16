@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -211,22 +211,24 @@
 
 <div class="post-preview">
 
-    <a href="/article/SQL02/">
+    <a href="/article/SQL01/">
         <h2 class="post-title">
                                  
-            SQL02
+            SQL01
         </h2>
         <h3 class="post-subtitle">
             This is hexo theme Demo.
         </h3>
         <div class="post-content-preview">
             
-第一章：上次课程回顾r
-第二章：增删改查温习
-第三章：SQL实战
+第一章：创建新的DB user
+第二章：字段类型
+第三章：SQL建表规范&amp;增删改查
 第四章：本次课程作业
- 第一章：上次课程回顾
- - 上次课程主要是创建表，show processlist；查看运行的进程服务，datetime和timestamp的区别，数据库表的增删改查（生产查询居多），生产上的建表规范（自增长和UUID的区别、主键、唯一键、表字段的命名规范、表字段的注释、[创建人、创建时间、修改人、修......
+ 第一章：创建新的DB user
+上来遇到的第一个问题就是，在Dbeaver中，但是回到MySQL终端是没有问题的。
+
+12345678create database ruozedata;创建john用户，密码是960210，使其能够对ruozedata数据库下的所有表进行操作......
         </div>
     </a>
     
@@ -361,64 +363,22 @@ Join us if you have a dream.
 
 <div class="post-preview">
 
-    <a href="/article/SQL01/">
+    <a href="/article/SQL02/">
         <h2 class="post-title">
                                  
-            SQL01
+            SQL02
         </h2>
         <h3 class="post-subtitle">
             This is hexo theme Demo.
         </h3>
         <div class="post-content-preview">
             
-第一章：创建新的DB user
-第二章：字段类型
-第三章：SQL建表规范&amp;增删改查
+第一章：上次课程回顾r
+第二章：增删改查温习
+第三章：SQL实战
 第四章：本次课程作业
- 第一章：创建新的DB user
-上来遇到的第一个问题就是，在Dbeaver中，但是回到MySQL终端是没有问题的。
-
-12345678create database ruozedata;创建john用户，密码是960210，使其能够对ruozedata数据库下的所有表进行操作......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by John on
-            2019-11-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/Linux命令一/">
-        <h2 class="post-title">
-                                 
-            Linux命令一
-        </h2>
-        <h3 class="post-subtitle">
-            This is hexo theme Demo.
-        </h3>
-        <div class="post-content-preview">
-            
-Join us if you have a dream.
-登录的用户、机器名称、家目录
-[root@hadoop001 ~]
-查看当前光标所在的目录
-Last login: Wed Nov 27 13:23:31 2019 from 112.80.63.242
-[root@hadoop001 ~]# pwd
-/root
-切换目录
-
-cd /home
-root用户的家目录就是/root，当我......
+ 第一章：上次课程回顾
+ - 上次课程主要是创建表，show processlist；查看运行的进程服务，datetime和timestamp的区别，数据库表的增删改查（生产查询居多），生产上的建表规范（自增长和UUID的区别、主键、唯一键、表字段的命名规范、表字段的注释、[创建人、创建时间、修改人、修......
         </div>
     </a>
     
@@ -482,36 +442,33 @@ root用户的家目录就是/root，当我......
 
 <div class="post-preview">
 
-    <a href="/article/hadoop第二课/">
+    <a href="/article/Linux命令一/">
         <h2 class="post-title">
                                  
-            hadoop第二课
+            Linux命令一
         </h2>
         <h3 class="post-subtitle">
             This is hexo theme Demo.
         </h3>
         <div class="post-content-preview">
             
-一、上次课程回顾
-二、Yarn的伪分布式部署&amp;修改为38088端口
+Join us if you have a dream.
+登录的用户、机器名称、家目录
+[root@hadoop001 ~]
+查看当前光标所在的目录
+Last login: Wed Nov 27 13:23:31 2019 from 112.80.63.242
+[root@hadoop001 ~]# pwd
+/root
+切换目录
 
-2.1 MapReduce案例演示
-2.2 目前主流的大数据开发组件
-2.3 修改hostname（CentOS6和CentOS7）
-
-三、jps的真正使用
-
-3.1、Linux下的OOM机制和/tmp定期清除规则
-
-四、作业
-一、上次课课程回顾
-- https://alexander-messi.github.......
+cd /home
+root用户的家目录就是/root，当我......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by John on
-            2019-12-10
+            2019-11-27
         </p>
         <div class="tags">
             
@@ -566,31 +523,82 @@ https://alexander-messi.github.io/article/hadoop%E7%AC%AC%E4%B8%89%E8%AF%BE/
 
 <div class="post-preview">
 
-    <a href="/article/MySQL部署/">
+    <a href="/article/hadoop第二课/">
         <h2 class="post-title">
                                  
-            MySQL部署
+            hadoop第二课
         </h2>
         <h3 class="post-subtitle">
             This is hexo theme Demo.
         </h3>
         <div class="post-content-preview">
             
-Join us if you have a dream.
-第一章：MySQL部署
-第二章：MySQL部署遇到的问题&amp;MySQL重新部署
-第三章：Dbeaver连接MySQL
-第一章：Dbeaver连接MySQL
-1、MySQL的命令执行，是哪个用户，在哪个目录执行？这点不注意的会出现问题。
-在生产上，专门的服务要增加专门的用户去维护：
-eg:
-mysql服务 --&gt; mysq......
+一、上次课程回顾
+二、Yarn的伪分布式部署&amp;修改为38088端口
+
+2.1 MapReduce案例演示
+2.2 目前主流的大数据开发组件
+2.3 修改hostname（CentOS6和CentOS7）
+
+三、jps的真正使用
+
+3.1、Linux下的OOM机制和/tmp定期清除规则
+
+四、作业
+一、上次课课程回顾
+- https://alexander-messi.github.......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by John on
-            2019-11-27
+            2019-12-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/hadoop第五课/">
+        <h2 class="post-title">
+                                 
+            hadoop第五课
+        </h2>
+        <h3 class="post-subtitle">
+            This is hexo theme Demo.
+        </h3>
+        <div class="post-content-preview">
+            
+一、上次课回顾
+二、初识MapReduce
+
+2.1、MapReduce执行流程图
+2.2、MapReduce案例
+2.3、MapReduce运行的各个阶段
+2.4、图解MapReduce
+2.5、笛卡尔积
+
+一、上次课回顾
+二、初识MapReduce
+MapReduce主要分为两块，map映射+reduce聚合：
+映射举例：
+select a+1 as a from t
+1 2
+2 3
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by John on
+            2019-12-10
         </p>
         <div class="tags">
             
@@ -643,7 +651,7 @@ mysql服务 --&gt; mysq......
     <div class="tags">
         
             
-            <a href="/tags/#ruozedata" title="ruozedata" rel="11">ruozedata</a>
+            <a href="/tags/#ruozedata" title="ruozedata" rel="12">ruozedata</a>
             
         
     </div>
@@ -703,19 +711,19 @@ mysql服务 --&gt; mysq......
         </li>
       
         <li>
-          <a href="/article/hadoop第二课/">hadoop第二课</a>
-        </li>
-      
-        <li>
           <a href="/article/hadoop第四课/">hadoop第四课</a>
         </li>
       
         <li>
-          <a href="/article/Linux命令一/">Linux命令一</a>
+          <a href="/article/hadoop第二课/">hadoop第二课</a>
         </li>
       
         <li>
-          <a href="/article/SQL01/">SQL01</a>
+          <a href="/article/hadoop第五课/">hadoop第五课</a>
+        </li>
+      
+        <li>
+          <a href="/article/Linux命令一/">Linux命令一</a>
         </li>
       
     </ul>
@@ -738,7 +746,7 @@ mysql服务 --&gt; mysq......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">8</span></li></ul>
     </div>
 
         <hr>

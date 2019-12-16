@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          hadoop第五课 - 梅老板 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.ruozedata.com/article/hadoop第五课/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                            
+                        </div>
+                        <h1>hadoop第五课</h1>
+                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <span class="meta">
+                            Posted by John on
+                            2019-12-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">亚历山大-梅西</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<p><strong><a href="#id_1" target="_self">一、上次课回顾</a></strong></p>
+<p><strong><a href="#id_2" target="_self">二、初识MapReduce</a></strong></p>
+<ul>
+<li><a href="#id_2.1" target="_self">2.1、MapReduce执行流程图</a></li>
+<li><a href="#id_2.2" target="_self">2.2、MapReduce案例</a></li>
+<li><a href="#id_2.3" target="_self">2.3、MapReduce运行的各个阶段</a></li>
+<li><a href="#id_2.4" target="_self">2.4、图解MapReduce</a></li>
+<li><a href="#id_2.5" target="_self">2.5、笛卡尔积</a></li>
+</ul>
+<h1 id="一-上次课回顾">一、上次课回顾</h1>
+<h1 id="二-初识mapreduce">二、初识MapReduce</h1>
+MapReduce主要分为两块，map映射+reduce聚合：
+映射举例：
+select a+1 as a from t
+1 2
+2 3
+3 4
+<p>聚合举例：统计id出现的次数<br>
+select id,count(0) from t group by id<br>
+1<br>
+1<br>
+2<br>
+3<br>
+4</p>
+<p>（1,2）、（2,1）、（3,1）、（4,1）</p>
+<p>本次课程主讲MapReduce2.X的架构设计：<br>
+面试会用到：Yarn有两个进程：RM和NM，<br>
+MapReduce是跑在Yarn上的，mr提交job的流程</p>
+<h1 id="21-mapreduce执行流程图">2.1、MapReduce执行流程图</h1>
+图解MapReduce架构设计：
+1、有三台机器，hadoop001、hadoop002、hadoop003，正常是windows机器上打好jar包，提交jar包到hadoop001节点上，
+<p>ResourceManager分管两个东西：Applications Manager应用程序管理器、Resource Scheduler资源调度器（资源memory+cpu调度器）；</p>
+<p>关于红色框是什么？</p>
+<ul>
+<li>答案：容器Container，是一个虚拟的概念；专门术语NodeManager上，是MapReduce、Spark等技术的最小单元，作业分为map task和reduce task；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1、Mapper方法：</span><br><span class="line">a,b,c</span><br><span class="line">	==&gt;</span><br><span class="line">	(a,1)</span><br><span class="line">	(b,1)</span><br><span class="line">	(c,1)</span><br><span class="line">a,c,d</span><br><span class="line">	==&gt;</span><br><span class="line">	(a,1)</span><br><span class="line">	(c,1)</span><br><span class="line">	(d,1)</span><br><span class="line"></span><br><span class="line">2、Reducer方法继承自reduce类：</span><br><span class="line">把相同的放到一起做聚合：</span><br><span class="line">(a,1)、(a,1) ==&gt; (a,2)</span><br><span class="line">(b,1) ==&gt; (b,1)</span><br><span class="line">(c,1)、(c,1) ==&gt; (c,2)</span><br><span class="line">(d,1) ==&gt; (d,1)</span><br></pre></td></tr></table></figure>
+<p>此时来讲MapReduce执行流程图：</p>
+<p>第一阶段：<br>
+1、用户向yarn提交应用程序（也叫job、app、application），jar文件、Hive SQL，其中包括ApplicationMaster的主程序、启动ApplicationMaster的命令：</p>
+<p>2、将jar文件提交到ApplicationsManager上，RM为该job分配第一个Container容器，运行job的ApplicationMaster（主程序）</p>
+<p>3、在hadoop002机器上的一个容器上启动了MR App Master主程序，App Master首先向applications Manager注册（我们能够在web界面上查看任务的状态）</p>
+<p>4、App Master采用轮询的方式通过RPC协议向RM申请和领取资源</p>
+<p>第二阶段：<br>
+第五步：一旦领取到资源后，就与对应的NodeManager进行通信，要求启动任务；</p>
+<p>第六步：NodeManager为任务设置好运行环境（去划分一块内存和CPU），将任务启动命令写在一个脚本里，并通过该脚本定时启动task任务</p>
+<p>第七步：NodeManager在hadoop002机器启动的是map task，在hadoop003机器启动了一块map task和一块reduce task；在生产上map task和reduce task的讲究（有可能map task运行50%的时候，reduce task就开始运行了）；各个task通过rpc协议向MR App Master汇报自己的状态和进度，以此让自己的App Master随时掌握各个task的运行状态，从而在task运行失败的时候重启任务。</p>
+<p>第八步：当我们所有的map task和reduce task运行完之后，MR app Master向applications Manager注销且关闭自己。</p>
+<p>简述MapRedu On Yarn的执行流程？</p>
+<ul>
+<li>启动App Master，申请资源；     ==&gt;对应第一阶段<br>
+运行任务，直到任务运行完成。	  ==&gt;对应第二阶段</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 ~]$ hadoop jar /home/hadoop/app/hadoop-2.6.0-cdh5.16.2/share/hadoop/mapreduce2/hadoop-mapreduce-examples-2.6.0-cdh5.16.2.jar pi 5 10</span><br><span class="line">Number of Maps  = 5</span><br><span class="line">Samples per Map = 10</span><br><span class="line">19/12/13 14:57:27 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">Wrote input for Map #0</span><br><span class="line">Wrote input for Map #1</span><br><span class="line">Wrote input for Map #2</span><br><span class="line">Wrote input for Map #3</span><br><span class="line">Wrote input for Map #4</span><br><span class="line">Starting Job</span><br><span class="line">19/12/13 14:57:29 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032</span><br><span class="line">19/12/13 14:57:30 INFO input.FileInputFormat: Total input paths to process : 5</span><br><span class="line">19/12/13 14:57:30 INFO mapreduce.JobSubmitter: number of splits:5</span><br><span class="line">19/12/13 14:57:30 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1576045356003_0001</span><br><span class="line">19/12/13 14:57:32 INFO impl.YarnClientImpl: Submitted application application_1576045356003_0001</span><br><span class="line">19/12/13 14:57:32 INFO mapreduce.Job: The url to track the job: http://hadoop001:38088/proxy/application_1576045356003_0001/</span><br><span class="line">19/12/13 14:57:32 INFO mapreduce.Job: Running job: job_1576045356003_0001</span><br><span class="line">19/12/13 14:57:46 INFO mapreduce.Job: Job job_1576045356003_0001 running in uber mode : false</span><br><span class="line">19/12/13 14:57:46 INFO mapreduce.Job:  map 0% reduce 0%</span><br><span class="line">19/12/13 14:58:17 INFO mapreduce.Job:  map 40% reduce 0%</span><br><span class="line">19/12/13 14:58:19 INFO mapreduce.Job:  map 60% reduce 0%</span><br><span class="line">19/12/13 14:58:22 INFO mapreduce.Job:  map 100% reduce 0%</span><br><span class="line">19/12/13 14:58:27 INFO mapreduce.Job:  map 100% reduce 100%</span><br><span class="line">19/12/13 14:58:27 INFO mapreduce.Job: Job job_1576045356003_0001 completed successfully</span><br><span class="line">19/12/13 14:58:27 INFO mapreduce.Job: Counters: 49</span><br><span class="line">        File System Counters</span><br><span class="line">                FILE: Number of bytes read=116</span><br><span class="line">                FILE: Number of bytes written=862035</span><br><span class="line">                FILE: Number of read operations=0</span><br><span class="line">                FILE: Number of large read operations=0</span><br><span class="line">                FILE: Number of write operations=0</span><br><span class="line">                HDFS: Number of bytes read=1325</span><br><span class="line">                HDFS: Number of bytes written=215</span><br><span class="line">                HDFS: Number of read operations=23</span><br><span class="line">                HDFS: Number of large read operations=0</span><br><span class="line">                HDFS: Number of write operations=3</span><br><span class="line">        Job Counters </span><br><span class="line">                Launched map tasks=5</span><br><span class="line">                Launched reduce tasks=1</span><br><span class="line">                Data-local map tasks=5</span><br><span class="line">                Total time spent by all maps in occupied slots (ms)=147501</span><br><span class="line">                Total time spent by all reduces in occupied slots (ms)=7386</span><br><span class="line">                Total time spent by all map tasks (ms)=147501</span><br><span class="line">                Total time spent by all reduce tasks (ms)=7386</span><br><span class="line">                Total vcore-milliseconds taken by all map tasks=147501</span><br><span class="line">                Total vcore-milliseconds taken by all reduce tasks=7386</span><br><span class="line">                Total megabyte-milliseconds taken by all map tasks=151041024</span><br><span class="line">                Total megabyte-milliseconds taken by all reduce tasks=7563264</span><br><span class="line">        Map-Reduce Framework</span><br><span class="line">                Map input records=5</span><br><span class="line">                Map output records=10</span><br><span class="line">                Map output bytes=90</span><br><span class="line">                Map output materialized bytes=140</span><br><span class="line">                Input split bytes=735</span><br><span class="line">                Combine input records=0</span><br><span class="line">                Combine output records=0</span><br><span class="line">                Reduce input groups=2</span><br><span class="line">                Reduce shuffle bytes=140</span><br><span class="line">                Reduce input records=10</span><br><span class="line">                Reduce output records=0</span><br><span class="line">                Spilled Records=20</span><br><span class="line">                Shuffled Maps =5</span><br><span class="line">                Failed Shuffles=0</span><br><span class="line">                Merged Map outputs=5</span><br><span class="line">                GC time elapsed (ms)=1605</span><br><span class="line">                CPU time spent (ms)=3040</span><br><span class="line">                Physical memory (bytes) snapshot=1050480640</span><br><span class="line">                Virtual memory (bytes) snapshot=16370954240</span><br><span class="line">                Total committed heap usage (bytes)=707153920</span><br><span class="line">        Shuffle Errors</span><br><span class="line">                BAD_ID=0</span><br><span class="line">                CONNECTION=0</span><br><span class="line">                IO_ERROR=0</span><br><span class="line">                WRONG_LENGTH=0</span><br><span class="line">                WRONG_MAP=0</span><br><span class="line">                WRONG_REDUCE=0</span><br><span class="line">        File Input Format Counters </span><br><span class="line">                Bytes Read=590</span><br><span class="line">        File Output Format Counters </span><br><span class="line">                Bytes Written=97</span><br><span class="line">Job Finished in 58.448 seconds</span><br><span class="line">Estimated value of Pi is 3.28000000000000000000</span><br><span class="line"></span><br><span class="line">小结：我们提交这个命令的时候，由RM进行通信去对应的节点启动MR app Master,app master反向的去applicationsManager注册查看状态，申请资源执行job，map task和reduce task运行结束就注销关闭自己。</span><br></pre></td></tr></table></figure>
+<h1 id="22-mapreduce案例">2.2、MapReduce案例</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 app]$ hadoop jar /home/hadoop/app/hadoop-2.6.0-cdh5.16.2/share/hadoop/mapreduce2/hadoop-mapreduce-examples-2.6.0-cdh5.16.2.jar \</span><br><span class="line">&gt; wordcount \</span><br><span class="line">&gt; /wordcount/ \</span><br><span class="line">&gt; /wordcount/output2</span><br><span class="line">				</span><br><span class="line">小结：运行Wordcount案例，</span><br><span class="line">测试：在hdfs上的目录，/wordcount下上传两个文件</span><br><span class="line">[hadoop@hadoop001 data]$ hdfs dfs -ls /wordcount</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   1 hadoop supergroup         35 2019-12-15 17:54 /wordcount/wordcount.txt</span><br><span class="line">-rw-r--r--   1 hadoop supergroup         35 2019-12-15 17:54 /wordcount/wordcount1.txt</span><br><span class="line"></span><br><span class="line">启动的日志信息如下：</span><br><span class="line">19/12/16 10:58:05 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032</span><br><span class="line">19/12/16 10:58:06 INFO input.FileInputFormat: Total input paths to process : 2</span><br><span class="line">19/12/16 10:58:06 INFO mapreduce.JobSubmitter: number of splits:2</span><br><span class="line">19/12/16 10:58:06 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1576045356003_0006</span><br><span class="line">19/12/16 10:58:07 INFO impl.YarnClientImpl: Submitted application application_1576045356003_0006</span><br><span class="line">19/12/16 10:58:07 INFO mapreduce.Job: The url to track the job: http://hadoop001:38088/proxy/application_1576045356003_0006/</span><br><span class="line">19/12/16 10:58:07 INFO mapreduce.Job: Running job: job_1576045356003_0006</span><br><span class="line">19/12/16 10:58:15 INFO mapreduce.Job: Job job_1576045356003_0006 running in uber mode : false</span><br><span class="line">19/12/16 10:58:15 INFO mapreduce.Job:  map 0% reduce 0%</span><br><span class="line">19/12/16 10:58:25 INFO mapreduce.Job:  map 50% reduce 0%</span><br><span class="line">19/12/16 10:58:26 INFO mapreduce.Job:  map 100% reduce 0%</span><br><span class="line">19/12/16 10:58:32 INFO mapreduce.Job:  map 100% reduce 100%</span><br><span class="line">19/12/16 10:58:32 INFO mapreduce.Job: Job job_1576045356003_0006 completed successfully</span><br><span class="line">19/12/16 10:58:32 INFO mapreduce.Job: Counters: 49</span><br><span class="line">        File System Counters</span><br><span class="line">                FILE: Number of bytes read=76</span><br><span class="line">                FILE: Number of bytes written=430030</span><br><span class="line">                FILE: Number of read operations=0</span><br><span class="line">                FILE: Number of large read operations=0</span><br><span class="line">                FILE: Number of write operations=0</span><br><span class="line">                HDFS: Number of bytes read=347</span><br><span class="line">                HDFS: Number of bytes written=23</span><br><span class="line">                HDFS: Number of read operations=9</span><br><span class="line">                HDFS: Number of large read operations=0</span><br><span class="line">                HDFS: Number of write operations=2</span><br><span class="line">        Job Counters </span><br><span class="line">                Launched map tasks=2</span><br><span class="line">                Launched reduce tasks=1</span><br><span class="line">                Data-local map tasks=2</span><br><span class="line">                Total time spent by all maps in occupied slots (ms)=14524</span><br><span class="line">                Total time spent by all reduces in occupied slots (ms)=4541</span><br><span class="line">                Total time spent by all map tasks (ms)=14524</span><br><span class="line">                Total time spent by all reduce tasks (ms)=4541</span><br><span class="line">                Total vcore-milliseconds taken by all map tasks=14524</span><br><span class="line">                Total vcore-milliseconds taken by all reduce tasks=4541</span><br><span class="line">                Total megabyte-milliseconds taken by all map tasks=14872576</span><br><span class="line">                Total megabyte-milliseconds taken by all reduce tasks=4649984</span><br><span class="line">        Map-Reduce Framework</span><br><span class="line">                Map input records=6</span><br><span class="line">                Map output records=20</span><br><span class="line">                Map output bytes=194</span><br><span class="line">                Map output materialized bytes=82</span><br><span class="line">                Input split bytes=233</span><br><span class="line">                Combine input records=20</span><br><span class="line">                Combine output records=6</span><br><span class="line">                Reduce input groups=3</span><br><span class="line">                Reduce shuffle bytes=82</span><br><span class="line">                Reduce input records=6</span><br><span class="line">                Reduce output records=3</span><br><span class="line">                Spilled Records=12</span><br><span class="line">                Shuffled Maps =2</span><br><span class="line">                Failed Shuffles=0</span><br><span class="line">                Merged Map outputs=2</span><br><span class="line">                GC time elapsed (ms)=488</span><br><span class="line">                CPU time spent (ms)=1600</span><br><span class="line">                Physical memory (bytes) snapshot=502935552</span><br><span class="line">                Virtual memory (bytes) snapshot=8188489728</span><br><span class="line">                Total committed heap usage (bytes)=301146112</span><br><span class="line">        Shuffle Errors</span><br><span class="line">                BAD_ID=0</span><br><span class="line">                CONNECTION=0</span><br><span class="line">                IO_ERROR=0</span><br><span class="line">                WRONG_LENGTH=0</span><br><span class="line">                WRONG_MAP=0</span><br><span class="line">                WRONG_REDUCE=0</span><br><span class="line">        File Input Format Counters </span><br><span class="line">                Bytes Read=114</span><br><span class="line">        File Output Format Counters </span><br><span class="line">                Bytes Written=23</span><br><span class="line">				</span><br><span class="line">解析日志：因为输入是2个小文件，切割的时候也会是2个分片，并没有达到一个block块（128M）；</span><br><span class="line">map task：wordcount.txt 35字节，一个block块</span><br><span class="line">map就相当于是1份.</span><br><span class="line"></span><br><span class="line">wordcount2.txt 35字节，一个block块</span><br><span class="line">第二次做map的时候就是2份；</span><br><span class="line">我们能不能认为map task个数和文件的数量有关。</span><br><span class="line"></span><br><span class="line">此处打个比方：wordcount3.txt的大小是130M（2个block块），觉得会运行多少份呢？</span><br><span class="line">我觉得之前2份，再加上wordcount3.txt 2份，所以认为是4份。</span><br><span class="line"></span><br><span class="line">答案是3份，</span><br></pre></td></tr></table></figure>
+<h1 id="24-mapreduce运行的各个阶段">2.4、MapReduce运行的各个阶段</h1>
+<p>输入分片（input split）：</p>
+<ul>
+<li>在进行map计算之前，mapreduce会根据输入文件计算输入分片（input split）,每个输入分片针对一个map任务，输入分片（input split）存储的并非是数据本身，而是一个分片长度和一个记录数据的位置的数组，输入分片往往和hdfs的block块关系很密切，假如我们设定hdfs的块的大小是64m，输入有3个文件：3m 65m 127m，那么MapReduce会把3m的文件切分为1个输入分片，65m的文件是两个输入分片，127m的文件也是2个输入文件，换句话说我们如果在map计算前做输入分片调整，例如合并小文件，那么就会有5个map任务执行，而且么个map执行的数据大小不均，这个也是MapReduce优化计算的一个点。</li>
+</ul>
+<p>map阶段：</p>
+<ul>
+<li>程序员编写好的map函数，一般的map操作都是本地化操作也就是在数据存储节点上进行。</li>
+</ul>
+<p>combiner阶段：</p>
+<ul>
+<li>combiner阶段是程序员可以进行选择的，combiner其实也是一种reduce操作，因此我们看见wordcount类里的是用reduce进行加载。combiner是一个本地化的reduce操作，它是map运算的后续操作，主要是map计算出中间文件前做一个简单的合并重复key值的操作，例如我们对文件里的单词频率做统计，map计算时候如果碰到一个hadoop单词就会记录为1，但是这篇文章里的hadoop可能会出现n多次，那么map输出文件冗余就会很多，因此在reduce计算前对相同的key做一个合并操作，那么文件会变小，这样就提高了宽带的传输效率，毕竟hadoop计算力的宽带资源往往是计算的瓶颈也是最为宝贵的资源，但是combiner操作是有风险的，使用它的原则是combiner的输入不会影响到reduce计算的最终输入，例如：如果只是求总数，最大值，最小值可以使用combiner，但是做平均值计算使用combiner的话，最终会导致reduce的计算结果出错。</li>
+</ul>
+<p>shuffle阶段：</p>
+<ul>
+<li>
+<p>将map的输出作为reduce的输入的过程就是shuffle，这个是mapreduce重点优化的地方；shuffle一开始就是map阶段做输出操作，一般mapreduce计算的都是海量数据，map输出的时候不可能把所有文件都放到内存进行操作，因此map写入磁盘的过程十分的复杂，更何况map输出的时候要对结果进行排序，内存开销是很大的，map在做输出的时候会在内存里开启衣蛾环形内存缓冲区，这个缓冲区是专门用来输出的，默认大小是100mb，并且在配置文件里为这个缓冲区设定了一个阈值，默认是0.80（阈值的大小可以在配置文件中进行配置），同事map还会为输出操作启动一个守护线程，如果缓冲区达到了阈值的80%的时候，这个守护线程就会把内容写到磁盘上，这个过程叫spill，另外的20%内存可以继续写入要写进的磁盘的数据，写入磁盘和写入内存操作是互相不干扰的，如果缓冲区被撑满了，那么map就会阻塞写入内存的操作，让写入磁盘操作完成后再继续执行写入内存操作，之前讲到写入磁盘前会有排序操作，这个是在写入磁盘操作的时候进行的，不是在写入内存时候进行的，如果我们定义了combiner函数，排序前还会执行combiner操作。每次spill操作也就是写入磁盘操作的时候就会写一个溢出文件，也就是说在做map输出有几次spill就会产生多少个溢出文件，等map输出全部做完以后，map会合并这些输出文件。</p>
+</li>
+<li>
+<p><a href="http://blog.itpub.net/30089851/viewspace-2095837/" target="_blank" rel="noopener">http://blog.itpub.net/30089851/viewspace-2095837/</a></p>
+</li>
+</ul>
+<p>so，尽量在生产上控制一个文件的大小稍微小于一个blocksize的大小，比如块大小是128M，存储的文件大约为120M；一般公司上生产资源是很紧缺的。比如一个作业控制之后只需要跑3个map，如果不做操作的话需要做10个map，肯定是3个map的优化好。</p>
+<p>扩充：生产上我们的文件采用什么格式，文件采用什么压缩格式？<br>
+在Hive中，主要存储格式是orc和parquet，为列式存储；压缩格式一般使用bzip2，因为它的压缩能够支持被切割；Hbase：它的文件格式是hfile，主要使用snappy压缩。</p>
+<h1 id="24-图解mapreduce">2.4、图解MapReduce</h1>
+<p><img src="http://106.54.226.205/GithubBlogPicture/hadoop005/mapreduce.png" alt="images"></p>
+<ul>
+<li>shuffle：洗牌，shuffle的过程其实已经属于reduce的阶段了，因为此时map阶段已经完完全全的结束了；在做聚合计算的时候，shuffle就是把相同的key给聚合到一起，reduce阶段做相加。</li>
+</ul>
+<h1 id="25-笛卡尔积">2.5、笛卡尔积</h1>
+<p>A表null值1000W，B表null值1W，1000W*1W  ==&gt;换而言之，这个节点的数据做聚合的话就已经撑爆了。</p>
+<h1 id="3-本次课程作业">3、本次课程作业</h1>
+<p>1、整理mr on yarn的流程</p>
+<p>2、文件格式有哪些，优缺点</p>
+<p>3、压缩格式又有哪些，优缺点</p>
+<ul>
+<li>为什么使用snappy压缩格式，站在空间角度考虑，站在时间角度考虑；以snappy为例，BIZP2压缩后的文件最小，但是解压的话它所需要花的时间也越多。</li>
+</ul>
+<p>4、split --&gt; map task的关系</p>
+<p>5、wordcount的剖解图</p>
+<p>6、shuffle的理解</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/hadoop第二课/" data-toggle="tooltip" data-placement="top" title="hadoop第二课">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/SQL01/" data-toggle="tooltip" data-placement="top" title="SQL01">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-上次课回顾"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x4E0A;&#x6B21;&#x8BFE;&#x56DE;&#x987E;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二-初识mapreduce"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;&#x521D;&#x8BC6;MapReduce</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#21-mapreduce执行流程图"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2.1&#x3001;MapReduce&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#22-mapreduce案例"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2.2&#x3001;MapReduce&#x6848;&#x4F8B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#24-mapreduce运行的各个阶段"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">2.4&#x3001;MapReduce&#x8FD0;&#x884C;&#x7684;&#x5404;&#x4E2A;&#x9636;&#x6BB5;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#24-图解mapreduce"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">2.4&#x3001;&#x56FE;&#x89E3;MapReduce</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#25-笛卡尔积"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">2.5&#x3001;&#x7B1B;&#x5361;&#x5C14;&#x79EF;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3-本次课程作业"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">3&#x3001;&#x672C;&#x6B21;&#x8BFE;&#x7A0B;&#x4F5C;&#x4E1A;</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruozedata.com" target="_blank">若泽数据官网</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/hackeruncle">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; John 2019 
+                    By <a href="http://www.ruozedata.com">若泽数据，企业在职</a> | BigData
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ruozedata&repo=Bigdata&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.ruozedata.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.ruozedata.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
