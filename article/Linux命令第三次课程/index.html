@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Linux命令第三次课程 - 梅老板 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.ruozedata.com/article/Linux命令第三次课程/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                            
+                        </div>
+                        <h1>Linux命令第三次课程</h1>
+                        <h2 class="subheading">Linux命令第三次课程</h2>
+                        <span class="meta">
+                            Posted by John on
+                            2019-11-17
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">亚历山大-梅西</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<p><strong><a href="#id_1" target="_self">一、上次课回顾</a></strong></p>
+<p><strong><a href="#id_2" target="_self">二、命令</a></strong></p>
+<ul>
+<li><a href="#id_2.1" target="_self">用户和用户组</a></li>
+<li><a href="#id_2.2" target="_self">用户组生产案例</a></li>
+<li><a href="#id_2.3" target="_self">为用户设置密码</a></li>
+<li><a href="#id_2.4" target="_self">su和su -的区别</a></li>
+<li><a href="#id_2.5" target="_self">普通用户赋予root权限</a></li>
+<li><a href="#id_2.6" target="_self">解决用户存在但是不准登录的问题</a></li>
+<li><a href="#id_2.7" target="_self">chown和chmod权限</a></li>
+<li><a href="#id_2.8" target="_self">查看文件、文件夹大小的命令</a></li>
+<li><a href="#id_2.9" target="_self">rwx读写执行权限</a></li>
+<li><a href="#id_3.0" target="_self">Linux中进行搜索（精准、模糊）</a></li>
+</ul>
+<h1 id="一-上次课回顾">一、上次课回顾</h1>
+- Linux命令第二次课：https://alexander-messi.github.io/article/Linux%E5%91%BD%E4%BB%A4%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BE%E7%A8%8B/
+<h1 id="用户和用户组">用户和用户组</h1>
+1、用户和用户组
+ll /usr/sbin/user	按一次tab键没有补全说明不止一个，按两次tab键会跳出所有的文件。
+<ul>
+<li>使用命令useradd ruoze；<br>
+解析：创建一个普通用户，默认创建这个ruoze用户的用户组ruoze，且设置这个用户的主组是ruoze。</li>
+</ul>
+<p>如下目录：/etc/passwd及/etc/group能知道存放的用户及用户组信息.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 ~]# id ruoze</span><br><span class="line">uid=516(ruoze) gid=516(ruoze) groups=516(ruoze),517(bigdata)</span><br><span class="line"></span><br><span class="line">针对于用户和用户组，cat /etc/passwd，查看最后一行，说明我们的用户是存储在这个文件的；用户组存放位置：cat /etc/group.</span><br><span class="line"></span><br><span class="line">1、cat /etc/passwd（能知道我们这台机器上面有哪些用户）</span><br><span class="line">ruoze:x:516:516::/home/ruoze:/bin/bash</span><br><span class="line"></span><br><span class="line">2、cat /etc/group（能知道这台机器上有哪些用户组）</span><br><span class="line">ruoze:x:516:</span><br></pre></td></tr></table></figure>
+<p>我们刚才创建的ruoze用户的家目录在哪，cd /home下看到创建的用户是哪些？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">1、切换进入/home目录：</span><br><span class="line">[root@hadoop001 ~]# cd /home</span><br><span class="line">[root@hadoop001 home]# ll</span><br><span class="line">total 12</span><br><span class="line">drwx------ 13 hadoop hadoop 4096 Nov 29 17:31 hadoop</span><br><span class="line">drwx------  3 lxd    lxd    4096 Nov 12 13:44 lxd</span><br><span class="line">drwx------  2 ruoze  ruoze  4096 Nov 13 17:19 ruoze</span><br><span class="line">							所属用户	所属用户组</span><br><span class="line">							</span><br><span class="line"></span><br><span class="line">一个文件夹或者文件：权限：drwx----，ruoze ruoze（用户和用户组），Nov 29 17:31（根据修改的时间来进行排序 ll -rt）</span><br><span class="line"></span><br><span class="line">2、既然我们能够添加ruoze用户，那我们也能删除ruoze用户。</span><br><span class="line">我们使用userdel ruoze，在/etc/passwd和/etc/group中的信息记录已经没有了，但是在/home下还是有ruoze这个用户的文件夹。</span><br><span class="line"></span><br><span class="line">[root@hadoop001 home]# id ruoze</span><br><span class="line">id: ruoze: No such user</span><br><span class="line">[root@hadoop001 home]# cat /etc/group | grep ruoze</span><br><span class="line">[root@hadoop001 home]# cat /etc/passwd | grep ruoze</span><br><span class="line">[root@hadoop001 home]# ll</span><br><span class="line">total 12</span><br><span class="line">drwx------ 13 hadoop hadoop 4096 Nov 29 17:31 hadoop</span><br><span class="line">drwx------  3 lxd    lxd    4096 Nov 12 13:44 lxd</span><br><span class="line">drwx------  2    516    516 4096 Nov 13 17:19 ruoze</span><br><span class="line"></span><br><span class="line">3、因为ruoze该组只有ruoze用户，当这个用户删除时 ；组会校验就他自己（如果只有他自己一个人的时候），组会自动删除；如果组中还有其它成员时它是不会自动删除的。</span><br><span class="line"></span><br><span class="line">重新添加一个用户：</span><br><span class="line">[root@hadoop001 home]# useradd ruoze</span><br><span class="line">useradd: warning: the home directory already exists.</span><br><span class="line">Not copying any file from skel directory into it.</span><br><span class="line">Creating mailbox file: File exists</span><br><span class="line">[root@hadoop001 home]# id ruoze</span><br><span class="line">uid=516(ruoze) gid=516(ruoze) groups=516(ruoze)</span><br><span class="line"></span><br><span class="line">查看一个现象：</span><br><span class="line">4、切换到/home/ruoze目录下，删除.bash开头的几个文件。</span><br><span class="line">[root@hadoop001 ruoze]# rm -rf .bash*</span><br><span class="line">[root@hadoop001 ruoze]# su - ruoze</span><br><span class="line">-bash-4.1$ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">如何从-bash-4.1$样式恢复成[root@hadoop001 ruoze]这个样式（说白了就是丢失：bashrc、.bash_profile、.bash_logout）：</span><br><span class="line">解决：进入到ruoze用户下，发现-bash-4.1这个形式，退回到root用户，把/etc/skel/.*下的隐藏文件给到/home/ruoze这个目录。</span><br><span class="line">[root@hadoop001 ruoze]# su - ruoze</span><br><span class="line">-bash-4.1$ cp /etc/skel/.* /home/ruoze/</span><br><span class="line">cp: omitting directory `/etc/skel/.&apos;</span><br><span class="line">cp: omitting directory `/etc/skel/..&apos;</span><br><span class="line"></span><br><span class="line">5、查看用户和用户组是否准确</span><br><span class="line">[ruoze@hadoop001 ~]$ ll -a</span><br><span class="line">total 24</span><br><span class="line">drwx------  2 ruoze ruoze 4096 Dec 25 16:39 .</span><br><span class="line">drwxr-xr-x. 5 root  root  4096 Dec 25 16:32 ..</span><br><span class="line">-rw-------  1 ruoze ruoze   11 Dec 25 16:39 .bash_history</span><br><span class="line">-rw-r--r--  1 root  root    18 Dec 25 16:39 .bash_logout</span><br><span class="line">-rw-r--r--  1 root  root   176 Dec 25 16:39 .bash_profile</span><br><span class="line">-rw-r--r--  1 root  root   124 Dec 25 16:39 .bashrc</span><br><span class="line"></span><br><span class="line">6、修改bash文件的用户和用户组为ruoze，然后重新登录：</span><br><span class="line">[root@hadoop001 ruoze]# chown -R ruoze:ruoze .bash*</span><br><span class="line">[root@hadoop001 ruoze]# ll -a</span><br><span class="line">total 24</span><br><span class="line">drwx------  2 ruoze ruoze 4096 Dec 25 16:39 .</span><br><span class="line">drwxr-xr-x. 5 root  root  4096 Dec 25 16:32 ..</span><br><span class="line">-rw-------  1 ruoze ruoze  103 Dec 25 16:44 .bash_history</span><br><span class="line">-rw-r--r--  1 ruoze ruoze   18 Dec 25 16:39 .bash_logout</span><br><span class="line">-rw-r--r--  1 ruoze ruoze  176 Dec 25 16:39 .bash_profile</span><br><span class="line">-rw-r--r--  1 ruoze ruoze  124 Dec 25 16:39 .bashrc</span><br></pre></td></tr></table></figure>
+<h1 id="用户组生产案例">用户组生产案例</h1>
+<ul>
+<li>既让ruoze用户属于ruoze用户组还让他它属于bigdata组</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">1、新建bigdata组：</span><br><span class="line">ruoze这个用户属于ruoze这个用户组，我们新建一个bigdata用户组：</span><br><span class="line"></span><br><span class="line">[root@hadoop001 home]# groupadd bigdata</span><br><span class="line">groupadd: group &apos;bigdata&apos; already exists</span><br><span class="line">[root@hadoop001 home]# cat /etc/group|grep bigdata</span><br><span class="line">bigdata:x:517:</span><br><span class="line">	</span><br><span class="line">2、添加ruoze用户到另外一个组bigdata：</span><br><span class="line">[root@hadoop001 home]# usermod --help</span><br><span class="line">Usage: usermod [options] LOGIN</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -c, --comment COMMENT         new value of the GECOS field</span><br><span class="line">  -d, --home HOME_DIR           new home directory for the user account</span><br><span class="line">  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE</span><br><span class="line">  -f, --inactive INACTIVE       set password inactive after expiration</span><br><span class="line">                                to INACTIVE</span><br><span class="line">  -g, --gid GROUP               force use GROUP as new primary group(强制使用组作为新的主组)</span><br><span class="line">  -G, --groups GROUPS           new list of supplementary GROUPS（新增补充组）</span><br><span class="line">  -a, --append                  append the user to the supplemental GROUPS</span><br><span class="line">                                mentioned by the -G option without removing</span><br><span class="line">                                him/her from other groups（将用户追加到补充组中，在-G选项中提到，他/她来自其它组）</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">3、一个用户属于不同的组，就好比一个人既属于财务又属于人事</span><br><span class="line">命令：usermod -a -G bigdata ruoze</span><br><span class="line">[root@hadoop001 home]# id ruoze</span><br><span class="line">uid=516(ruoze) gid=516(ruoze) groups=516(ruoze),517(bigdata)</span><br><span class="line"></span><br><span class="line">4、修改bigdata为ruoze用户的主组，此时发现ruoze组消失了</span><br><span class="line">usermod -g bigdata ruoze</span><br><span class="line">[root@hadoop001 home]# id ruoze</span><br><span class="line">uid=516(ruoze) gid=517(bigdata) groups=517(bigdata)</span><br><span class="line"></span><br><span class="line">5、再次进行调整，修改ruoze用户的主组为bigdata，注意与3进行对比观察</span><br><span class="line">usermod -a -G ruoze ruoze</span><br><span class="line">[root@hadoop001 ruoze]# usermod -a -G ruoze ruoze</span><br><span class="line">[root@hadoop001 ruoze]# id ruoze</span><br><span class="line">uid=516(ruoze) gid=517(bigdata) groups=517(bigdata),516(ruoze)</span><br></pre></td></tr></table></figure>
+<h1 id="给用户设置密码">给用户设置密码</h1>
+<p>问：如何给这个ruoze用户设置密码?</p>
+<ul>
+<li>使用root用户来进行设置：passwd ruoze; 应用场景，设置完密码后，直接在SecureCRT下新建一个session，双击连接，输入：ruoze，密码：123456以后直接进行连接。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 ruoze]# cd /home</span><br><span class="line">[root@hadoop001 home]# ll</span><br><span class="line">total 12</span><br><span class="line">drwx------ 7 hadoop hadoop 4096 Dec 25 13:07 hadoop</span><br><span class="line">drwx------ 2 ruoze  ruoze  4096 Dec 25 16:21 john</span><br><span class="line">drwx------ 2 ruoze  ruoze  4096 Dec 25 16:39 ruoze</span><br><span class="line">[root@hadoop001 home]# passwd ruoze</span><br><span class="line">Changing password for user ruoze.</span><br><span class="line">New password: </span><br><span class="line">BAD PASSWORD: it is based on a dictionary word</span><br><span class="line">BAD PASSWORD: is too simple</span><br><span class="line">Retype new password: </span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
+<p>注意：下次使用远程登录软件就可以直接使用：ruoze用户及123456密码来进行登录。</p>
+<h1 id="su和su-切换用户的区别">su和su - 切换用户的区别</h1>
+<p>su ruoze：<br>
+su - ruoze：切换到该用户的家目录，且执行环境变量文件。</p>
+<p>测试：我们分别在.bashrc和.bash_profile下进行如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">alias j=&apos;cd /home/hadoop/app/hive-1.1.0-cdh5.7.0&apos;</span><br><span class="line">alias k=&apos;cd /home/hadoop/data&apos;</span><br><span class="line"></span><br><span class="line">在su - hadoop和su hadoop下，只有在.bashrc下两个用户都会执行；</span><br><span class="line">在.bash_profile下su - hadoop执行，而su hadoop不执行；</span><br><span class="line">所以环境变量配置在.bashrc下会更好，更适合执行。</span><br></pre></td></tr></table></figure>
+<h1 id="为普通用户赋予root权限">为普通用户赋予root权限</h1>
+<p>普通用户如何获取root用户的最大权限，我们该怎么做？</p>
+<p>切换到root用户，vi /etc/sudoers，光标移动进去，找到root那一行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">效仿root用户写ruoze，权限和root一样，然后无密码访问。</span><br><span class="line">## Allow root to run any commands anywhere</span><br><span class="line">root    ALL=(ALL)       ALL</span><br><span class="line">ruoze   ALL=(root)      NOPASSWD:ALL</span><br><span class="line"></span><br><span class="line">就可以进行如下使用：</span><br><span class="line">[root@hadoop001 ~]# su ruoze</span><br><span class="line">[ruoze@hadoop001 root]$ ll</span><br><span class="line">ls: cannot open directory .: Permission denied</span><br><span class="line">[ruoze@hadoop001 root]$ sudo ll</span><br><span class="line">sudo: ll: command not found</span><br><span class="line">[ruoze@hadoop001 root]$ sudo ls -l</span><br><span class="line">total 0</span><br><span class="line"></span><br><span class="line">命令如果不加sudo就是提示没有权限，一定要加一个sudo</span><br></pre></td></tr></table></figure>
+<p>步骤：先创建测试文件，再验证sudo命令带和不带的效果。</p>
+<p>经常出现的问题：Connection连接拒绝。<br>
+Permission denied：权限不够：</p>
+<h1 id="解决用户存在但是不准登录的问题">解决用户存在但是不准登录的问题</h1>
+1、回到/etc/passwd这个文件当中去：
+文件里的内容是一个bin/bash解释器：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ruoze:x:516:516::/home/ruoze:/bin/bash</span><br><span class="line">修改如下：使用户不能登录</span><br><span class="line">ruoze:x:516:516::/home/ruoze:/bin/false</span><br><span class="line">或者ruoze:x:516:516::/home/ruoze:/sbin/nologin</span><br><span class="line">如上修改之后就会两次用户都切换不过去，su - ruoze，不能切换</span><br></pre></td></tr></table></figure>
+<p>生产应用：在CDH系统中，我们部署完了之后，比如hdfs的组件对应的是hdfs的用户；hbase组件对应 hbase用户，yarn组件对应yarn的用户。我们未来遇到这个问题的话，直接在/etc/passwd尾部对应修改为/bin/bash即可。<br>
+问题：用户存在，但是使用命令su - 用户，切换不过去。</p>
+<p>讲完了用户和用户组</p>
+<h1 id="chown和chmod权限">chown和chmod权限</h1>
+<p>错误：Permission denied<br>
+chown -R 用户:用户组 文件或文件夹<br>
+chmod -R 777 文件或文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 data]# ll</span><br><span class="line">total 8</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  1 Nov 27 13:49 ruozeinput.txt</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 41 Nov  4 16:51 user_seq.txt</span><br></pre></td></tr></table></figure>
+<h1 id="查看文件大小">查看文件大小</h1>
+<p>1、对于文件：</p>
+<ul>
+<li>ll 查看文件本身大小</li>
+<li>ll -h a.log</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 ~]$ ll -h a.log</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.3K Dec 25 17:21 a.log</span><br></pre></td></tr></table></figure>
+<p>2、对于文件夹：<br>
+文件夹查看大小必须使用du -sh：</p>
+<ul>
+<li>du -sh software/</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 ~]$ du -sh software/</span><br><span class="line">1.4G    software/</span><br><span class="line">[hadoop@hadoop001 ~]$ ll -h software/</span><br><span class="line">total 1.4G</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 415M Dec 24 11:50 hadoop-2.6.0-cdh5.16.2.tar.gz</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 123M Dec 23 22:06 hive-1.1.0-cdh5.16.2.tar.gz</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 132M Apr 17  2019 jdk1.7.0_45.tar.gz</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 166M Mar 24  2019 jdk-8u45-linux-x64.gz</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 523M Oct 27 16:05 mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop  28M May 10  2019 scala-2.11.12.tgz</span><br></pre></td></tr></table></figure>
+<h1 id="rwx读写执行权限">rwx读写执行权限</h1>
+<p>关于drwx权限：<br>
+第一个字母：d：代表文件夹   -：文件 l：代表连接<br>
+rwxr-xr-x</p>
+<p>r表示read，w表示write，x代表执行；<br>
+drwxr-xr-x  6 hadoop hadoop 4096 Oct 29 22:19 apache-maven-3.5.4</p>
+<p>rwx：代表的数字是7，代表文件或文件夹的用户，hadoop用户对这个文件有读写执行权限。</p>
+<p>r-x：代表的数字是5，代表文件或文件夹的用户组hadoop，只有读、执行的权限。</p>
+<p>r-x：代表的数字是5，代表其它组的所属用户对这个文件或文件夹的操作权限，读和执行。<br>
+777代表任意的用户和用户组都有读写执行权限。</p>
+<p>在工作中，一定要规范化，千万不能想当然的。</p>
+<p>案例：<br>
+在linux中有一个tmp目录，该目录所有权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">实际使用三个用户进行测试：lxd hadoop ruoze</span><br><span class="line">1、使用hadoop用户在/tmp目录下，echo &quot;&quot; &gt; ruoze.log创建文件</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop    7 Dec  2 15:43 ruoze.log</span><br><span class="line"></span><br><span class="line">分别查看三个用户的用户和用户组：</span><br><span class="line">[lxd@hadoop001 tmp]$ id lxd</span><br><span class="line">uid=515(lxd) gid=515(lxd) groups=515(lxd)</span><br><span class="line"></span><br><span class="line">在使用lxd用户vi编辑ruoze.log的时候，编辑强制保存的时候，提示如上：</span><br><span class="line">can&apos;t open file for writing</span><br><span class="line">Press ENTER or type command to continue</span><br><span class="line"></span><br><span class="line">此时不能输入，我们直接使用ctrl+z来中断掉文件写入，然后使用hadoop用户来chmod修改权限，使得其他组用户有一个write的权限；此时使用lxd用户来编辑ruoze.log，提示如下，因为我们ctrl+z的时候把它中断掉了，所以我们首先要在lxd这个用户下删除这个.swp的隐藏文件。</span><br><span class="line"></span><br><span class="line">E325: ATTENTION</span><br><span class="line">Found a swap file by the name &quot;.ruoze.log.swp&quot;</span><br><span class="line">          owned by: lxd   dated: Mon Dec  2 15:56:16 2019</span><br><span class="line">         file name: /tmp/ruoze.log</span><br><span class="line">          modified: YES</span><br><span class="line">         user name: lxd   host name: hadoop001</span><br><span class="line">        process ID: 25933 (still running)</span><br><span class="line">While opening file &quot;ruoze.log&quot;</span><br><span class="line">             dated: Mon Dec  2 15:43:25 2019</span><br><span class="line">			 </span><br><span class="line">[lxd@hadoop001 tmp]$ rm -rf .ruoze.log.swp	</span><br><span class="line">此时正常的编辑执行一点问题也没有。</span><br></pre></td></tr></table></figure>
+<h1 id="linux中的搜索精准-模糊">Linux中的搜索（精准、模糊）</h1>
+<p>应用场景：未来进入到公司，拿到一台服务器，我们的首先做法是：<br>
+history 查看历史进程<br>
+ps -ef 查看进程<br>
+top 系统情况</p>
+<p>我们去搜索服务器上的文件名称：我们只知道安装的组件名称的一部分名字：hadoop，现在要知道hadoop软件部署在哪里？</p>
+<ul>
+<li>find / -name ‘hadoop’  全局搜索出带有hadoop的一切东西。</li>
+<li>find / -name ‘<em>hadoop</em>’  模糊匹配</li>
+</ul>
+<p>sz下载到本地，使用find命令进行指定查找目录：</p>
+<ul>
+<li>find /usr/local -name ‘<em>hadoop</em>’</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/剑指数据仓库早课/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/Linux命令第二次课程/" data-toggle="tooltip" data-placement="top" title="Linux命令第二次课程">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-上次课回顾"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x4E0A;&#x6B21;&#x8BFE;&#x56DE;&#x987E;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#用户和用户组"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x7528;&#x6237;&#x548C;&#x7528;&#x6237;&#x7EC4;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#用户组生产案例"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x7528;&#x6237;&#x7EC4;&#x751F;&#x4EA7;&#x6848;&#x4F8B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#给用户设置密码"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x7ED9;&#x7528;&#x6237;&#x8BBE;&#x7F6E;&#x5BC6;&#x7801;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#su和su-切换用户的区别"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">su&#x548C;su - &#x5207;&#x6362;&#x7528;&#x6237;&#x7684;&#x533A;&#x522B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#为普通用户赋予root权限"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x4E3A;&#x666E;&#x901A;&#x7528;&#x6237;&#x8D4B;&#x4E88;root&#x6743;&#x9650;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#解决用户存在但是不准登录的问题"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">&#x89E3;&#x51B3;&#x7528;&#x6237;&#x5B58;&#x5728;&#x4F46;&#x662F;&#x4E0D;&#x51C6;&#x767B;&#x5F55;&#x7684;&#x95EE;&#x9898;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#chown和chmod权限"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">chown&#x548C;chmod&#x6743;&#x9650;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#查看文件大小"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5927;&#x5C0F;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#rwx读写执行权限"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">rwx&#x8BFB;&#x5199;&#x6267;&#x884C;&#x6743;&#x9650;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#linux中的搜索精准-模糊"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">Linux&#x4E2D;&#x7684;&#x641C;&#x7D22;&#xFF08;&#x7CBE;&#x51C6;&#x3001;&#x6A21;&#x7CCA;&#xFF09;</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruozedata.com" target="_blank">若泽数据官网</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/hackeruncle">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; John 2019 
+                    By <a href="http://www.ruozedata.com">若泽数据，企业在职</a> | BigData
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ruozedata&repo=Bigdata&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.ruozedata.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.ruozedata.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
