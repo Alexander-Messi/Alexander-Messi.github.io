@@ -142,6 +142,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -150,13 +157,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,18 +214,38 @@
 
                 <hr>
 <h4 id="join-us-if-you-have-a-dream">Join us if you have a dream.</h4>
-<h6 id="登录的用户-机器名称-家目录">登录的用户、机器名称、家目录</h6>
+<p><strong><a href="#id_2" target="_self">Linux基础命令</a></strong></p>
+<ul>
+<li><a href="#id_2.1" target="_self">当前登录的用户、机器名称、当前所在目录</a></li>
+<li><a href="#id_2.2" target="_self">查看当前光标所在的目录</a></li>
+<li><a href="#id_2.3" target="_self">切换目录</a></li>
+<li><a href="#id_2.4" target="_self">绝对路径、相对路径</a></li>
+<li><a href="#id_2.5" target="_self">清屏</a></li>
+<li><a href="#id_2.6" target="_self">ls查看当前光标所在的目录文件有哪些</a></li>
+<li><a href="#id_2.7" target="_self">查看文件大小</a></li>
+<li><a href="#id_2.8" target="_self">如何创建文件夹</a></li>
+<li><a href="#id_2.9" target="_self">复制和移动</a></li>
+<li><a href="#id_3.0" target="_self">创建一个空文件</a></li>
+<li>
+<ul>
+<li><a href="#id_3.1" target="_self">查看文件内容</a></li>
+</ul>
+</li>
+<li><a href="#id_3.2" target="_self">解决SecureCRT长时间不操作，当前session失效的问题</a></li>
+</ul>
+<h1 id="登录的用户-机器名称-家目录">登录的用户、机器名称、家目录</h1>
 <p>[root@hadoop001 ~]</p>
-<h6 id="查看当前光标所在的目录">查看当前光标所在的目录</h6>
+<ul>
+<li>root表示当前登录的用户、hadoop001表示的是机器名称、~表示的是家目录。</li>
+</ul>
+<h1 id="查看当前光标所在的目录">查看当前光标所在的目录</h1>
 <p>Last login: Wed Nov 27 13:23:31 2019 from 112.80.63.242<br>
 [root@hadoop001 ~]# pwd<br>
 /root</p>
-<h6 id="切换目录">切换目录</h6>
-<ul>
-<li>cd /home<br>
-root用户的家目录就是/root，当我们创建了其它用户，就是/home/用户这个目录。</li>
-</ul>
-<p>回答家目录的三种方式：<br>
+<h1 id="切换目录">切换目录</h1>
+- cd /home
+root用户的家目录就是/root，当我们创建了其它用户，就是/home/用户这个目录。
+<p>回到家目录的三种方式：<br>
 1、cd 然后回车<br>
 2、cd ~<br>
 3、cd /root或者/home/XXX</p>
@@ -234,17 +254,15 @@ cd …/ 回退到上一层目录，<br>
 cd …/…/	回退到上两层目录。</p>
 <p>对于目录的理解：<br>
 相当于是windows上文件夹的意思。</p>
-<h6 id="绝对路径和相对路径">绝对路径和相对路径：</h6>
-<p>绝对路径：代表的是从/根目录开始；以根目录开始：/home/hadoop/data/ruozeinput.txt<br>
-相对路径：不从根目录为开始，以当前光标所在的目录开始，eg：我们进入到/home/hadoop目录下</p>
-<p>相对路径的表达：<br>
+<h1 id="绝对目录和相对路径">绝对目录和相对路径</h1>
+<p>1、绝对路径：代表的是从/根目录开始；以根目录开始的路径：/home/hadoop/data/ruozeinput.txt</p>
+<p>2、相对路径：不从根目录为开始，以当前光标所在的目录开始，eg：我们进入到/home/hadoop目录下，命令：~/app</p>
+<p>相对路径的解释：<br>
 只要不是以根目录开始就是相对路径的表达：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 bin]$ cd ../</span><br><span class="line">[hadoop@hadoop001 local]$ cd bin</span><br><span class="line">[hadoop@hadoop001 bin]$ cd -</span><br><span class="line">/usr/local</span><br><span class="line">[hadoop@hadoop001 local]$ cd /usr/local/bin</span><br><span class="line">[hadoop@hadoop001 bin]$ cd -</span><br><span class="line">/usr/local</span><br><span class="line">[hadoop@hadoop001 local]$ cd ./bin</span><br></pre></td></tr></table></figure>
-<h6 id="清屏">清屏</h6>
-<ul>
-<li>clear</li>
-</ul>
-<h6 id="ls查看当前光标所在的目录文件有哪些">ls查看当前光标所在的目录文件有哪些</h6>
+<h1 id="清屏">清屏</h1>
+- clear 
+<h1 id="ls查看当前光标所在的目录文件有哪些">ls查看当前光标所在的目录文件有哪些</h1>
 <p>ls：查看当前目录下的文件<br>
 ls -l：查看所有文件（不包括隐藏文件）<br>
 ls -l -a：查看所有文件（包括隐藏文件）</p>
@@ -253,7 +271,7 @@ ls -l -a：查看所有文件（包括隐藏文件）</p>
 <li>在我们的生产上，也可以将一些配置文件放在隐藏文件下。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 local]$ ls</span><br><span class="line">bin  games    lib    libexec  qcloud  share  yd.socket.server</span><br><span class="line">etc  include  lib64  mysql    sbin    src</span><br><span class="line">[hadoop@hadoop001 local]$ ls -l</span><br><span class="line">total 48</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 bin</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 etc</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 games</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 include</span><br><span class="line">[hadoop@hadoop001 local]$ ls -l -a</span><br><span class="line">total 56</span><br><span class="line">drwxr-xr-x. 14 root       root 4096 Nov 25 20:16 .</span><br><span class="line">drwxr-xr-x. 14 root       root 4096 Oct 29 22:03 ..</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 bin</span><br><span class="line">drwxr-xr-x.  2 root       root 4096 Sep 23  2011 etc</span><br></pre></td></tr></table></figure>
-<h6 id="查看文件的大小">查看文件的大小</h6>
+<h1 id="查看文件的大小">查看文件的大小</h1>
 <p>1、ll -h			-h, --human-readable       with -l, print sizes in human readable format<br>
 (e.g., 1K 234M 2G)</p>
 <p>根据时间修改先后顺序来对文件排序：</p>
@@ -267,10 +285,8 @@ ls -l -a：查看所有文件（包括隐藏文件）</p>
 <li>在生产配置中，不知道哪个文件最新被使用的</li>
 </ul>
 <p>命令帮助一定要会看ls --help，授人以鱼，不如授人以渔。</p>
-<h6 id="目录就是由文件夹组成的如何创建文件夹">目录就是由文件夹组成的，如何创建文件夹？</h6>
-<p>SecureCRT长时间不操作，当前session就会失效？<br>
--解决，右键选择properties，点击terminal，选中每隔60秒要激活一次，这样的话就不会存在对话框未响应。<br>
-<img src="./images/1574919117520.png" alt="enter description here"></p>
+<h1 id="如何创建文件夹">如何创建文件夹</h1>
+<p>目录就是由文件夹组成的，如何创建文件夹？</p>
 <p>1、创建文件夹a</p>
 <ul>
 <li>mkdir a</li>
@@ -281,7 +297,7 @@ ls -l -a：查看所有文件（包括隐藏文件）</p>
 </ul>
 <p>并行创建文件夹，mkdir 1 2 3<br>
 不清楚的话需要查看命令帮助，mkdir --help</p>
-<h6 id="mv和cp">mv和cp</h6>
+<h1 id="复制和移动cp和mv">复制和移动（cp和mv）</h1>
 <p>mv移动ruoze.log文件到/home/hadoop/a文件夹下<br>
 [hadoop@hadoop001 ~]$ mv ruoze.log /home/hadoop/a</p>
 <p>mv在移动文件的时候重命名？</p>
@@ -298,12 +314,13 @@ ls -l -a：查看所有文件（包括隐藏文件）</p>
 <li>mv始终只有一份，相当于只是修改了链接指向。</li>
 <li>而cp比较慢</li>
 </ul>
-<h3 id="拷贝文件">拷贝文件</h3>
-<p>在当前路径下拷贝文件：<br>
+<h1 id="复制和移动">复制和移动</h1>
+<p>拷贝文件<br>
+在当前路径下拷贝文件：<br>
 [hadoop@hadoop001 ~]$ cp test.txt test1.txt</p>
 <p>当前路径下拷贝文件到其它目录顺便改名字：<br>
 [hadoop@hadoop001 ~]$ cp test.txt /home/hadoop/a/ruoze.log</p>
-<h6 id="如何创建一个空文件">如何创建一个空文件？</h6>
+<h1 id="创建一个空文件">创建一个空文件</h1>
 <p>touch rz.log<br>
 echo “” &gt;&gt; rz1.log<br>
 在生产上创建空文件或者把文件内容置为空，echo慎用；因为这个echo还是占一个字节的。cat去查看内容其实都是没有东西，其实占着一个空位符。</p>
@@ -314,7 +331,7 @@ cat /dev/null &gt; rz1.log，此时置空也是0字节。</p>
 <p>是覆盖，&gt;&gt;是追加。</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@hadoop001 a]$ touch ez.log</span><br><span class="line">[hadoop@hadoop001 a]$ echo &quot;&quot; &gt;&gt; rz1.log</span><br><span class="line">[hadoop@hadoop001 a]$ ll -h</span><br><span class="line">total 12K</span><br><span class="line">drwxrwxr-x 3 hadoop hadoop 4.0K Nov 28 13:33 b</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop   14 Nov 28 13:49 ruoze.log</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    1 Nov 28 13:53 rz1.log</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    0 Nov 28 13:52 rz.log</span><br></pre></td></tr></table></figure>
-<h6 id="查看文件内容">查看文件内容？</h6>
+<h1 id="查看文件内容">查看文件内容</h1>
 <p>cat 文件内容一下子全部显示在控制台<br>
 more 文件内容一页一页的往下翻，按空格键往下翻，无法回退，按q键退出。<br>
 less 文件内容往上 往下都能查看，按上下箭头的按键，按q键退出。</p>
@@ -337,7 +354,7 @@ XXX.log是log4j代码项目配置输出日志，正常规则：输出XXX.log，�
 <p>当我们出现error的时候需要自己去定位，error文件很小的时候，把日志上传到windows，用editplus进行打开编辑。</p>
 <p>cd /var/log，正常上传下载需要安装命令：yum install lrzsz<br>
 使用sz boot.log下载到本地，具体下载到本地的那个位置看我们的配置：</p>
-<p><img src="./images/1574999572182.png" alt="enter description here"></p>
+<p><img src="http://106.54.226.205/DW/linux-shell01/DownloadUpload.png" alt="images"></p>
 <ul>
 <li>如上只适用于文件比较小的，几十兆。</li>
 </ul>
@@ -366,6 +383,11 @@ linux上文件下载到windows上，使用命令sz.</p>
 <p>J总的习惯：<br>
 tail -200f XXX.log，实时查看倒数300行文件</p>
 <p>tail -30F XXX.log提示语法错误</p>
+ <h1 id="解决securecrt长时间不操作当前session就失效的问题">解决SecureCRT长时间不操作，当前session就失效的问题</h1>
+<ul>
+<li>解决，右键选择properties，点击terminal，选中每隔60秒要激活一次，这样的话就不会存在对话框未响应。<br>
+<img src="http://106.54.226.205/DW/linux-shell01/SecureCRT-Session-Timeout.png" alt="images"></li>
+</ul>
 
                 
 
@@ -374,12 +396,12 @@ tail -200f XXX.log，实时查看倒数300行文件</p>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/hadoop第一课/" data-toggle="tooltip" data-placement="top" title="hadoop第一课">&larr; Previous Post</a>
+                            <a href="/article/剑指数据仓库早课20191127/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/Linux命令第二次课程/" data-toggle="tooltip" data-placement="top" title="Linux命令第二次课程">Next Post &rarr;</a>
+                            <a href="/article/Hive第一课/" data-toggle="tooltip" data-placement="top" title="Hive第一课">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -429,7 +451,7 @@ tail -200f XXX.log，实时查看倒数300行文件</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#join-us-if-you-have-a-dream"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Join us if you have a dream.</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#登录的用户-机器名称-家目录"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">&#x767B;&#x5F55;&#x7684;&#x7528;&#x6237;&#x3001;&#x673A;&#x5668;&#x540D;&#x79F0;&#x3001;&#x5BB6;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看当前光标所在的目录"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5149;&#x6807;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#切换目录"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">&#x5207;&#x6362;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#绝对路径和相对路径"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x548C;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#清屏"><span class="toc-nav-number">1.0.5.</span> <span class="toc-nav-text">&#x6E05;&#x5C4F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#ls查看当前光标所在的目录文件有哪些"><span class="toc-nav-number">1.0.6.</span> <span class="toc-nav-text">ls&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5149;&#x6807;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;&#x6587;&#x4EF6;&#x6709;&#x54EA;&#x4E9B;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看文件的大小"><span class="toc-nav-number">1.0.7.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#目录就是由文件夹组成的如何创建文件夹"><span class="toc-nav-number">1.0.8.</span> <span class="toc-nav-text">&#x76EE;&#x5F55;&#x5C31;&#x662F;&#x7531;&#x6587;&#x4EF6;&#x5939;&#x7EC4;&#x6210;&#x7684;&#xFF0C;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;&#xFF1F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#mv和cp"><span class="toc-nav-number">1.0.9.</span> <span class="toc-nav-text">mv&#x548C;cp</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#拷贝文件"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x62F7;&#x8D1D;&#x6587;&#x4EF6;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#如何创建一个空文件"><span class="toc-nav-number">0.0.1.</span> <span class="toc-nav-text">&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x6587;&#x4EF6;&#xFF1F;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看文件内容"><span class="toc-nav-number">0.0.2.</span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#xFF1F;</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#join-us-if-you-have-a-dream"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Join us if you have a dream.</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#登录的用户-机器名称-家目录"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x767B;&#x5F55;&#x7684;&#x7528;&#x6237;&#x3001;&#x673A;&#x5668;&#x540D;&#x79F0;&#x3001;&#x5BB6;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#查看当前光标所在的目录"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5149;&#x6807;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#切换目录"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x5207;&#x6362;&#x76EE;&#x5F55;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#绝对目录和相对路径"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x7EDD;&#x5BF9;&#x76EE;&#x5F55;&#x548C;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#清屏"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x6E05;&#x5C4F;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#ls查看当前光标所在的目录文件有哪些"><span class="toc-nav-number"></span> <span class="toc-nav-text">ls&#x67E5;&#x770B;&#x5F53;&#x524D;&#x5149;&#x6807;&#x6240;&#x5728;&#x7684;&#x76EE;&#x5F55;&#x6587;&#x4EF6;&#x6709;&#x54EA;&#x4E9B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#查看文件的大小"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#如何创建文件夹"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#复制和移动cp和mv"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x590D;&#x5236;&#x548C;&#x79FB;&#x52A8;&#xFF08;cp&#x548C;mv&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#复制和移动"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x590D;&#x5236;&#x548C;&#x79FB;&#x52A8;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#创建一个空文件"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x6587;&#x4EF6;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#查看文件内容"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5185;&#x5BB9;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#解决securecrt长时间不操作当前session就失效的问题"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x89E3;&#x51B3;SecureCRT&#x957F;&#x65F6;&#x95F4;&#x4E0D;&#x64CD;&#x4F5C;&#xFF0C;&#x5F53;&#x524D;session&#x5C31;&#x5931;&#x6548;&#x7684;&#x95EE;&#x9898;</span></a>
         
         </div>
       </aside>

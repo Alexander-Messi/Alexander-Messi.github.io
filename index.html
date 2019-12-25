@@ -134,6 +134,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -142,13 +149,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -301,10 +301,10 @@ echo命令
 
 <div class="post-preview">
 
-    <a href="/article/剑指数据仓库早课20191127/">
+    <a href="/article/Linux命令第一次课程/">
         <h2 class="post-title">
                                  
-            剑指数据仓库早课
+            Linux命令一
         </h2>
         <h3 class="post-subtitle">
             This is hexo theme Demo.
@@ -312,13 +312,26 @@ echo命令
         <div class="post-content-preview">
             
 Join us if you have a dream.
-剑指数据仓库早课
-1、查看进程的命令，杀死进程之前应该做些什么
-答：杀死进程前要确认这个进程是否能被杀，不要是别人正在运行的服务。
-2、假如ps确认清楚，杀死名称含有关键词abc的所有进程，该怎么杀？
-答：kill -9 $(ps -ef|grep -f abc)
-3、ps -ef|grep XXX命令，可以查看进程的那些信息
-答：......
+Linux基础命令
+
+当前登录的用户、机器名称、当前所在目录
+查看当前光标所在的目录
+切换目录
+绝对路径、相对路径
+清屏
+ls查看当前光标所在的目录文件有哪些
+查看文件大小
+如何创建文件夹
+复制和移动
+创建一个空文件
+
+
+查看文件内容
+
+
+解决SecureCRT长时间不操作，当前session失效的问题
+
+登录的用户、机器名称、家目......
         </div>
     </a>
     
@@ -338,10 +351,10 @@ Join us if you have a dream.
 
 <div class="post-preview">
 
-    <a href="/article/Linux命令第一次课程/">
+    <a href="/article/剑指数据仓库早课/">
         <h2 class="post-title">
                                  
-            Linux命令一
+            剑指数据仓库早课
         </h2>
         <h3 class="post-subtitle">
             This is hexo theme Demo.
@@ -349,16 +362,20 @@ Join us if you have a dream.
         <div class="post-content-preview">
             
 Join us if you have a dream.
-登录的用户、机器名称、家目录
-[root@hadoop001 ~]
-查看当前光标所在的目录
-Last login: Wed Nov 27 13:23:31 2019 from 112.80.63.242
-[root@hadoop001 ~]# pwd
-/root
-切换目录
-
-cd /home
-root用户的家目录就是/root，当我......
+剑指数据仓库早课
+1、查看当前目录
+答：pwd
+2、ll的命令来源
+答：ls -l
+3、隐藏文件、文件夹什么标识，怎么查看？
+答：ll -a
+4、cd 切换用户家目录的命令有哪三种？
+答：cd ~、cd /home/用户名、
+5、切上一层目录和上一次目录的命令？
+答：cd …/	、cd -
+6、级联创建目录？
+答：mkdir -p
+......
         </div>
     </a>
     
@@ -396,6 +413,78 @@ root用户的家目录就是/root，当我......
 上来遇到的第一个问题就是，在Dbeaver中，但是回到MySQL终端是没有问题的。
 
 12345678create database ruozedata;创建john用户，密码是960210，使其能够对ruozedata数据库下的所有表进行操作......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by John on
+            2019-11-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/SQL02/">
+        <h2 class="post-title">
+                                 
+            SQL02
+        </h2>
+        <h3 class="post-subtitle">
+            This is hexo theme Demo.
+        </h3>
+        <div class="post-content-preview">
+            
+第一章：上次课程回顾r
+第二章：增删改查温习
+第三章：SQL实战
+第四章：本次课程作业
+ 第一章：上次课程回顾
+ - 上次课程主要是创建表，show processlist；查看运行的进程服务，datetime和timestamp的区别，数据库表的增删改查（生产查询居多），生产上的建表规范（自增长和UUID的区别、主键、唯一键、表字段的命名规范、表字段的注释、[创建人、创建时间、修改人、修......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by John on
+            2019-11-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/剑指数据仓库早课20191127/">
+        <h2 class="post-title">
+                                 
+            剑指数据仓库早课
+        </h2>
+        <h3 class="post-subtitle">
+            This is hexo theme Demo.
+        </h3>
+        <div class="post-content-preview">
+            
+Join us if you have a dream.
+剑指数据仓库早课
+1、查看进程的命令，杀死进程之前应该做些什么
+答：杀死进程前要确认这个进程是否能被杀，不要是别人正在运行的服务。
+2、假如ps确认清楚，杀死名称含有关键词abc的所有进程，该怎么杀？
+答：kill -9 $(ps -ef|grep -f abc)
+3、ps -ef|grep XXX命令，可以查看进程的那些信息
+答：......
         </div>
     </a>
     
@@ -458,50 +547,6 @@ root用户的家目录就是/root，当我......
 
 <div class="post-preview">
 
-    <a href="/article/剑指数据仓库早课/">
-        <h2 class="post-title">
-                                 
-            剑指数据仓库早课
-        </h2>
-        <h3 class="post-subtitle">
-            This is hexo theme Demo.
-        </h3>
-        <div class="post-content-preview">
-            
-Join us if you have a dream.
-剑指数据仓库早课
-1、查看当前目录
-答：pwd
-2、ll的命令来源
-答：ls -l
-3、隐藏文件、文件夹什么标识，怎么查看？
-答：ll -a
-4、cd 切换用户家目录的命令有哪三种？
-答：cd ~、cd /home/用户名、
-5、切上一层目录和上一次目录的命令？
-答：cd …/	、cd -
-6、级联创建目录？
-答：mkdir -p
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by John on
-            2019-11-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/article/hadoop第四课/">
         <h2 class="post-title">
                                  
@@ -530,41 +575,6 @@ https://alexander-messi.github.io/article/hadoop%E7%AC%AC%E4%B8%89%E8%AF%BE/
         <p class="post-meta" style="margin: 10px 0;">
             Posted by John on
             2019-12-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/SQL02/">
-        <h2 class="post-title">
-                                 
-            SQL02
-        </h2>
-        <h3 class="post-subtitle">
-            This is hexo theme Demo.
-        </h3>
-        <div class="post-content-preview">
-            
-第一章：上次课程回顾r
-第二章：增删改查温习
-第三章：SQL实战
-第四章：本次课程作业
- 第一章：上次课程回顾
- - 上次课程主要是创建表，show processlist；查看运行的进程服务，datetime和timestamp的区别，数据库表的增删改查（生产查询居多），生产上的建表规范（自增长和UUID的区别、主键、唯一键、表字段的命名规范、表字段的注释、[创建人、创建时间、修改人、修......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by John on
-            2019-11-27
         </p>
         <div class="tags">
             
@@ -722,11 +732,11 @@ https://alexander-messi.github.io/article/hadoop%E7%AC%AC%E4%B8%89%E8%AF%BE/
         </li>
       
         <li>
-          <a href="/article/hadoop第二课/">hadoop第二课</a>
+          <a href="/article/hadoop第三课/">hadoop第三课</a>
         </li>
       
         <li>
-          <a href="/article/hadoop第三课/">hadoop第三课</a>
+          <a href="/article/hadoop第二课/">hadoop第二课</a>
         </li>
       
         <li>
