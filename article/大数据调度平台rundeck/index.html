@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          剑指数据仓库早课 - 梅老板 | Blog
+          大数据调度平台rundeck - 梅老板 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.ruozedata.com/article/剑指数据仓库早课20191127/">
+    <link rel="canonical" href="http://www.ruozedata.com/article/大数据调度平台rundeck/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
                             
                         </div>
-                        <h1>剑指数据仓库早课</h1>
-                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <h1>大数据调度平台rundeck</h1>
+                        <h2 class="subheading">调度平台</h2>
                         <span class="meta">
                             Posted by John on
-                            2019-11-27
+                            2019-12-10
                         </span>
                     </div>
                 
@@ -213,61 +213,79 @@
                 post-container">
 
                 <hr>
-<h4 id="join-us-if-you-have-a-dream">Join us if you have a dream.</h4>
-<h3 id="剑指数据仓库早课">剑指数据仓库早课</h3>
-<p>1、查看进程的命令，杀死进程之前应该做些什么<br>
-答：杀死进程前要确认这个进程是否能被杀，不要是别人正在运行的服务。</p>
-<p>2、假如ps确认清楚，杀死名称含有关键词abc的所有进程，该怎么杀？<br>
-答：kill -9 $(ps -ef|grep -f abc)</p>
-<p>3、ps -ef|grep XXX命令，可以查看进程的那些信息<br>
-答：pid</p>
-<p>4、查看端口号的命令<br>
-答：netstat -nlp|grep</p>
-<p>5、rpm包怎么搜索、安装、卸载<br>
-答：yum search<br>
-yum install -y<br>
-yum remove</p>
-<p>6、tar压缩解压、参数<br>
-答：压缩：<br>
-解压：tar -xzvf</p>
-<p>7、下载一个http文件的命令<br>
-答：wget</p>
-<p>8、sudo和su的区别<br>
-答：su切换到家目录，sudo切换后还是在当前目录</p>
-<p>9、一个用户无法su/ssh登录，该检查那个文件？<br>
-答：cat /etc/passwd</p>
-<p>10、系统负载命令，一般看哪两块？<br>
-答：top</p>
-<p>11、查看内存、磁盘的命令分别是什么？<br>
-答：free -m、df -h</p>
-<p>12、当前目录使用什么命令进行标识？<br>
-答：./</p>
-<p>13、绝对路径和相对路径的定义和概念？<br>
-答：绝对路径/开头，相对路径：~</p>
-<p>14、全局环境变量文件在哪？该怎样生效？生效完成后，习惯做什么？<br>
-答：root用户下，/etc/profile；source /etc/profile，生效完成后使用which java、which hive</p>
-<p>15、个人环境变量文件默认在哪？使用哪个文件？<br>
-答：vi ~/.bash_profile，在用户的家目录下</p>
-<p>16、输入一个命令，抛错command not found，你们觉得应该从哪些方面检查？<br>
-答：环境变量</p>
-<p>17、不管是作为新人还是老手，要动公司服务器上的生产配置文件，修改前要养成什么习惯？<br>
-答：先cp备份一下</p>
-<p>18、vi编辑文件，差不多1000行，想要快速定位到某个参数port=110，去修改值port=120,；如何快速定位找到这个参数？<br>
-答：esc进入尾行模式，输入:/port=110查询然后编辑替换即可。</p>
-<p>19、Linux的模糊匹配和MySQL的模糊匹配分别是什么标识<br>
-答：linux系统中的模糊匹配是*和？，mysql中的模糊匹配是%和_</p>
-<p>20、隐藏文件标识是什么，该怎么查看？<br>
-答：ll -a</p>
-<p>21、一个文件10M，想要快速找到error关键词的上下文10行，命令是什么？<br>
-答：grep ERROR -C  10 XXX</p>
-<p>22、&gt; 和 &gt;&gt;的区别是什么？<br>
-答：&gt;表示把原来的内容全部覆盖掉；&gt;&gt;表示在我们原来的文件内容下进行追加</p>
-<p>23、管道符是什么？你的理解？<br>
-答：| 表示管道符，前者的输出作为后者的输入</p>
-<p>24、echo &quot; &gt; xxx.log清空文件，有什么问题？<br>
-答：实际上还占一个字节</p>
-<p>25、简述一个流程：vi 将一个文件的内容从windows的记事本去替换掉，流程是什么？<br>
-答：vi编辑待替换文件，gg然后dG清空此文件，复制黏贴然后使用secureCRT直接右键黏贴，注意是要在编辑模式下，否则直接黏贴会丢失几个字符。</p>
+<p><strong><a href="#id_1" target="_self">一、大数据调度平台</a></strong></p>
+<ul>
+<li><a href="#id_1.1" target="_self">1.1、下载运行rundeck</a></li>
+</ul>
+<p><strong><a href="#id_2" target="_self">二、rundeck配置邮件服务及案例</a></strong></p>
+<h1 id="一-大数据调度平台">一、大数据调度平台</h1>
+常用的调度平台有哪些：
+crontab
+rundeck：定时跑的要看日志
+azkaban
+XXL-JOB：努比亚公司拿了开源软件申请专利成了自己的项目
+<h1 id="下载运行rundeck">下载运行rundeck</h1>
+rundeck：
+官网网址：https://www.rundeck.com/open-source
+<p>下载分为社区版、企业版，正常学习中使用社区版即可。<br>
+1、部署前置要求：jdk1.8<br>
+which jdk</p>
+<p>2、下载上传jar包</p>
+<p>3、运行：<br>
+启动：<br>
+nohup java -jar rundeck-launcher-2.10.1.jar &amp;<br>
+tail -F nohup.out</p>
+<p>停止：<br>
+ps -ef|grep rundeck<br>
+kill -9 pid</p>
+<p>rundeck主要分为社区版、企业版，我们选择社区版进行下载：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/downloadrundeck.png" alt="images"></p>
+<p>首先需要下载这个war包，下载好后上传至服务器：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/downloadshtml.png" alt="images"></p>
+<p>生产上rundeck服务肯定是有专门的用户进行调度的，不可能所有的服务都以root用户来进行，所以我们专门创建rundeck用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 rundeck]# useradd rundeck</span><br><span class="line">[root@hadoop001 rundeck]# passwd rundeck</span><br><span class="line">Changing password for user rundeck.</span><br><span class="line">New password: </span><br><span class="line">BAD PASSWORD: it is based on a dictionary word</span><br><span class="line">BAD PASSWORD: is too simple</span><br><span class="line">Retype new password: </span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
+<p>下载上传包到服务器上之后，如下开始运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">1、说明启动此命令到后台运行：</span><br><span class="line">nohup java -jar rundeck-3.2.0-20191218.war &amp;</span><br><span class="line"></span><br><span class="line">2、tail -F监控打印这个输出文件：</span><br><span class="line">tail -F nohup.out</span><br><span class="line"></span><br><span class="line">3、会生成一系列的文件：</span><br><span class="line">[rundeck@hadoop001 app]$ ll</span><br><span class="line">total 156288</span><br><span class="line">drwxrwxr-x 2 rundeck rundeck      4096 Dec 27 16:48 etc</span><br><span class="line">drwxrwxr-x 3 rundeck rundeck      4096 Dec 27 16:48 libext</span><br><span class="line">-rw------- 1 rundeck rundeck      1363 Dec 27 16:48 nohup.out</span><br><span class="line">drwxrwxr-x 2 rundeck rundeck      4096 Dec 27 16:48 projects</span><br><span class="line">drwxrwxr-x 4 rundeck rundeck      4096 Dec 27 16:47 repository</span><br><span class="line">-rwxrwxrwx 1 rundeck rundeck 159835223 Dec 27 15:45 rundeck-3.2.0-20191218.war</span><br><span class="line">drwxrwxr-x 8 rundeck rundeck      4096 Dec 27 16:47 server</span><br><span class="line">drwxrwxr-x 4 rundeck rundeck      4096 Dec 27 16:47 tools</span><br><span class="line">drwxrwxr-x 2 rundeck rundeck      4096 Dec 27 16:47 user-assets</span><br><span class="line">drwxrwxr-x 4 rundeck rundeck      4096 Dec 27 16:48 var</span><br><span class="line"></span><br><span class="line">4、打印出nohup.out的日志信息如下：</span><br><span class="line">[rundeck@hadoop001 app]$ tail -F nohup.out </span><br><span class="line"></span><br><span class="line">Configuring Spring Security Core ...</span><br><span class="line">... finished configuring Spring Security Core</span><br><span class="line"></span><br><span class="line">[2019-12-27 16:48:49.756]  INFO BootStrap --- [           main] Starting Rundeck 3.2.0-20191218 (2019-12-19) ...</span><br><span class="line">[2019-12-27 16:48:49.770]  INFO BootStrap --- [           main] using rdeck.base config property: /home/rundeck/app</span><br><span class="line">[2019-12-27 16:48:49.774]  INFO BootStrap --- [           main] Performing rundeck first-run initialization...</span><br><span class="line">[2019-12-27 16:48:49.939]  INFO BootStrap --- [           main] Rundeck initialization complete.</span><br><span class="line">[2019-12-27 16:48:49.962]  INFO BootStrap --- [           main] loaded configuration: /home/rundeck/app/etc/framework.properties</span><br><span class="line">[2019-12-27 16:48:50.057]  INFO BootStrap --- [           main] RSS feeds disabled</span><br><span class="line">[2019-12-27 16:48:50.065]  INFO BootStrap --- [           main] Using builtin realm authentication</span><br><span class="line">[2019-12-27 16:48:50.066]  INFO BootStrap --- [           main] Preauthentication is disabled</span><br><span class="line">[2019-12-27 16:48:50.209]  INFO BootStrap --- [           main] Rundeck is ACTIVE: executions can be run.</span><br><span class="line">[2019-12-27 16:48:50.734]  WARN BootStrap --- [           main] [Development Mode] Usage of H2 database is recommended only for development and testing</span><br><span class="line">[2019-12-27 16:48:51.342]  INFO BootStrap --- [           main] Rundeck startup finished in 1994ms</span><br><span class="line">Grails application running at http://hadoop001:4440 in environment: production</span><br><span class="line"></span><br><span class="line">5、启动之后通过web界面进行端口访问：</span><br><span class="line">http://hadoop001:4440/user/login</span><br></pre></td></tr></table></figure>
+<p>rundeck访问界面如下图：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/rundeck-user-login.png" alt="images"></p>
+<p>windows配置hosts文件的路径：<br>
+‪- C:\Windows\System32\drivers\etc\hosts<br>
+打开之后配置ip+hostname之后，就能使用机器名进行访问：<br>
+47.98.238.163 <a href="http://www.jingyaoyao.com" target="_blank" rel="noopener">www.jingyaoyao.com</a></p>
+<p>106.54.226.205 hadoop001<br>
+192.168.179.1 <a href="http://windows10.microdone.cn" target="_blank" rel="noopener">windows10.microdone.cn</a></p>
+<p>登录之后的用户名和密码都是：admin</p>
+<p>创建好后新建project，名称为ruozedata_project：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/create_project.png" alt="image"></p>
+<p>在创建好的project中创建job，写好job的名字是dateTest，组的名字是bigdata；<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/create_job.png" alt="images"></p>
+<p>在此处workflow节点处选择Execute another job for each Node：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/job_info2.png" alt="image"></p>
+<p>如果想要多个shell脚本，照着如下进行点击，会依次串行执行：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/job_info3.png" alt="images"></p>
+<p>crontab中的调度命令：</p>
+<ul>
+<li><em>/2 * * ? * * *  此条命令表是每两秒执行一次调度<br>
+第一个</em>/2表示秒；第二个<em>号表示分钟；第三个</em>号表示小时；第四个？号表示day of month；第五个<em>号表示Month；第六个</em>号表示Year.</li>
+</ul>
+<ul>
+<li>查看运行的任务：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/job_info4.png" alt="images"></li>
+</ul>
+<p>查看任务的详细信息，发现确实是每隔20秒会打印出一个日志文件：<br>
+<img src="http://106.54.226.205/DW/scheduling-platform/rundeck/job_info5.png" alt="images"></p>
+<h1 id="rundeck配置qq邮箱提醒">rundeck配置QQ邮箱提醒</h1>
+<p>单机进入QQ邮箱，邮箱首页左上角有个设置，选择&quot;常规&quot;，往下拉，看见：POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务，<br>
+确保这几个服务都被开启。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POP3/SMTP服务：bqwwhdrtcpindeaa</span><br><span class="line">IMAP/SMTP服务：cyquibaknwldffig</span><br><span class="line"></span><br><span class="line">主要是生成授权码：在第三方客户端登录时，密码框请输入以下授权码：</span><br><span class="line">dybarbthxvzrdiad</span><br></pre></td></tr></table></figure>
+<p>回到linu服务器上来，关闭sendemail服务，打开postfix服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 rundeck]# service sendemail status</span><br><span class="line">sendemail: unrecognized service</span><br><span class="line">[root@hadoop001 rundeck]# service postfix start</span><br><span class="line">Starting postfix:                                          [  OK  ]</span><br><span class="line">[root@hadoop001 postfix]# postfix check			利用这个命令来进行检查</span><br><span class="line">[root@hadoop001 postfix]# find /usr/local/mysql -name &apos;*libmysqlclient.so.16*&apos;</span><br><span class="line">[root@hadoop001 postfix]# find / -name &apos;*libmysqlclient.so.16*&apos;</span><br><span class="line">/usr/lib64/mysql/libmysqlclient.so.16</span><br><span class="line">/usr/lib64/mysql/libmysqlclient.so.16.0.0</span><br><span class="line"></span><br><span class="line">J总进行命令检查的时候提示缺少libmysqlclient.so.16，解决：yum install mysql-libs</span><br></pre></td></tr></table></figure>
+<p>使用生成的授权码配置QQ邮件：<br>
+如果postfix start启动失败，执行postfix check一下即可；chkconfig postfix on配置自启动。</p>
+<p>下一步：创建证书文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /root/.certs/</span><br><span class="line">echo -n | openssl s_client -connect smtp.qq.com:465 | sed -ne &apos;/-BEGIN</span><br><span class="line">CERTIFICATE-/,/-END CERTIFICATE-/p&apos; &gt; ~/.certs/qq.crt</span><br><span class="line">certutil -A -n &quot;GeoTrust SSL CA&quot; -t &quot;C,,&quot; -d ~/.certs -i ~/.certs/qq.crt</span><br><span class="line">certutil -A -n &quot;GeoTrust Global CA&quot; -t &quot;C,,&quot; -d ~/.certs -i ~/.certs/qq.crt</span><br><span class="line">certutil -L -d /root/.certs</span><br><span class="line">cd /root/.certs</span><br><span class="line">certutil -A -n &quot;GeoTrust SSL CA - G3&quot; -t &quot;Pu,Pu,Pu&quot; -d ./ -i qq.crt</span><br></pre></td></tr></table></figure>
+<p>一步步的执行，我是CentOS6.8的系统，执行第二步的时候就出现了问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 etc]# certutil -A -n &quot;GeoTrust SSL CA&quot; -t &quot;C,,&quot; -d ~/.certs -i ~/.certs/qq.crt</span><br><span class="line">certutil: could not decode certificate: SEC_ERROR_INVALID_ARGS: security library: invalid arguments.</span><br><span class="line">certutil:无法解码证书:SEC_ERROR_INVALID_ARGS:安全库:无效参数。</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -276,12 +294,12 @@ yum remove</p>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/大数据调度平台rundeck/" data-toggle="tooltip" data-placement="top" title="大数据调度平台rundeck">&larr; Previous Post</a>
+                            <a href="/article/hadoop第四课/" data-toggle="tooltip" data-placement="top" title="hadoop第四课">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/SQL02/" data-toggle="tooltip" data-placement="top" title="SQL02">Next Post &rarr;</a>
+                            <a href="/article/剑指数据仓库早课20191127/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库早课">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -331,7 +349,7 @@ yum remove</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#join-us-if-you-have-a-dream"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Join us if you have a dream.</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#剑指数据仓库早课"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x5251;&#x6307;&#x6570;&#x636E;&#x4ED3;&#x5E93;&#x65E9;&#x8BFE;</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-大数据调度平台"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x5927;&#x6570;&#x636E;&#x8C03;&#x5EA6;&#x5E73;&#x53F0;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#下载运行rundeck"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4E0B;&#x8F7D;&#x8FD0;&#x884C;rundeck</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#rundeck配置qq邮箱提醒"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">rundeck&#x914D;&#x7F6E;QQ&#x90AE;&#x7BB1;&#x63D0;&#x9192;</span></a></li></ol>
         
         </div>
       </aside>

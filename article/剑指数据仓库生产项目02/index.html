@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          剑指数据仓库项目01 - 梅老板 | Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.ruozedata.com/article/剑指数据仓库生产项目02/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                            
+                        </div>
+                        <h1>剑指数据仓库项目01</h1>
+                        <h2 class="subheading">项目实战篇.</h2>
+                        <span class="meta">
+                            Posted by John on
+                            2019-12-16
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">亚历山大-梅西</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <hr>
+<p><strong><a href="#id_1" target="_self">一、上次课程回顾</a></strong></p>
+<p><strong><a href="#id_2" target="_self">二、数仓的理论知识</a></strong></p>
+<ul>
+<li>
+<p><a href="#id_2.1" target="_self">2.1 数据仓库的概念</a></p>
+</li>
+<li>
+<p><a href="#id_2.2" target="_self">2.2 仓库模块</a></p>
+</li>
+<li>
+<p><a href="#id_2.3" target="_self">2.3 数仓分层</a></p>
+</li>
+<li>
+<p><a href="#id_2.4" target="_self">2.4 根据业务数据求指标</a></p>
+<p><strong><a href="#id_3" target="_self">三、使用Dbeaver连接Hive</a></strong></p>
+</li>
+<li>
+<p><a href="#id_3.1" target="_self">3.1 Hive部署</a></p>
+</li>
+<li>
+<p><a href="#id_3.2" target="_self">3.2 HiveServer2</a></p>
+</li>
+<li>
+<p><a href="#id_3.3" target="_self">3.3 Dbeaver连接Hive</a></p>
+</li>
+</ul>
+<h1 id="1-上次课程回顾">1、上次课程回顾</h1>
+复习：
+1、基础资料、商品类别、商品、供应商 商家(客户)+用户(个体零售)、采购、销售、仓库、零售；
+2、库存阈值(通过数据挖掘来做的，数据量不足以挖掘（通过爬虫和购买用户数据）)；
+3、仓库中最重要的一块是做用户盘点(仓库的实物不一定是与库存显示量一致的)，盘点可以抽取着盘点，哪个商品的发货与进货，一般针对于卖的好的商品。
+<h1 id="2-数仓的理论知识">2、数仓的理论知识</h1>
+<h1 id="21-什么是数据仓库">2.1、什么是数据仓库</h1>
+- 概念：数据仓库，英文名称为Data Warehouse，可以简写为DW或者DWH，数据仓库是为了企业所有级别的决策制定过程，提供所有类型数据支持的战略集合。它是单个数据存储，处于分析性报告和决策支持目的而创建，它为需要业务智能的企业，提供指导业务流程改进、监视时间、成本、质量以及控制。
+<ul>
+<li>总结：一堆数据集合，挖掘有效价值，提供企业决策。<br>
+1、一堆数据集合（log类型[只有insert]、db关系型[存在insert、update、delete]类型）；</li>
+</ul>
+<p>2、挖掘有效价值（一般数据仓库起步就是做报表report），报表还分为静态报表和动态报表，静态报表列都是固定好的；</p>
+<p>3、动态报表的数据是一份基础数据，For example：运营人员要去看各仓库每小时的订单量，同事他也想去看各仓库每天订单量（有了各仓库每小时的订单量后，就有了它的汇总数据），仓库各个供应商每小时的订单量，各仓库各个供应商每天订单量（每小时订单量）。</p>
+<ul>
+<li>底层存储只需要：个各仓库各个供应商每小时的订单量即可；一般存储只存储最小粒度的多维汇总数据，举例：<br>
+B01 仓库供应商1 2019-10-01 00 1000<br>
+B01仓库供应商2 2019-10-01 00 2000<br>
+B01仓库供应商1 2019-10-01 01 3000<br>
+B01仓库供应商2 2019-10-02 00 2000</li>
+</ul>
+<p>动态报表的说法：上钻下钻，根据上面的数据求出<br>
+仓库每天的订单量；<br>
+仓库每月的订单量；<br>
+仓库的各个供应商的每月的订单量；<br>
+会自动拼接sql ==&gt; group by，group by的速度肯定是大于join的，join至少是两张表，而group by是对一张表进行排序。仓库和供应商是死的，根据时间维度，可以分析出如下指标：计算年、月、日、时、季度、上旬、中旬、下旬、星期几、国家节假日、电商节假日等等…</p>
+<p>静态报表：就是把上面要计算的数据进行写死，动态报表存储的是维度最多的且粒度最小的汇总数据，然后做group by计算，一般生产上把数据放在ES中，速度还是可以的；动态的报表动久了可以跟运营人员沟通哪些数据直接需要呈现，再做成静态报表。</p>
+<p>挖掘有效价值还包括：电商节假日实时大屏、对其它业务系统提供指标计算（智能分单、包装方案、智能推荐）；==&gt;根据用户的收获地址，进行解析，把解析后的结果与自有仓库进行比对，哪个仓库比较近，仓库有无货物，然后仓库人员收到订单，尽心拣货，复核，包装人员尽心打包，条形码进行扫描，放到待出库区，顺丰快递来了之后再把货物二维码再扫描一次，变成出库。</p>
+<p>包装方案智能推荐：根据购买货物的大小进行包装盒，进行数据建模，比如用户购买了3只老母鸡，推荐使用了中等型号纸盒，然后3块干冰，在48h内的冷藏效果是最好的，放多少块干冰还和季节有关（比如是夏天还有冬天）；如果上架开发APP，会有IOS和安卓版两个APP；J总公司开发的是钉钉应用（IDSS智能决策系统）</p>
+<h1 id="22-数据集市">2.2、数据集市</h1>
+数据集市是数据仓库的一个子集；比如我们只分析一个模块 --> 销售管理 --> 哪家供应商的销量最好；
+<p>数据仓库和数据集市的区别：</p>
+<table>
+<thead>
+<tr>
+<th>数据仓库</th>
+<th>数据集市</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企业级别</td>
+<td>部门级别</td>
+</tr>
+<tr>
+<td>大量的全的数据</td>
+<td>仅自己的数据</td>
+</tr>
+</tbody>
+</table>
+<h1 id="23-数仓分层">2.3、数仓分层</h1>
+- ODS层（operation data store）：操作数据层，也叫作原始数据层，存放原始数据，不做任何的处理；
+<ul>
+<li>
+<p>DWD层/DWI层（data warehouse detail）：结构和粒度与ODS层是一致的，只对ODS层数据进行清洗（清洗脏数据、空值），比如在有一些数据是不需要的，直接在这一层进行丢弃；数据中含有1 2 3，在这一层对1 2 3进行替换</p>
+</li>
+<li>
+<p>DWS层（data warehouse service）：轻度汇总，以DWD层为基础，进行轻度汇总，此处做的是一张宽表，基本只做join操作，数据来源是DWD层；也存在多张表join之后的group by操作。</p>
+</li>
+<li>
+<p>ADS层/APP(application data store)：按主题提供统计数据，一般是基于DWS层的宽表进行group by计算；也存在少量情况做join操作（取决于表中没有数据）</p>
+</li>
+</ul>
+<p>J总公司DWD层和ODS层数据是一致的，还是要看上游数据是否干净</p>
+<p>在DWD层，是需要做拉链表的，在Hive中的ruozedata_erp数据库下查看dwd_ruozedata_depot表，发现拉链表其实就多了两个字段：startday和endday，也验证了DWD层和ODS层的粒度是一样的；<br>
+DWS层是一个宽表，订单号、商品单价、商品总额、商品安全库存、商品类别、供应商id、订单创建时间，这一份数据是来自于6个表join后形成的一个宽表（字段超级多的一张表），也会存在一个坑，字段都是围绕订单来做的，所以字段信息都要和订单有关；</p>
+<h1 id="24-根据业务数据进行指标计算">2.4、根据业务数据进行指标计算</h1>
+<p>指标计算如下图：</p>
+<p><img src="http://106.54.226.205/DW/project02/target_calculate.jpg" alt="target-calculate"></p>
+<p>数据建模：说白了就是建表、写SQL、出指标；数仓最根本的一个东西就是数据量，从上游的mysql到hive中（上游–&gt;下游的数据质量需要保证，没有抛error，和有抛error），并不是数据抽取工具（Sqoop、Datax、Kettle）没有报错或者日志并没有error抛错，就能保证数据从上游–&gt;下游这个过程是没有问题的。</p>
+<p>ODS/DWD/DWS/ADS层的结构图如下：<br>
+是以倒三角的形式呈现的，数据量是越来越小的。</p>
+<p><img src="http://106.54.226.205/DW/project02/picture.png" alt="数仓分层表"></p>
+<h1 id="25-命名规范为何进行数仓分层">2.5、命名规范&为何进行数仓分层</h1>
+1、表的前缀：ods dwd(fact dim) dws ads
+对于同一个含义的字段名称，在dws层的各表设计为统一的：订单号orderno，orderid，id，统一为orderno；对字段命名要进行统一。
+eg：关于创建时间：create_time，cretime，ctime    ==> 比如统一写为这个createtime
+<p>为什么要进行数仓分层？<br>
+答案：可以将复杂问题简单化：将一个超级复杂的任务进行分解成多个步骤来完成，每一层只处理单一的步骤，比较简单，方便定位问题。</p>
+<p>减少重复开发：规范好数仓的分层，通过中间层的数据，能够减少重复计算，增加一次计算的复用。</p>
+<p>隔离原始数据：隔离的是ODS层和DWD层的数据，做业务开发的时候，每一层表都是有权限的，比如在DWD层对手机号、地址进行脱敏处理；我们写SQL访问的只能是DWS层后经过脱敏的数据，我们在DWS层进行读取数据比如手机号(就是138XXXXXXXX)的脱敏数据，与金融有关的业务系统多多少少都是脱敏的；ODS层就是mysql完完整整同步过来的数据；J总公司的MySQL脱敏都是java端做好的脱敏。</p>
+<p>隔离原始数据：数据的敏感，使得真实的数据和统计的数据分离，比如我们的业务部门比较大，每个人员开放的表的权限都不一样，数据的敏感性；</p>
+<p>总结：数据仓库的分层不是越多越好，合理的层次设计，以及计算成本和人力成本的平衡，是一个好的数仓架构的表现。</p>
+<p>思考的问题：数据的分层同时也意味着数据需要多拷贝一份，层数越多，人力成本也越高。对于公司数仓的分层：不论是几层，567层或者只有3层，都不要感到惊讶；存在即合理，当时的设计肯定是满足当时的业务需求。</p>
+<p>数据从mysql直接导入到hive中，为什么还要搞这么多层？<br>
+注意：每家公司对于数仓分层的名字叫法不一样</p>
+<h1 id="26-补充主表明细表设计案例">2.6、补充主表&明细表设计案例</h1>
+<p>PDF文档下载处：</p>
+<ul>
+<li><a href="http://106.54.226.205/DW/project02/%e8%8b%a5%e6%b3%bd%e6%95%b0%e6%8d%ae--ERP%e8%ae%a2%e5%8d%95%e4%b8%bb%e8%a1%a8+%e6%98%8e%e7%bb%86%e8%a1%a8%e8%ae%be%e8%ae%a1%e6%a1%88%e4%be%8b.pdf" target="_blank" rel="noopener">http://106.54.226.205/DW/project02/若泽数据–ERP订单主表+明细表设计案例.pdf</a></li>
+</ul>
+<p>分别对应：初级、中级、高级程序员对应的表结构设计；</p>
+<p>主表明细表设计案例：订单全表<br>
+订单主表+明细表<br>
+订单主表+明细表+商品表	此种设计适用于MySQL的上游设计</p>
+<p>MySQL设计了如下两张表：orderinfo、orderitems，在hive的ods层+dwd层还是orderinfo+orderitems表，在dws层就是把两张表合起来设计成了一张宽表（join操作成了一张宽表）。</p>
+<p>上游进行分表，下游把上游的表合起来。</p>
+<h1 id="3-hive部署hiveserver2dbeaver连接hive">3、Hive部署+Hiveserver2+Dbeaver连接Hive</h1>
+<h1 id="31-hive部署">3.1、Hive部署</h1>
+<p>不做赘述，参照之前的博客</p>
+ <h1 id="32-hiveserver2">3.2、Hiveserver2</h1>
+ - Hiveserver2必须要配置MetaStore么，不一定？
+<p>常用的两个MetaStore和hiveserver2服务怎么去启动？</p>
+<ul>
+<li>
+<p>nohup hive --service meatstore &gt; ~/log/metastore.log 2&gt;&amp;1 &amp;</p>
+</li>
+<li>
+<p>nohup hiveserver2 &gt; ~/log/hiveserver2.log 2&gt;&amp;1 &amp;</p>
+</li>
+</ul>
+<p>这两个log文件自己提前创建好就能够启动了；使用beeline进行连接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、启动MetaStore和hiveserver2服务</span><br><span class="line">[hadoop@hadoop001 log]$ nohup hive --service metastore &gt; ~/log/metastore.log 2&gt;&amp;1 &amp;</span><br><span class="line">[1] 10482</span><br><span class="line">[hadoop@hadoop001 log]$ nohup hiveserver2 &gt; ~/log/hiverserver2.log 2&gt;&amp;1 &amp;</span><br><span class="line">[2] 10762</span><br><span class="line"></span><br><span class="line">2、切换到Hadoop用户，输入beeline，等待启动后输入：!connect jdbc:hive2://hadoop001:10000/default，提示输入用户名：hadoop，没有密码就直接敲击回车即可。</span><br></pre></td></tr></table></figure>
+ <h1 id="33-dbeaver连接hive">3.3、Dbeaver连接Hive</h1>
+<p>第一步：如下图，新建连接–&gt;搜索hive–&gt;点击下一步</p>
+<p><img src="http://106.54.226.205/DW/project02/dbeaver-connect-hive.png" alt="dbeaver-connect-hive"></p>
+<p>第二步：输入目标主机，选择默认数据库default，点击测试连接<br>
+<img src="http://106.54.226.205/DW/project02/dbeaver-connect-hive-configuration.png" alt="dbeaver-connect-hive-configuration"></p>
+<p>第三步：把官方默认的hadoop-common和hive-jdbc的jar包给删除掉，根据如下方式找到hive和hadoop内部的包进行上传，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop001 hive]# find ./ -name &quot;*hive-jdbc*&quot;</span><br><span class="line">./lib/hive-jdbc-1.1.0-cdh5.16.2.jar</span><br><span class="line">./lib/hive-jdbc-1.1.0-cdh5.16.2-standalone.jar</span><br><span class="line">[root@hadoop001 hive]# sz ./lib/hive-jdbc-1.1.0-cdh5.16.2-standalone.jar</span><br><span class="line"></span><br><span class="line">[root@hadoop001 hadoop-2.6.0-cdh5.16.2]# find ./ -name &apos;*hadoop-common*&apos;</span><br><span class="line">[root@hadoop001 hadoop-2.6.0-cdh5.16.2]# sz ./share/hadoop/common/hadoop-common-2.6.0-cdh5.16.2.jar</span><br><span class="line">rz</span><br><span class="line">Starting zmodem transfer.  Press Ctrl+C to cancel.</span><br><span class="line">Transferring hadoop-common-2.6.0-cdh5.16.2.jar...</span><br><span class="line">  100%    3492 KB     873 KB/sec    00:00:04       0 Errors</span><br></pre></td></tr></table></figure>
+<p><img src="http://106.54.226.205/DW/project02/dbeaver-connect-hive-configuration02.png" alt="dbeaver-connect-hive-configuration02"></p>
+<p>出现的问题：提示no connect port，原因就是没启动HiveServer2服务，HiveServer2默认的端口号就是10000端口<br>
+注意：后台要开启MetaStore和HiveServer2服务，netstat -nlp|grep 10000，确定10000端口进程已经启动。</p>
+<p>面试题：<br>
+大数据文件的格式<br>
+大数据文件的压缩格式<br>
+hive的三种模式<br>
+hive的外部 分区表：静态、动态<br>
+hive是否支持update、delete<br>
+hive udf函数 编程<br>
+hive高级函数：分组排序、行转列、列转行</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Hive第二课/" data-toggle="tooltip" data-placement="top" title="Hive第二次课">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/剑指数据仓库生产项目01/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库项目01">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-上次课程回顾"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1&#x3001;&#x4E0A;&#x6B21;&#x8BFE;&#x7A0B;&#x56DE;&#x987E;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-数仓的理论知识"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2&#x3001;&#x6570;&#x4ED3;&#x7684;&#x7406;&#x8BBA;&#x77E5;&#x8BC6;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#21-什么是数据仓库"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2.1&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x6570;&#x636E;&#x4ED3;&#x5E93;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#22-数据集市"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2.2&#x3001;&#x6570;&#x636E;&#x96C6;&#x5E02;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#23-数仓分层"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">2.3&#x3001;&#x6570;&#x4ED3;&#x5206;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#24-根据业务数据进行指标计算"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">2.4&#x3001;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6307;&#x6807;&#x8BA1;&#x7B97;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#25-命名规范为何进行数仓分层"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">2.5&#x3001;&#x547D;&#x540D;&#x89C4;&#x8303;&amp;&#x4E3A;&#x4F55;&#x8FDB;&#x884C;&#x6570;&#x4ED3;&#x5206;&#x5C42;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#26-补充主表明细表设计案例"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">2.6&#x3001;&#x8865;&#x5145;&#x4E3B;&#x8868;&amp;&#x660E;&#x7EC6;&#x8868;&#x8BBE;&#x8BA1;&#x6848;&#x4F8B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3-hive部署hiveserver2dbeaver连接hive"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">3&#x3001;Hive&#x90E8;&#x7F72;+Hiveserver2+Dbeaver&#x8FDE;&#x63A5;Hive</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#31-hive部署"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">3.1&#x3001;Hive&#x90E8;&#x7F72;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#32-hiveserver2"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">3.2&#x3001;Hiveserver2</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#33-dbeaver连接hive"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">3.3&#x3001;Dbeaver&#x8FDE;&#x63A5;Hive</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruozedata.com" target="_blank">若泽数据官网</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'rz'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/hackeruncle">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; John 2020 
+                    By <a href="http://www.ruozedata.com">若泽数据，企业在职</a> | BigData
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ruozedata&repo=Bigdata&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.ruozedata.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.ruozedata.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

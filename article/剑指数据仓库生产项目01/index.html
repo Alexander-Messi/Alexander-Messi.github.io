@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          剑指数据仓库早课 - 梅老板 | Blog
+          剑指数据仓库项目01 - 梅老板 | Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.ruozedata.com/article/剑指数据仓库早课20191127/">
+    <link rel="canonical" href="http://www.ruozedata.com/article/剑指数据仓库生产项目01/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#ruozedata" title="ruozedata">ruozedata</a>
                             
                         </div>
-                        <h1>剑指数据仓库早课</h1>
-                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <h1>剑指数据仓库项目01</h1>
+                        <h2 class="subheading">项目实战篇.</h2>
                         <span class="meta">
                             Posted by John on
-                            2019-11-27
+                            2019-12-16
                         </span>
                     </div>
                 
@@ -213,61 +213,107 @@
                 post-container">
 
                 <hr>
-<h4 id="join-us-if-you-have-a-dream">Join us if you have a dream.</h4>
-<h3 id="剑指数据仓库早课">剑指数据仓库早课</h3>
-<p>1、查看进程的命令，杀死进程之前应该做些什么<br>
-答：杀死进程前要确认这个进程是否能被杀，不要是别人正在运行的服务。</p>
-<p>2、假如ps确认清楚，杀死名称含有关键词abc的所有进程，该怎么杀？<br>
-答：kill -9 $(ps -ef|grep -f abc)</p>
-<p>3、ps -ef|grep XXX命令，可以查看进程的那些信息<br>
-答：pid</p>
-<p>4、查看端口号的命令<br>
-答：netstat -nlp|grep</p>
-<p>5、rpm包怎么搜索、安装、卸载<br>
-答：yum search<br>
-yum install -y<br>
-yum remove</p>
-<p>6、tar压缩解压、参数<br>
-答：压缩：<br>
-解压：tar -xzvf</p>
-<p>7、下载一个http文件的命令<br>
-答：wget</p>
-<p>8、sudo和su的区别<br>
-答：su切换到家目录，sudo切换后还是在当前目录</p>
-<p>9、一个用户无法su/ssh登录，该检查那个文件？<br>
-答：cat /etc/passwd</p>
-<p>10、系统负载命令，一般看哪两块？<br>
-答：top</p>
-<p>11、查看内存、磁盘的命令分别是什么？<br>
-答：free -m、df -h</p>
-<p>12、当前目录使用什么命令进行标识？<br>
-答：./</p>
-<p>13、绝对路径和相对路径的定义和概念？<br>
-答：绝对路径/开头，相对路径：~</p>
-<p>14、全局环境变量文件在哪？该怎样生效？生效完成后，习惯做什么？<br>
-答：root用户下，/etc/profile；source /etc/profile，生效完成后使用which java、which hive</p>
-<p>15、个人环境变量文件默认在哪？使用哪个文件？<br>
-答：vi ~/.bash_profile，在用户的家目录下</p>
-<p>16、输入一个命令，抛错command not found，你们觉得应该从哪些方面检查？<br>
-答：环境变量</p>
-<p>17、不管是作为新人还是老手，要动公司服务器上的生产配置文件，修改前要养成什么习惯？<br>
-答：先cp备份一下</p>
-<p>18、vi编辑文件，差不多1000行，想要快速定位到某个参数port=110，去修改值port=120,；如何快速定位找到这个参数？<br>
-答：esc进入尾行模式，输入:/port=110查询然后编辑替换即可。</p>
-<p>19、Linux的模糊匹配和MySQL的模糊匹配分别是什么标识<br>
-答：linux系统中的模糊匹配是*和？，mysql中的模糊匹配是%和_</p>
-<p>20、隐藏文件标识是什么，该怎么查看？<br>
-答：ll -a</p>
-<p>21、一个文件10M，想要快速找到error关键词的上下文10行，命令是什么？<br>
-答：grep ERROR -C  10 XXX</p>
-<p>22、&gt; 和 &gt;&gt;的区别是什么？<br>
-答：&gt;表示把原来的内容全部覆盖掉；&gt;&gt;表示在我们原来的文件内容下进行追加</p>
-<p>23、管道符是什么？你的理解？<br>
-答：| 表示管道符，前者的输出作为后者的输入</p>
-<p>24、echo &quot; &gt; xxx.log清空文件，有什么问题？<br>
-答：实际上还占一个字节</p>
-<p>25、简述一个流程：vi 将一个文件的内容从windows的记事本去替换掉，流程是什么？<br>
-答：vi编辑待替换文件，gg然后dG清空此文件，复制黏贴然后使用secureCRT直接右键黏贴，注意是要在编辑模式下，否则直接黏贴会丢失几个字符。</p>
+<p><strong><a href="#id_1" target="_self">一、ERP项目部署准备</a></strong></p>
+<p><strong><a href="#id_2" target="_self">二、项目前言</a></strong></p>
+<ul>
+<li><a href="#id_2.1" target="_self">2.1 系统各个模块解读</a></li>
+<li><a href="#id_2.2" target="_self">2.2 仓库模块</a></li>
+<li><a href="#id_2.3" target="_self">2.3 数据仓库核心</a></li>
+</ul>
+<h1 id="1-erp项目准备">1、ERP项目准备</h1>
+<p>ERP系统：  <a href="http://114.67.73.169:8888/" target="_blank" rel="noopener">http://114.67.73.169:8888/</a>    jepson/123456<br>
+京东生鲜： <a href="http://fresh.jd.com/" target="_blank" rel="noopener">http://fresh.jd.com/</a></p>
+<p>J总详细视频解读：<a href="https://www.bilibili.com/video/av80522857?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/av80522857?p=2</a></p>
+<p>第一步：下载IDEA+MAVEN，下载地址：</p>
+<ul>
+<li>
+<p><a href="https://www.jetbrains.com/idea/download/#section=windows" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download/#section=windows</a></p>
+</li>
+<li>
+<p>选择apache-maven-3.6.3-bin.zip进行下载，<a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
+</li>
+</ul>
+<p>第二步：IDEA安装+激活</p>
+<p>第三步：windows下完成Maven安装，配置阿里云镜像</p>
+<p>第四步：ERP项目导入IDEA，初始化DB脚本，本地运行</p>
+<ul>
+<li>ERP项目下载地址： <a href="https://github.com/Hackeruncle/ERP" target="_blank" rel="noopener">https://github.com/Hackeruncle/ERP</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、下载解压这个ERP项目，使用IDEA打开这个项目，单机项目左上角file --&gt; open；</span><br><span class="line"></span><br><span class="line">2、修改我们自己的maven地址，左上角file --&gt; settings --&gt;输入maven进行检索，修改maven home directory为自己windows本地部署的maven仓库;</span><br><span class="line"></span><br><span class="line">3、进入pom.xml，右键选择maven --&gt; reimport；</span><br><span class="line"></span><br><span class="line">4、进入到src --&gt; main --&gt;resources下的application.properties</span><br></pre></td></tr></table></figure>
+<p><img src="http://106.54.226.205/DW/project01/ERP_Configuration.png" alt="ERP_Configuration"></p>
+<p><img src="http://106.54.226.205/DW/project01/ERP_Configuration1.png" alt="ERP_Configuration1"><br>
+如何检验该项目依赖包是否已经完成了呢？</p>
+<ul>
+<li>在maven project下查看到Dependencies没有波浪线就是okay的。</li>
+</ul>
+<p>在这个目录下：ERP-master\docs\ruozedata_erp.sql，复制黏贴所有的SQL语句到Dbeaver中去，Ctrl+A选中所有行数，Alt+X意思是执行所有选中脚本。</p>
+<p>在src --&gt;  main --&gt;java  --&gt;com.ruozedata.erp  --&gt; utils  --&gt; ErpApplication</p>
+<p>运行这个项目出现的问题，出现如下报错：</p>
+<ul>
+<li>异常:This application has no explicit mapping for /error, so you are seeing this as a fallback.，因为我是直接照着视频操作的，想着不应该有错啊，想到了项目除了maven环境以外，还有jdk环境需要设置，关于jdk环境设置参考如下博客：<a href="https://blog.csdn.net/fanrenxiang/article/details/80676262" target="_blank" rel="noopener">https://blog.csdn.net/fanrenxiang/article/details/80676262</a></li>
+</ul>
+<p>修改环境java环境后，也验证了我的猜想：确实和jdk设置有关，项目成功复刻到本地。</p>
+<h1 id="一-项目前言">一、项目前言</h1>
+1、ERP系统，分为制造行业与电商行业
+<h1 id="21-模块解读">2.1、模块解读</h1>
+- easyUI+Vue是用来前端组件开发。
+<p>1、角色管理模块：分配权限，权限：分为能够控制界面以及控制界面点击，如果我们没有设置按钮级别的权限，某个按钮是不可用的；生产生按钮级别是最小细粒度。</p>
+<p>用户、角色、权限已经有一个很成熟的体系了，网上直接进行搜索。</p>
+<p>2、日志管理：包含（用户、IP、操作时间）字段 --&gt; 求出用户的PV、UV指标，已经被用烂了，无需在简历上体现</p>
+<p>3、商品属性：专业术语叫做SKU，基于SKU做的维度计算</p>
+<p>4、基本资料模块：</p>
+<ul>
+<li>电商ERP的话必定是有仓库的，公司向供应商去进货，存储到仓库中，再销售给商家；这一套就是进销存系统。就是基于进 - 销 - 存系统；</li>
+</ul>
+<p>供应商进货：库存+1<br>
+销售给商家：销售-1<br>
+仓库：存、取是一个动态变化的状态</p>
+<p>基本资料模块汇总维护了：<br>
+供应商信息、客户信息、会员信息、仓库信息、收支项目、结算账户、经手人管理。</p>
+<p>商品管理：SKU，商品分为：商品类别、商品信息；以京东生鲜为例：</p>
+<p><img src="http://106.54.226.205/DW/project01/fresh_jd.png" alt="新鲜水果下的热销水果"><a href="http://106.54.226.205/DW/project01/fresh_jd.png" target="_blank" rel="noopener">http://106.54.226.205/DW/project01/fresh_jd.png</a></p>
+<p>商品类别图：对应在如下图其实是一个树，我们观察这个它在数据库中的存储：<br>
+新鲜水果、海鲜水产、精选肉类、冷饮冻食、蔬菜蛋品其实都属于根目录；热销水果的ParentId就是新鲜水果的Id。</p>
+<p><img src="http://106.54.226.205/DW/project01/merchandise_categories.png" alt="merchandise_categories"></p>
+<p><img src="http://106.54.226.205/DW/project01/merchandise_categories_database.png" alt="merchandise_categories_database"></p>
+<ul>
+<li>如下是后台的商品信息表：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">分为基本信息：品名、类别、型号、序列号、备注</span><br><span class="line"></span><br><span class="line">价格信息：分为安全存量、零售价、预计采购价</span><br><span class="line"></span><br><span class="line">扩展信息：规格：eg：净膛 3斤/只</span><br><span class="line"></span><br><span class="line">初始库存：默认都为0，不需要进行设置</span><br></pre></td></tr></table></figure>
+<p><img src="http://106.54.226.205/DW/project01/merchandise_info.png" alt="merchandise_info"></p>
+<p>计量单位：kg(包)</p>
+<p>作业：供应商+商家+仓库、商品类别+商品、采购+销售+仓库+零售</p>
+<p>采购管理：<br>
+	先计划	审核：采购订单<br>
+	再发生：采购入库</p>
+<p>思考：为什么做电商的，在核心城市布局 仓库，全中国就可以只有1个仓库？</p>
+<ul>
+<li>用户进行购买的时候，京东上会显示XXX仓库，如果这个仓库没有货物，就会从其它离你进的仓库进行发货；用户下单的时候，系统会根据地址进行分单 --&gt; 分到较近的某个仓库去出货，节省企业费用，提高用户体验度。比如我在京东上购买东西的时候，它会从最近的苏州陆家分拣中心挑选货物后给我进行发货，当日购次日达。</li>
+</ul>
+<p>用户的进货数量：需要智能算法做推荐，如果公司数据量小，可以使用历史数据+爬虫+购买电商数据。</p>
+<p>采购订单如何直接转换成采购入库？</p>
+<h1 id="22-仓库模块">2.2、仓库模块</h1>
+报表查询下分为：库存状况、入库明细
+<p>有一种特殊情况是：其它入库：<br>
+举例：XXX公司在阳澄湖大闸蟹养殖中心设立了一个仓库，此仓库发生的订单入库及订单销售不会经过采购管理，【比如在货物的现场社会入库地点，可以跳过采购流程，直接到仓库 --】，使用其它入库录一下系统，跟货物的生命力有关，如果不是直接在发源地直接发货的都要好好思考下。<br>
+eg：产地仓-阳澄湖（大闸蟹）</p>
+<p>销售管理：销售订单、计划<br>
+销售出库 实际发生的，会校验仓库+SKU的库存量；实际的库存很重要的，库存的安全阈值也很重要，库存阈值需要进行告警。</p>
+<p>零售管理：比如张家琪办理了会员，在基本资料中添加会员信息，然后在零售管理–&gt;零售出库，又在零售管理下–&gt;进行零售退货</p>
+<h1 id="23-仓库核心">2.3、仓库核心</h1>
+1、仓库盘点：常用方法：账面盘点发和现货盘点法；账面盘点法就根据电脑上的数据进行汇总；现货盘点是人工盘查货品数量再和已有的记录进行比对；
+<p>对于电商ERP中的仓库盘点是如何进行操作盘点的？</p>
+<ul>
+<li>每天都对仓库数据进行一个备份表，每天都把这份数据进行冻结，快照，使用SQL语句进行举例：<br>
+insert into BAK select *,‘2019-12-22’ from t，这份数据是22号凌晨做的盘点，22号凌晨0点把t表的数据锁住插入到BAK这张表中，然后释放锁。</li>
+</ul>
+<p>比如老母鸡  库存100 2019-12-21<br>
+老母鸡 库存900 2019-12-22<br>
+老母鸡 库存1200 2019-12-23</p>
+<p>每天的库存变化状态：对于指标计算是能够看得出来的，对于订单的发生数据也能计算出指标，但是那个计算时非常累的。<br>
+在ruozedata.ruozedata_depotitem中确实能看到商品明细，并不清楚是商品的出库还是入库。</p>
+<p>盘点的目的：有可能ERP系统的进和出和实际仓库的数据有差异；比如：买东西的时候由于人为拣货的时候，订单下了一个，但是人为发了2件货，系统显示的还是-1，而不是-2.<br>
+出现损耗与系统实际库存不匹配所以需要进行盘点。</p>
 
                 
 
@@ -276,12 +322,12 @@ yum remove</p>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/article/大数据调度平台rundeck/" data-toggle="tooltip" data-placement="top" title="大数据调度平台rundeck">&larr; Previous Post</a>
+                            <a href="/article/剑指数据仓库生产项目02/" data-toggle="tooltip" data-placement="top" title="剑指数据仓库项目01">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/article/SQL02/" data-toggle="tooltip" data-placement="top" title="SQL02">Next Post &rarr;</a>
+                            <a href="/article/hadoop第二课/" data-toggle="tooltip" data-placement="top" title="hadoop第二课">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -331,7 +377,7 @@ yum remove</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#join-us-if-you-have-a-dream"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Join us if you have a dream.</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#剑指数据仓库早课"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x5251;&#x6307;&#x6570;&#x636E;&#x4ED3;&#x5E93;&#x65E9;&#x8BFE;</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-erp项目准备"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1&#x3001;ERP&#x9879;&#x76EE;&#x51C6;&#x5907;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-项目前言"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x9879;&#x76EE;&#x524D;&#x8A00;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#21-模块解读"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2.1&#x3001;&#x6A21;&#x5757;&#x89E3;&#x8BFB;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#22-仓库模块"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2.2&#x3001;&#x4ED3;&#x5E93;&#x6A21;&#x5757;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#23-仓库核心"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">2.3&#x3001;&#x4ED3;&#x5E93;&#x6838;&#x5FC3;</span></a></li></ol>
         
         </div>
       </aside>
